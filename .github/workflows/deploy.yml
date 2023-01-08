@@ -3,8 +3,8 @@ name: CD
 on:
   push:
     branches: [main]
-  # pull_request:
-  #   branches: [main]
+  pull_request:
+    branches: [main]
 
 jobs:
   build:
@@ -27,9 +27,8 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: ${{ secrets.AWS_REGION }}
       - name: Invalidate CloudFront Cache # 새로 리소스를 업데이트할 때 기존 캐시 무효화
-        run: aws cloudfront create-invalidation \
-          --distribution-id ${{ secrets.AWS_DISTRIBUTION_ID }} --paths "/*"
-        # env:
-        #   AWS_DISTRIBUTION: ${{ secrets.AWS_DISTRIBUTION_ID }}
-        #   PATHS: "/index.html"
+        uses: chetan/invalidate-cloudfront-action@master
+        env:
+          AWS_DISTRIBUTION: ${{ secrets.AWS_DISTRIBUTION_ID }}
+          PATHS: "/index.html"
         continue-on-error: true
