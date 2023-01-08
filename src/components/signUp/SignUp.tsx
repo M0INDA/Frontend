@@ -4,7 +4,7 @@ const SignUp = () => {
   const {
     register,
     handleSubmit,
-    formState: { isSubmitting, isDirty, errors },
+    formState: { isSubmitting },
   } = useForm();
 
   return (
