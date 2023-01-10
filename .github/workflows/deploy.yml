@@ -1,34 +1,58 @@
-name: CD
+name: Test Front build workflow # workflow 이름
 
-on:
+on: # workflow 실행 조건
   push:
-    branches: [main]
-  pull_request:
-    branches: [main]
+    branches:
+      - main # 메인 브랜치가 푸쉬된 경우
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
-
+jobs: # job 설정
+  build: # job id
+    name: react build & deploy
+    runs-on: ubuntu-20.04
+    defaults:
+      run:
+        working-directory: ./fe # 기본 워킹 디렉토리 설정
     steps:
-      - name: Checkout source code
-        uses: actions/checkout@v2 # workflow에서 액세스할 수 있도록 저장소를 체크아웃
+      - name: checkout Github Action
+        uses: actions/checkout@v3 # github actions 가상 환경에 해당 레포 소스 가져오기
 
-      - name: Install dependencies
-        run: yarn install
+      # npm package cache 사용하기 : https://github.com/actions/cache/blob/main/examples.md#node---npm
+      - name: Get npm cache directory
+        id: npm-cache-dir
+        run: |
+          echo "::set-output name=dir::$(npm config get cache)"
+      - uses: actions/cache@v3
+        id: npm-cache # use this to check for `cache-hit` ==> if: steps.npm-cache.outputs.cache-hit != 'true'
+        with:
+          path: ${{ steps.npm-cache-dir.outputs.dir }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
-      - name: Build
-        run: yarn build
+      - name: install npm dependencies
+        run: npm install
+      - name: react build
+        run: npm run build
 
-      - name: S3 Deploy
+      # aws user 연결
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY_ID }}
+          aws-region: ap-northeast-2
+
+      # react 빌드한 /build를 s3로 업로드
+      - name: Upload to S3
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-        run: aws s3 sync ./build s3://moinda-bucket/ --acl bucket-owner-full-control # 현재 build된 폴더에 접근 후 s3 버킷인 moinda-bucket에 파일 업로드
-      - name: Invalidate CloudFront Cache # 새로 리소스를 업데이트할 때 기존 캐시 무효화
-        uses: chetan/invalidate-cloudfront-action@master
+          BUCKET_NAME: ${{ secrets.AWS_BUCKET_NAME}}
+        run: |
+          aws s3 sync \
+            ./build s3://$BUCKET_NAME
+      # 업로드한 s3 파일을 각 CDN 캐시 무효화하여 리프레시 하기
+      - name: CloudFront Invalidation
         env:
-          AWS_DISTRIBUTION_ID: ${{ secrets.AWS_DISTRIBUTION_ID }}
-          PATHS: "/index.html"
-        continue-on-error: true
+          CLOUD_FRONT_ID: ${{ secrets.AWS_CLOUDFRONT_ID}}
+        run: |
+          aws cloudfront create-invalidation \
+            --distribution-id $CLOUD_FRONT_ID --paths "/*"
