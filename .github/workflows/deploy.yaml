@@ -1,3 +1,10 @@
+name: Test Deploy # workflow 이름
+
+on:  # workflow 실행 조건
+  push:
+    branches:
+      - cicd/sejun # 메인 브랜치가 푸쉬된 경우
+
 # GitHub Actions CLI 환경에서 S3 사용자 권한의 aws 접속
 - name: Configure AWS credentials
   uses: aws-actions/configure-aws-credentials@v1
