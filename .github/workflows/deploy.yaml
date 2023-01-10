@@ -2,7 +2,7 @@ name: cicd # Workflow 이름
 on: # Event 감지
   push:
     branches:
-      - cicd/sejun
+      - dev
 jobs: # Job 설정
   build:
     runs-on: ubuntu-latest
