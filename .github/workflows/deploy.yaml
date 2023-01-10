@@ -5,7 +5,7 @@ on: # Event 감지
       - cicd/sejun
 jobs: # Job 설정
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - name: Checkout source code. # Repo checkout
         uses: actions/checkout@v2
