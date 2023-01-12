@@ -2,6 +2,7 @@ import Home from "@pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "@pages/Login";
 import SignUp from "@components/signUp/SignUp";
+import Timer from "@pages/Timer";
 
 const Router = () => {
   return (
@@ -10,6 +11,7 @@ const Router = () => {
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/timer" element={<Timer />} />
       </Routes>
     </BrowserRouter>
   );
