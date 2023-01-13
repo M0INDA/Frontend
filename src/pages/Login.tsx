@@ -1,12 +1,7 @@
 import { emailValid, passwordValid } from "@utils/valids";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
-
-interface ILogin {
-  email: string;
-  password: string;
-}
-
+import { ILogin } from "allTypes/user";
 const Login = () => {
   const {
     register,
