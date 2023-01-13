@@ -24,3 +24,20 @@ export const passwordValid = () => ({
     message: "영어, 특수문자 포함 8~20자리 입니다.",
   },
 });
+
+/** 닉네임 검증 */
+export const nicknameValid = () => ({
+  required: "닉네임을 입력해주세요.",
+  maxLength: {
+    value: 10,
+    message: "10자리 이하로 작성해주세요",
+  },
+  minLength: {
+    value: 2,
+    message: "2자리 이상으로 작성해주세요",
+  },
+  pattern: {
+    value: /^[가-힣a-zA-Z]+$/,
+    message: "형식에 맞지 않는 이름 입니다.",
+  },
+});
