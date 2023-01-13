@@ -1,7 +1,7 @@
 import Home from "@pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "@pages/Login";
-import SignUp from "@components/signUp/SignUp";
+import SignUp from "@pages/SignUp";
 import Timer from "@pages/Timer";
 
 const Router = () => {
