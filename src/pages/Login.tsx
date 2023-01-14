@@ -2,6 +2,7 @@ import { emailValid, passwordValid } from "@utils/valids";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { ILogin } from "allTypes/user";
+import Input from "@elements/Input";
 const Login = () => {
   const {
     register,
@@ -24,13 +25,17 @@ const Login = () => {
       onSubmit={handleSubmit(onValidSubmit)}
       className="mx-auto flex w-80 flex-col"
     >
-      <input
-        {...register("email", emailValid())}
+      <Input
+        register={{ ...register("email", emailValid()) }}
         type="email"
-        placeholder="email"
+        placeholder="Email"
       />
       <span>{errors.email?.message}</span>
-      <input {...register("password", passwordValid())} type="password" />
+      <Input
+        register={{ ...register("password", passwordValid()) }}
+        type="password"
+        placeholder="Password"
+      />
       <span>{errors.password?.message}</span>
       <button>로그인</button>
       <button onClick={onClickKakao}>카카오 로그인</button>
