@@ -1,3 +1,4 @@
+import Input from "@elements/Input";
 import { emailValid, nicknameValid, passwordValid } from "@utils/valids";
 import { ISignUp } from "allTypes/user";
 import React, { useCallback, useState } from "react";
@@ -41,30 +42,36 @@ const SignUp = () => {
       className="mx-auto flex w-80 flex-col"
     >
       <div>
-        <input
-          {...register("email", emailValid())}
+        <Input
+          register={{ ...register("email", emailValid()) }}
           type="email"
           placeholder="email"
         />
-        <button onClick={emailDup}>인증</button>
+        <button onClick={emailDup}>
+          {codeNum ? "인증번호 재전송" : "이메일 인증"}
+        </button>
       </div>
       {codeNum !== 0 && (
         <div>
-          <input type="number" />
+          <Input
+            register={{ ...register("emailCode") }}
+            type="number"
+            placeholder="인증번호"
+          />
           <button onClick={codeValid}>인증</button>
         </div>
       )}
 
       <span>{errors.email?.message}</span>
-      <input
-        {...register("password", passwordValid())}
+      <Input
+        register={{ ...register("password", passwordValid()) }}
         type="password"
         placeholder="Password"
       />
       <span>{errors.password?.message}</span>
       <div>
-        <input
-          {...register("nickname", nicknameValid())}
+        <Input
+          register={{ ...register("nickname", nicknameValid()) }}
           type="text"
           placeholder="Nickname"
         />
