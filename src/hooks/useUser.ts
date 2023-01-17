@@ -1,4 +1,4 @@
-import { removeCookieToken } from "@shared/cookie";
+import { removeCookieToken } from "@apis/cookie";
 import { Cookies } from "react-cookie";
 import { useEffect, useState } from "react";
 import { isExpired } from "react-jwt";
