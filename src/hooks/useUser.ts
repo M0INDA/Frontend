@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 const useUser = () => {
   const [user, setUser] = useState();
   const navigate = useNavigate();
-
   useEffect(() => {
     const cookies = new Cookies();
     const myToken = cookies.get("Authorization");
@@ -32,7 +31,7 @@ const useUser = () => {
     setUser(myToken);
   }, [navigate]);
 
-  return user;
+  return { user, logOut: removeCookieToken };
 };
 
 export default useUser;
