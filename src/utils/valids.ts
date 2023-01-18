@@ -41,3 +41,5 @@ export const nicknameValid = () => ({
     message: "형식에 맞지 않는 이름 입니다.",
   },
 });
+
+/** 버튼 활성화 */
