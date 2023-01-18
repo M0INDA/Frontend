@@ -7,9 +7,13 @@ interface IErrorMessage {
 
 const ErrorMessage = ({ text, className }: IErrorMessage) => {
   return (
-    <span className={cls("mt-1 text-sm text-red-500", className ?? "")}>
-      {text}
-    </span>
+    <>
+      {text && (
+        <span className={cls("mt-1 text-sm text-red-500", className ?? "")}>
+          {text}
+        </span>
+      )}
+    </>
   );
 };
 

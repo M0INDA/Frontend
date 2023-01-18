@@ -1,5 +1,7 @@
 import ErrorMessage from "@elements/ErrorMessage";
 import Input from "@elements/Input";
+import InputWithButton from "@elements/InputWithButton";
+import Label from "@elements/Label";
 import cls from "@utils/cls";
 import { emailValid, nicknameValid, passwordValid } from "@utils/valids";
 import { ISignUp } from "allTypes/user";
@@ -48,55 +50,58 @@ const SignUp = () => {
         onSubmit={handleSubmit(onValidSubmit)}
         className="flex flex-col pt-[20px]"
       >
-        <div className="mb-[1.6rem] flex flex-col space-y-[10px]">
-          <Input
+        <Label className="mb-[1.6rem] flex flex-col" label="이메일">
+          <InputWithButton
             register={{ ...register("email", emailValid()) }}
             type="email"
             placeholder="이메일을 입력해주세요."
-            label="이메일"
             buttonText="이메일 인증"
             onClick={emailDup}
           />
-          {errors?.email && <ErrorMessage text={errors.email?.message} />}
+          <ErrorMessage text={errors.email?.message} />
+        </Label>
 
-          {codeNum !== 0 && (
-            <Input
+        {codeNum !== 0 && (
+          <Label>
+            <InputWithButton
               register={{ ...register("emailCode", { required: true }) }}
               type="number"
               placeholder="인증번호"
               buttonText="인증 확인"
               onClick={codeValid}
             />
-          )}
-        </div>
+          </Label>
+        )}
 
-        <div className="mb-[1.6rem]">
-          <Input
+        <Label className="mb-[1.6rem]" label="닉네임">
+          <InputWithButton
             register={{ ...register("nickname", nicknameValid()) }}
             type="text"
             placeholder="닉네임을 입력해주세요."
             buttonText="중복검사"
             onClick={nicknameDup}
-            label="닉네임"
           />
           <ErrorMessage text={errors.nickname?.message} />
-        </div>
-        <Input
-          register={{ ...register("password", passwordValid()) }}
-          type="password"
-          placeholder="비밀번호는 영어, 특수문자 포함 8~20자리 입니다."
-          label="비밀번호"
-        />
-        <ErrorMessage text={errors.password?.message} className="mb-[10px]" />
-        <Input
-          register={{ ...register("passwordCheck", passwordValid()) }}
-          type="password"
-          placeholder="비밀번호를 다시 한번 입력해주세요."
-        />
-        <ErrorMessage
-          text={errors.passwordCheck?.message}
-          className="mb-[10px]"
-        />
+        </Label>
+
+        <Label label="비밀번호">
+          <Input
+            register={{ ...register("password", passwordValid()) }}
+            type="password"
+            placeholder="비밀번호는 영어, 특수문자 포함 8~20자리 입니다."
+          />
+          <ErrorMessage text={errors.password?.message} className="mb-[10px]" />
+        </Label>
+        <Label className="mt-[14px]">
+          <>
+            <Input
+              register={{ ...register("passwordCheck", passwordValid()) }}
+              type="password"
+              placeholder="비밀번호를 다시 한번 입력해주세요."
+            />
+            <ErrorMessage text={errors.passwordCheck?.message} />
+          </>
+        </Label>
         <button
           className={cls(
             "mt-[10vh] rounded-[30px] bg-[rgba(0,0,0,0.05)] py-[18px] text-primary-400 transition-colors",

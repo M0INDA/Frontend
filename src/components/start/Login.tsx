@@ -6,6 +6,10 @@ import Input from "@elements/Input";
 import { useNavigate } from "react-router-dom";
 import ErrorMessage from "@elements/ErrorMessage";
 import cls from "@utils/cls";
+import Label from "@elements/Label";
+import FacebookSvg from "@assets/svg/FacebookSvg";
+import GoogleSvg from "@assets/svg/GoogleSvg";
+import KakaoSvg from "@assets/svg/KakaoSvg";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,20 +42,22 @@ const Login = () => {
         로그인하면 모든 서비스를 이용할 수 있습니다.
       </span>
       <form onSubmit={handleSubmit(onValidSubmit)} className="flex flex-col">
-        <Input
-          register={{ ...register("email", emailValid()) }}
-          type="email"
-          placeholder="이메일을 입력해주세요."
-          label="이메일"
-        />
-        <ErrorMessage className="mb-[24px]" text={errors.email?.message} />
-        <Input
-          register={{ ...register("password", passwordValid()) }}
-          type="password"
-          placeholder="비밀번호를 입력해주세요."
-          label="비밀번호"
-        />
-        <ErrorMessage className="mb-[44px]" text={errors.password?.message} />
+        <Label className="mb-[24px]" label="이메일">
+          <Input
+            register={{ ...register("email", emailValid()) }}
+            type="email"
+            placeholder="이메일을 입력해주세요."
+          />
+          <ErrorMessage text={errors.email?.message} />
+        </Label>
+        <Label label="비밀번호" className="mb-[44px]">
+          <Input
+            register={{ ...register("password", passwordValid()) }}
+            type="password"
+            placeholder="비밀번호를 입력해주세요."
+          />
+          <ErrorMessage text={errors.password?.message} />
+        </Label>
         <button
           className={cls(
             "rounded-[30px] bg-[rgba(0,0,0,0.05)] py-[18px] text-primary-400 transition-colors",
@@ -65,19 +71,25 @@ const Login = () => {
       </form>
       <ul className="mt-[52px] flex justify-center space-x-[24px]">
         <li className="flex flex-col items-center">
-          <button className="aspect-square w-[66px] rounded-full bg-[#E3E3E3]"></button>
-          <span className="text-[14px] text-primary-500">Google</span>
+          <span className="aspect-square w-[56px] cursor-pointer rounded-full border bg-primary-100">
+            <GoogleSvg />
+          </span>
+          <span className=" mt-2 text-[13px] text-primary-500">Google</span>
         </li>
         <li className="flex flex-col items-center">
-          <button
+          <span
             onClick={onClickKakao}
-            className="flex aspect-square w-[66px] items-center justify-center rounded-full bg-[#E3E3E3]"
-          ></button>
-          <span className="text-[14px] text-primary-500">Kakao</span>
+            className="flex aspect-square w-[56px] cursor-pointer items-center justify-center rounded-full bg-[#E3E3E3]"
+          >
+            <KakaoSvg />
+          </span>
+          <span className="mt-2 text-[13px] text-primary-500">Kakao</span>
         </li>
         <li className="flex flex-col items-center">
-          <button className="aspect-square w-[66px] rounded-full bg-[#E3E3E3]"></button>
-          <span className="text-[14px] text-primary-500">Social</span>
+          <span className="aspect-square w-[56px] cursor-pointer rounded-full bg-[#E3E3E3]">
+            <FacebookSvg />
+          </span>
+          <span className="mt-2 text-[13px] text-primary-500">Facebook</span>
         </li>
       </ul>
       <span className="mt-[46px] text-center text-[1rem] text-primary-600">
