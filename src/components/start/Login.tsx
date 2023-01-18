@@ -21,13 +21,12 @@ const Login = () => {
     //const response = await loginFn(data);
     // 실패했을 때 함수
     // 성공했을 때 함수
+    console.log(data);
     alert("제출");
   }, []);
 
   // 카카오 로그인 버튼
   const onClickKakao = useCallback(() => {}, []);
-
-  console.log(errors.email, errors.password, errors.nickname);
 
   return (
     <>
@@ -56,7 +55,7 @@ const Login = () => {
         <button
           className={cls(
             "rounded-[30px] bg-[rgba(0,0,0,0.05)] py-[18px] text-primary-400 transition-colors",
-            watch("email")?.length > 5 && watch("password")?.length > 8
+            watch("email")?.length > 5 && watch("password")?.length > 7
               ? "bg-primary-main text-primary-100"
               : ""
           )}
