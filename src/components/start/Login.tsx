@@ -1,12 +1,12 @@
-import { emailValid, passwordValid } from "@utils/valids";
 import { useCallback } from "react";
 import { useForm } from "react-hook-form";
 import { ILogin } from "allTypes/user";
-import Input from "@elements/Input";
 import { useNavigate } from "react-router-dom";
+import Input from "@elements/Input";
 import ErrorMessage from "@elements/ErrorMessage";
-import cls from "@utils/cls";
 import Label from "@elements/Label";
+import { emailValid, passwordValid } from "@utils/valids";
+import cls from "@utils/cls";
 import FacebookSvg from "@assets/svg/FacebookSvg";
 import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
@@ -25,7 +25,6 @@ const Login = () => {
     //const response = await loginFn(data);
     // 실패했을 때 함수
     // 성공했을 때 함수
-    console.log(data);
     alert("제출");
   }, []);
 
