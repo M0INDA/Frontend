@@ -8,15 +8,17 @@ interface IInput {
   label?: string;
   buttonText?: string;
   onClick?: OnClick;
+  className?: string;
 }
 
 type OnClick = {
   (e: React.MouseEvent<HTMLElement>): void;
 };
 
-const inputStyles = {
+const styles = {
   login:
-    "h-[58px] rounded border border-primary-200 placeholder:font-sans placeholder:font-normal placeholder:text-primary-400 focus:border-primary-main focus:outline-none focus:ring-transparent ",
+    "h-[58px] rounded border border-primary-200 placeholder:font-sans  placeholder:font-light placeholder:text-primary-400 focus:border-primary-main focus:outline-none focus:ring-transparent ",
+  loginBtn: "w-[108px] rounded bg-primary-300 p-[17px]  text-primary-500",
 };
 
 const Input = ({
@@ -26,10 +28,11 @@ const Input = ({
   label,
   buttonText,
   onClick,
+  className,
 }: IInput) => {
   return (
     <>
-      {(type === "text" || type === "email" || type === "number") && (
+      {(type === "text" || type === "email") && (
         <label className="flex flex-col">
           {label && (
             <>
@@ -41,17 +44,19 @@ const Input = ({
                   {...register}
                   type={type}
                   placeholder={placeholder}
-                  className={inputStyles.login}
+                  className={cls(styles.login)}
                 />
               ) : (
-                <div className="flex ">
+                <div className="flex space-x-[10px]">
                   <input
                     {...register}
                     type={type}
                     placeholder={placeholder}
-                    className={cls(inputStyles.login, "flex-1")}
+                    className={cls(styles.login, "flex-1 ")}
                   />
-                  <button onClick={onClick}>{buttonText}</button>
+                  <button className={styles.loginBtn} onClick={onClick}>
+                    {buttonText}
+                  </button>
                 </div>
               )}
             </>
@@ -69,8 +74,34 @@ const Input = ({
             {...register}
             type="password"
             placeholder={placeholder}
-            className={inputStyles.login}
+            className={cls(styles.login)}
           />
+        </>
+      )}
+      {type === "number" && (
+        <>
+          {!buttonText ? (
+            <input
+              {...register}
+              type="password"
+              placeholder={placeholder}
+              className={styles.login}
+            />
+          ) : (
+            <div
+              className={cls("flex space-x-[10px]", className ? className : "")}
+            >
+              <input
+                {...register}
+                type={type}
+                placeholder={placeholder}
+                className={cls(styles.login, "flex-1")}
+              />
+              <button className={cls(styles.loginBtn)} onClick={onClick}>
+                {buttonText}
+              </button>
+            </div>
+          )}
         </>
       )}
       {type === "file" && <input {...register} type="file" />}

@@ -6,6 +6,7 @@ export interface ILogin {
 export interface ISignUp {
   email: string;
   password: string;
+  passwordCheck: string;
   nickname: string;
   emailCode: number;
 }

@@ -71,7 +71,7 @@ const Login = () => {
         <li className="flex flex-col items-center">
           <button
             onClick={onClickKakao}
-            className="aspect-square w-[66px] rounded-full bg-[#E3E3E3]"
+            className="flex aspect-square w-[66px] items-center justify-center rounded-full bg-[#E3E3E3]"
           ></button>
           <span className="text-[14px] text-primary-500">Kakao</span>
         </li>
