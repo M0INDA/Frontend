@@ -1,4 +1,5 @@
 import Header from "./Header";
+import Main from "./Main";
 
 interface ILayout {
   children: JSX.Element[] | JSX.Element;
@@ -6,10 +7,10 @@ interface ILayout {
 
 const Layout = ({ children }: ILayout) => {
   return (
-    <>
+    <div>
       <Header />
-      {children}
-    </>
+      <Main>{children}</Main>
+    </div>
   );
 };
 
