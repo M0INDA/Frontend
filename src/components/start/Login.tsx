@@ -32,7 +32,7 @@ const Login = () => {
 
   return (
     <>
-      <p className="mt-[20px] text-center text-[26px] font-bold leading-[32px]">
+      <p className="mt-[50px] text-center text-[26px] font-bold leading-[32px]">
         같은 목표를 가진 <br />
         스터디원들과 <strong className="text-primary-main">모인다</strong>!
       </p>
