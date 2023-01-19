@@ -10,6 +10,7 @@ import cls from "@utils/cls";
 import FacebookSvg from "@assets/svg/FacebookSvg";
 import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
+// import { logIn } from "@apis/query/userApi";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -21,10 +22,8 @@ const Login = () => {
   } = useForm<ILogin>();
 
   // 로그인 기능
-  const onValidSubmit = useCallback((data: ILogin) => {
-    //const response = await loginFn(data);
-    // 실패했을 때 함수
-    // 성공했을 때 함수
+  const onValidSubmit = useCallback(async (data: ILogin) => {
+    //const response = await logIn(data);
     alert("제출");
   }, []);
 

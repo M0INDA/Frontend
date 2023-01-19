@@ -1,10 +1,16 @@
+import {
+  checkEmail,
+  //checkEmailNum,
+  checkNickname,
+  //signUp,
+} from "@apis/query/userApi";
 import ErrorMessage from "@elements/ErrorMessage";
 import Input from "@elements/Input";
 import InputWithButton from "@elements/InputWithButton";
 import Label from "@elements/Label";
 import cls from "@utils/cls";
 import { emailValid, nicknameValid, passwordValid } from "@utils/valids";
-import { ISignUp } from "allTypes/user";
+import { ISignUpForm } from "allTypes/user";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 
@@ -13,33 +19,77 @@ const SignUp = () => {
     register,
     handleSubmit,
     watch,
+    //setError,
+    getValues,
     formState: { errors },
-  } = useForm<ISignUp>();
+  } = useForm<ISignUpForm>();
 
   const [codeNum, setCodeNum] = useState(0);
+  //const [isValidCode, setIsValidCode] = useState(false);
 
-  // 로그인 기능
-  const onValidSubmit = useCallback((data: ISignUp) => {
-    //const response = await loginFn(data);
-    // 실패했을 때 함수
-    // 성공했을 때 함수
-  }, []);
+  // 회원가입 기능
+  const onValidSubmit = useCallback(
+    async (data: ISignUpForm) => {
+      // const { email, password, nickname } = data;
+      // if (password === confirmPassword) {
+      //   setError(
+      //     "confirmPassword",
+      //     { message: "비밀번호가 일치하지 않습니다." },
+      //     { shouldFocus: true }
+      //   );
+      // }
+      // if (!isValidCode) {
+      //   return setError(
+      //     "emailCode",
+      //     { message: "비밀번호가 일치하지 않습니다." },
+      //     { shouldFocus: true }
+      //   );
+      // }
+      // const response = await signUp({
+      //   email,
+      //   password,
+      //   confirmPassword,
+      //   nickname,
+      // });
+      // 실패했을 때 함수
+      // 성공했을 때 함수
+    },
+    []
+    // [setError]
+  );
 
   // 이메일 인증
-  const emailDup = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-    setCodeNum(1);
-  }, []);
+  const emailDup = useCallback(
+    async (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      const response = await checkEmail({ email: getValues("email") });
+      setCodeNum(1);
+    },
+    [getValues]
+  );
 
   // 닉네임 중복 검사
-  const nicknameDup = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-  }, []);
+  const nicknameDup = useCallback(
+    async (e: React.MouseEvent<HTMLElement>) => {
+      const response = await checkNickname({ nickname: getValues("nickname") });
+      // setIsValidCode()
+      e.preventDefault();
+    },
+    [getValues]
+  );
 
   // 이메일 인증번호 검사
-  const codeValid = useCallback((e: React.MouseEvent<HTMLElement>) => {
-    e.preventDefault();
-  }, []);
+  const codeValid = useCallback(
+    async (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      // if (codeNum !== getValues("emailCode")) return;
+      // const response = await checkEmailNum({
+      //   emailCode: getValues("emailCode"),
+      // });
+    },
+    []
+    //[codeNum, getValues]
+  );
 
   return (
     <>
@@ -95,17 +145,18 @@ const SignUp = () => {
         <Label className="mt-[14px]">
           <>
             <Input
-              register={{ ...register("passwordCheck", passwordValid()) }}
+              register={{ ...register("confirmPassword", passwordValid()) }}
               type="password"
               placeholder="비밀번호를 다시 한번 입력해주세요."
             />
-            <ErrorMessage text={errors.passwordCheck?.message} />
+            <ErrorMessage text={errors.confirmPassword?.message} />
           </>
         </Label>
         <button
           className={cls(
             "mt-[10vh] rounded-[30px] bg-[rgba(0,0,0,0.05)] py-[18px] text-primary-400 transition-colors",
-            watch("password")?.length > 7 && watch("passwordCheck")?.length > 7
+            watch("password")?.length > 7 &&
+              watch("confirmPassword")?.length > 7
               ? "bg-primary-main text-primary-100"
               : ""
           )}
