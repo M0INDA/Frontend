@@ -24,3 +24,42 @@ input:-webkit-autofill:active {
   -webkit-transition: background-color 9999s ease-out;
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
+
+.H1 {
+  font-weight: 700;
+  font-size: 2.4rem;
+}
+.H2 {
+  font-weight: 500;
+  font-size: 1.8rem;
+}
+.H3 {
+  font-weight: 400;
+  font-size: 1.8rem;
+}
+
+.Sub1 {
+  font-weight: 700;
+  font-size: 1.6rem;
+}
+.Sub2 {
+  font-weight: 500;
+  font-size: 1.6rem;
+}
+
+.Cap1 {
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+.Cap2 {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+.Cap3 {
+  font-weight: 500;
+  font-size: 1.4rem;
+}
+.Cap4 {
+  font-weight: 400;
+  font-size: 1.4rem;
+}
