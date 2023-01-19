@@ -5,7 +5,7 @@ const Home = () => {
   const navigate = useNavigate();
   return (
     <Layout>
-      <span>Home</span>
+      <div>1</div>
     </Layout>
   );
 };

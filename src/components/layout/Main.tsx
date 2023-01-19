@@ -3,7 +3,7 @@ interface IMain {
 }
 
 const Main = ({ children }: IMain) => {
-  return <main>{children}</main>;
+  return <main className="px-[13vw]">{children}</main>;
 };
 
 export default Main;
