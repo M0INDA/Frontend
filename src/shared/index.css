@@ -7,10 +7,20 @@
 body {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
-
 html {
   font-size: 62.5%;
 }
+@media (max-width: 1440px) {
+  html {
+    font-size: 46.8%;
+  }
+}
+
+/* @media (max-width: 1120px) {
+  html {
+    font-size: 39%;
+  }
+} */
 
 * {
   box-sizing: border-box;
