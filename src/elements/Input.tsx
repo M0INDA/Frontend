@@ -10,7 +10,7 @@ interface IInput {
 
 const styles = {
   start:
-    "h-[58px] rounded border border-primary-200 placeholder:font-sans  placeholder:font-light placeholder:text-primary-400 focus:border-primary-main focus:outline-none focus:ring-transparent text-primary-700 ",
+    "h-[5.8rem] text-[1.4rem] rounded border border-primary-200 placeholder:font-sans  placeholder:font-light placeholder:text-primary-400 focus:border-primary-main focus:outline-none focus:ring-transparent text-primary-700 ",
 };
 
 const Input = ({ type, placeholder, register, className }: IInput) => {

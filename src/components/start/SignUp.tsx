@@ -59,24 +59,18 @@ const SignUp = () => {
   );
 
   // 이메일 인증
-  const emailDup = useCallback(
-    async (e: React.MouseEvent<HTMLElement>) => {
-      e.preventDefault();
-      const response = await checkEmail({ email: getValues("email") });
-      setCodeNum(1);
-    },
-    [getValues]
-  );
+  const emailDup = useCallback(async (e: React.MouseEvent<HTMLElement>) => {
+    e.preventDefault();
+    // const response = await checkEmail({ email: getValues("email") });
+    setCodeNum(1);
+  }, []);
 
   // 닉네임 중복 검사
-  const nicknameDup = useCallback(
-    async (e: React.MouseEvent<HTMLElement>) => {
-      const response = await checkNickname({ nickname: getValues("nickname") });
-      // setIsValidCode()
-      e.preventDefault();
-    },
-    [getValues]
-  );
+  const nicknameDup = useCallback(async (e: React.MouseEvent<HTMLElement>) => {
+    // const response = await checkNickname({ nickname: getValues("nickname") });
+    // setIsValidCode()
+    e.preventDefault();
+  }, []);
 
   // 이메일 인증번호 검사
   const codeValid = useCallback(
@@ -93,14 +87,14 @@ const SignUp = () => {
 
   return (
     <>
-      <h1 className="mt-[2.4rem] text-[1.3rem] font-medium text-primary-700">
+      <h1 className="mt-[3.6rem] text-[1.8rem] font-medium text-primary-700">
         회원가입
       </h1>
       <form
         onSubmit={handleSubmit(onValidSubmit)}
-        className="flex flex-col pt-[20px]"
+        className="flex flex-col pt-[2rem]"
       >
-        <Label className="mb-[1.6rem] flex flex-col" label="이메일">
+        <Label className="mb-[2.4rem] flex flex-col" label="이메일">
           <InputWithButton
             register={{ ...register("email", emailValid()) }}
             type="email"
@@ -123,7 +117,7 @@ const SignUp = () => {
           </Label>
         )}
 
-        <Label className="mb-[1.6rem]" label="닉네임">
+        <Label className="mb-[2.4rem]" label="닉네임">
           <InputWithButton
             register={{ ...register("nickname", nicknameValid()) }}
             type="text"
@@ -140,9 +134,9 @@ const SignUp = () => {
             type="password"
             placeholder="비밀번호는 영어, 특수문자 포함 8~20자리 입니다."
           />
-          <ErrorMessage text={errors.password?.message} className="mb-[10px]" />
+          <ErrorMessage text={errors.password?.message} />
         </Label>
-        <Label className="mt-[14px]">
+        <Label className="mt-[1.4rem]">
           <>
             <Input
               register={{ ...register("confirmPassword", passwordValid()) }}
@@ -154,12 +148,13 @@ const SignUp = () => {
         </Label>
         <button
           className={cls(
-            "mt-[10vh] rounded-[30px] bg-[rgba(0,0,0,0.05)] py-[18px] text-primary-400 transition-colors",
-            watch("password")?.length > 7 &&
-              watch("confirmPassword")?.length > 7
-              ? "bg-primary-main text-primary-100"
-              : ""
+            "mt-[10vh] rounded-[3rem] bg-primary-main py-[1.8rem] text-[1.6rem] text-primary-100 transition-colors disabled:bg-[rgba(0,0,0,0.05)] disabled:text-primary-400"
           )}
+          disabled={
+            (!watch("password") && !watch("confirmPassword")) ||
+            watch("password")?.length < 7 ||
+            watch("confirmPassword")?.length < 7
+          }
         >
           가입하기
         </button>

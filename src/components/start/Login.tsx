@@ -32,15 +32,15 @@ const Login = () => {
 
   return (
     <>
-      <p className="mt-[50px] text-center text-[26px] font-bold leading-[32px]">
+      <p className="mt-[5rem] text-center text-[2.6rem] font-bold leading-[3.2rem]">
         같은 목표를 가진 <br />
         스터디원들과 <strong className="text-primary-main">모인다</strong>!
       </p>
-      <span className="mt-[16px] mb-[62px] text-center  text-[16px] text-primary-500">
+      <span className="mt-[1.6rem] mb-[6.2rem] text-center  text-[1.6rem] text-primary-500">
         로그인하면 모든 서비스를 이용할 수 있습니다.
       </span>
       <form onSubmit={handleSubmit(onValidSubmit)} className="flex flex-col">
-        <Label className="mb-[24px]" label="이메일">
+        <Label className="mb-[2.4rem]" label="이메일">
           <Input
             register={{ ...register("email", emailValid()) }}
             type="email"
@@ -48,7 +48,7 @@ const Login = () => {
           />
           <ErrorMessage text={errors.email?.message} />
         </Label>
-        <Label label="비밀번호" className="mb-[44px]">
+        <Label label="비밀번호" className="mb-[4.4rem]">
           <Input
             register={{ ...register("password", passwordValid()) }}
             type="password"
@@ -58,7 +58,7 @@ const Login = () => {
         </Label>
         <button
           className={cls(
-            "rounded-[30px] bg-[rgba(0,0,0,0.05)] py-[18px] text-primary-400 transition-colors",
+            "rounded-[3rem] bg-[rgba(0,0,0,0.05)] py-[1.8rem] text-[1.6rem] text-primary-400 transition-colors",
             watch("email")?.length > 5 && watch("password")?.length > 7
               ? "bg-primary-main text-primary-100"
               : ""
@@ -67,7 +67,7 @@ const Login = () => {
           이메일로 로그인
         </button>
       </form>
-      <ul className="mt-[52px] flex justify-center space-x-[24px]">
+      <ul className="mt-[5.2rem] flex justify-center space-x-[2.4rem]">
         <li className="flex flex-col items-center">
           <span className="aspect-square w-[56px] cursor-pointer rounded-full border bg-primary-100">
             <GoogleSvg />
@@ -90,10 +90,10 @@ const Login = () => {
           <span className="mt-2 text-[13px] text-primary-500">Facebook</span>
         </li>
       </ul>
-      <span className="mt-[46px] text-center text-[1rem] text-primary-600">
-        모인다{" "}
+      <span className="mt-[4.6rem] text-center text-[1.5rem] text-primary-600">
+        모인다
         <strong
-          className="cursor-pointer border-b border-primary-600 font-normal hover:border-primary-500 hover:text-primary-500"
+          className="ml-1 cursor-pointer border-b border-primary-600 text-[1.5rem] font-normal hover:border-primary-500 hover:text-primary-500"
           onClick={() => navigate("/start/signup")}
         >
           회원가입

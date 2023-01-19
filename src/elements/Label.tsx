@@ -11,11 +11,11 @@ const Label = ({ children, className, label }: ILabel) => {
   return (
     <label
       className={cls(
-        "flex flex-col text-[0.93rem] text-primary-500",
+        "flex flex-col text-[1.4rem] text-primary-500",
         className ? className : ""
       )}
     >
-      {label && <span className="mb-[10px]">{label}</span>}
+      {label && <span className="mb-[1rem]">{label}</span>}
       {children}
     </label>
   );

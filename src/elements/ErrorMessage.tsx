@@ -9,7 +9,12 @@ const ErrorMessage = ({ text, className }: IErrorMessage) => {
   return (
     <>
       {text && (
-        <span className={cls("mt-1 text-sm text-red-500", className ?? "")}>
+        <span
+          className={cls(
+            "mt-[0.4rem] text-[1.2rem] text-red-500",
+            className ?? ""
+          )}
+        >
           {text}
         </span>
       )}
