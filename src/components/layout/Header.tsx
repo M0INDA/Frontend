@@ -12,7 +12,7 @@ const Header = () => {
   const { pathname } = useLocation();
   return (
     <header className="w-full border-b">
-      <div className="mx-auto flex h-[6rem] w-full items-center justify-between px-[3rem] xl:w-[144rem] xl:px-0">
+      <div className="mx-auto flex h-[6rem] w-full items-center justify-between px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center space-x-[4.2rem]">
           <span className="H1 text-primary-main">MOINDA</span>
           <ul className="flex space-x-[3.6rem]">
