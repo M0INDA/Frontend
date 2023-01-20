@@ -1,22 +1,74 @@
+import SearchSvg from "@assets/svg/SearchSvg";
+import cls from "@utils/cls";
+import { useState } from "react";
+import { useLocation } from "react-router-dom";
+
 const Header = () => {
+  const { pathname } = useLocation();
+  const [isLogin, setIsLogin] = useState(false);
   return (
-    <header className="flex h-[6rem] w-full items-center justify-between bg-slate-600 px-[13vw]">
-      <nav className="font flex">
-        <span className="H1">MODIDA</span>
-        <ul className="flex">
-          <li>홈</li>
-          <li>마이페이지</li>
-          <li>스터디게시판</li>
-          <li>🥫뽀모도로</li>
-        </ul>
-      </nav>
-      <div className="flex">
-        <input type="text" />
-        <button>스터디 모집하기</button>
-        <div />
+    <header className="w-full border-b">
+      <div className="flex-between mx-auto h-[6rem]  w-full px-[3rem] lg:w-[144rem] lg:px-0">
+        <nav className="flex items-center space-x-[4.2rem]">
+          <span className="text-[2.4rem] font-bold text-primary-main ">
+            MOINDA
+          </span>
+          <ul className="hidden md:flex md:space-x-[3.6rem]">
+            {navs.map((nav) => (
+              <li
+                key={nav.id}
+                className={cls(
+                  styles.navItem,
+                  pathname === nav.pathname
+                    ? styles.activeItem
+                    : "Sub2 border-transparent"
+                )}
+              >
+                {nav.name}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <div className="flex">
+          <form className="flex">
+            <label className="relative mr-[2.2rem] hidden h-[4.2rem] w-[35.6rem] items-center nm:flex">
+              <SearchSvg className="absolute w-[1.8rem] translate-x-7 text-primary-500" />
+              <input
+                type="text"
+                className="Cap1 h-full w-full rounded-full border-none bg-[#F6F6F6] pl-[4.8rem] placeholder:text-primary-500"
+                placeholder="UX 디자이너 스터디"
+              />
+            </label>
+          </form>
+          {isLogin ? (
+            <>
+              <button className="Cap2 flex-center  mr-[4.9rem] h-[4.3rem] w-[12.8rem] rounded-full bg-primary-500 text-primary-100">
+                스터디 모집하기
+              </button>
+              <div className="aspect-square w-[4.3rem] rounded-full bg-primary-200" />
+            </>
+          ) : (
+            <button className="Cap2 flex-center h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-500 text-primary-100">
+              로그인
+            </button>
+          )}
+        </div>
       </div>
     </header>
   );
 };
 
 export default Header;
+
+const styles = {
+  navItem:
+    "h-[6rem] flex px-1 items-center mb-[-3px] border-b-[3px] cursor-pointer",
+  activeItem: "Sub1 border-primary-main ",
+};
+
+const navs = [
+  { id: 0, name: "홈", pathname: "/" },
+  { id: 1, name: "마이페이지", pathname: "/profile" },
+  { id: 2, name: "스터디 게시판", pathname: "/study" },
+  { id: 3, name: "🥫뽀모도로", pathname: "/timer" },
+];

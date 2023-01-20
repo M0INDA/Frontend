@@ -20,7 +20,7 @@ const styles = {
   start:
     "h-[5.8rem] text-[1.4rem] rounded border border-primary-200 placeholder:font-sans  placeholder:font-light placeholder:text-primary-400 focus:border-primary-main focus:outline-none focus:ring-transparent flex-1",
   startBtn:
-    "w-[10.8rem] text-[1.4rem] rounded bg-primary-300 h-[5.8rem] flex justify-center items-center  text-primary-500",
+    "w-[10.8rem] text-[1.4rem] rounded bg-primary-300 h-[5.8rem] flex-center  text-primary-500",
 };
 
 const InputWithButton = ({
