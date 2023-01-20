@@ -35,6 +35,18 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .H1 {
   font-weight: 700;
   font-size: 2.4rem;
