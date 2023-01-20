@@ -46,7 +46,11 @@ const Login = () => {
       <span className="mt-[1.6rem] mb-[6.2rem] text-center  text-[1.6rem] text-primary-500">
         로그인하면 모든 서비스를 이용할 수 있습니다.
       </span>
-      <form onSubmit={handleSubmit(onValidSubmit)} className="flex flex-col">
+      <form
+        onSubmit={handleSubmit(onValidSubmit)}
+        className="flex flex-col"
+        autoComplete="off"
+      >
         <Label className="mb-[2.4rem]" label="이메일">
           <Input
             register={{ ...register("email", emailValid()) }}
