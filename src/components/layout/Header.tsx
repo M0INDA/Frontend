@@ -10,7 +10,9 @@ const Header = () => {
     <header className="w-full border-b">
       <div className="flex-between mx-auto h-[6rem]  w-full px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center space-x-[4.2rem]">
-          <span className="H1 text-primary-main ">MOINDA</span>
+          <span className="text-[2.4rem] font-bold text-primary-main ">
+            MOINDA
+          </span>
           <ul className="hidden md:flex md:space-x-[3.6rem]">
             {navs.map((nav) => (
               <li

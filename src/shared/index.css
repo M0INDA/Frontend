@@ -49,14 +49,14 @@ input:-webkit-autofill:active {
 
 .H1 {
   font-weight: 700;
-  font-size: 2.4rem;
+  font-size: 3rem;
 }
 .H2 {
-  font-weight: 500;
-  font-size: 1.8rem;
+  font-weight: 700;
+  font-size: 2rem;
 }
 .H3 {
-  font-weight: 400;
+  font-weight: 500;
   font-size: 1.8rem;
 }
 
