@@ -4,7 +4,6 @@ import Login from "@components/start/Login";
 import SignUp from "@components/start/SignUp";
 import Timer from "@pages/Timer";
 import Start from "@pages/Start";
-import Test from "@pages/Test";
 
 const Router = () => {
   return (
@@ -12,10 +11,6 @@ const Router = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/start" element={<Start />}>
-          <Route path="signup" element={<SignUp />} />
-          <Route path="login" element={<Login />} />
-        </Route>
-        <Route path="/test" element={<Test />}>
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
         </Route>

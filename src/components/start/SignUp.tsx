@@ -1,9 +1,8 @@
-import {
-  checkEmail,
-  //checkEmailNum,
-  checkNickname,
-  //signUp,
-} from "@apis/query/userApi";
+import //checkEmail,
+//checkEmailNum,
+//checkNickname,
+//signUp,
+"@apis/query/userApi";
 import ErrorMessage from "@elements/ErrorMessage";
 import Input from "@elements/Input";
 import InputWithButton from "@elements/InputWithButton";
@@ -20,7 +19,7 @@ const SignUp = () => {
     handleSubmit,
     watch,
     //setError,
-    getValues,
+    //getValues,
     formState: { errors },
   } = useForm<ISignUpForm>();
 
