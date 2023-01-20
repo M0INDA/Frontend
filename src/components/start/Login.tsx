@@ -12,6 +12,13 @@ import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
 // import { logIn } from "@apis/query/userApi";
 
+const styles = {
+  socialWrapper: "flex flex-col items-center",
+  socialBtn:
+    "aspect-square w-[5.6rem] cursor-pointer rounded-full bg-primary-100",
+  socailName: "mt-2 text-[1.3rem] text-primary-500",
+};
+
 const Login = () => {
   const navigate = useNavigate();
   const {
@@ -58,36 +65,35 @@ const Login = () => {
         </Label>
         <button
           className={cls(
-            "rounded-[3rem] bg-[rgba(0,0,0,0.05)] py-[1.8rem] text-[1.6rem] text-primary-400 transition-colors",
-            watch("email")?.length > 5 && watch("password")?.length > 7
-              ? "bg-primary-main text-primary-100"
-              : ""
+            "rounded-[3rem] bg-primary-main py-[1.8rem] text-[1.6rem]  text-primary-100 transition-colors disabled:bg-[rgba(0,0,0,0.05)] disabled:text-primary-400"
           )}
+          disabled={
+            (!watch("email") && !watch("password")) ||
+            watch("email")?.length < 7 ||
+            watch("password")?.length < 7
+          }
         >
           이메일로 로그인
         </button>
       </form>
       <ul className="mt-[5.2rem] flex justify-center space-x-[2.4rem]">
-        <li className="flex flex-col items-center">
-          <span className="aspect-square w-[56px] cursor-pointer rounded-full border bg-primary-100">
+        <li className={styles.socialWrapper}>
+          <span className={cls(styles.socialBtn, "border")}>
             <GoogleSvg />
           </span>
-          <span className=" mt-2 text-[13px] text-primary-500">Google</span>
+          <span className={styles.socailName}>Google</span>
         </li>
-        <li className="flex flex-col items-center">
-          <span
-            onClick={onClickKakao}
-            className="flex aspect-square w-[56px] cursor-pointer items-center justify-center rounded-full bg-[#E3E3E3]"
-          >
+        <li className={styles.socialWrapper}>
+          <span onClick={onClickKakao} className={styles.socialBtn}>
             <KakaoSvg />
           </span>
-          <span className="mt-2 text-[13px] text-primary-500">Kakao</span>
+          <span className={styles.socailName}>Kakao</span>
         </li>
-        <li className="flex flex-col items-center">
-          <span className="aspect-square w-[56px] cursor-pointer rounded-full bg-[#E3E3E3]">
+        <li className={styles.socialWrapper}>
+          <span className={styles.socialBtn}>
             <FacebookSvg />
           </span>
-          <span className="mt-2 text-[13px] text-primary-500">Facebook</span>
+          <span className={styles.socailName}>Facebook</span>
         </li>
       </ul>
       <span className="mt-[4.6rem] text-center text-[1.5rem] text-primary-600">

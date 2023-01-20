@@ -20,6 +20,7 @@ const Input = ({ type, placeholder, register, className }: IInput) => {
       type={type}
       placeholder={placeholder}
       className={cls(styles.start)}
+      autoComplete={type === "password" ? "new-password" : "off"}
     />
   );
 };

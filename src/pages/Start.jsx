@@ -13,7 +13,7 @@ const Start = () => {
             MOINDA
           </h1>
         </header>
-        <main className="relative flex flex-col p-[2.2rem] pt-[0px]">
+        <main className="relative flex flex-col overflow-scroll p-[2.2rem] pt-[0px] scrollbar-hide">
           <Outlet />
         </main>
       </div>
