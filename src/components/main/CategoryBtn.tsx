@@ -11,16 +11,17 @@ const CategoryBtn = () => {
     "기타",
   ];
   const [click, setClick] = useState("전체 분야");
-  console.log(click);
   return (
-    <div>
+    <div className="mt-[10rem]">
       {categorys.map((cate) => (
         <div
           key={cate}
           onClick={() => setClick(cate)}
           className={cls(
-            "H2 h-[5.4rem] w-[21rem]  cursor-pointer py-[1.4rem] px-[3.6rem]",
-            cate === click ? "rounded-full bg-primary-500  text-white" : ""
+            "H3 h-[5.4rem] w-[21rem] cursor-pointer py-[1.4rem] px-[3.6rem]",
+            cate === click
+              ? "rounded-full bg-primary-500 text-primary-100"
+              : " text-primary-600"
           )}
         >
           {cate}
