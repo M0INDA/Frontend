@@ -1,6 +1,6 @@
 import StudyCard from "@components/StudyBoard/StudyCard";
 
-export const NewStudy = () => {
+const NewStudy = () => {
   return (
     <div className="mt-[7.2rem]">
       <div className="flex justify-between">
@@ -17,3 +17,5 @@ export const NewStudy = () => {
     </div>
   );
 };
+
+export default NewStudy;
