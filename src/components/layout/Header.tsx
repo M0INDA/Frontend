@@ -1,32 +1,33 @@
 import SearchSvg from "@assets/svg/SearchSvg";
 import cls from "@utils/cls";
-import { useState } from "react";
+import { Children, useState } from "react";
 import { useLocation } from "react-router-dom";
-
 const Header = () => {
   const { pathname } = useLocation();
   const [isLogin, setIsLogin] = useState(false);
   return (
     <header className="w-full border-b">
+      <span className="h-10 w-10"></span>
       <div className="flex-between mx-auto h-[6rem]  w-full px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center space-x-[4.2rem]">
           <span className="text-[2.4rem] font-bold text-primary-main ">
             MOINDA
           </span>
           <ul className="hidden md:flex md:space-x-[3.6rem]">
-            {navs.map((nav) => (
-              <li
-                key={nav.id}
-                className={cls(
-                  styles.navItem,
-                  pathname === nav.pathname
-                    ? styles.activeItem
-                    : "Sub2 border-transparent"
-                )}
-              >
-                {nav.name}
-              </li>
-            ))}
+            {Children.toArray(
+              navs.map((nav) => (
+                <li
+                  className={cls(
+                    styles.navItem,
+                    pathname === nav.pathname
+                      ? styles.activeItem
+                      : "Sub2 border-transparent"
+                  )}
+                >
+                  {nav.name}
+                </li>
+              ))
+            )}
           </ul>
         </nav>
         <div className="flex">
@@ -72,3 +73,5 @@ const navs = [
   { id: 2, name: "스터디 게시판", pathname: "/study" },
   { id: 3, name: "🥫뽀모도로", pathname: "/timer" },
 ];
+
+// Children ! React.Children
