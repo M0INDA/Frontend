@@ -1,9 +1,11 @@
 import SearchSvg from "@assets/svg/SearchSvg";
 import cls from "@utils/cls";
+import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 const Header = () => {
   const { pathname } = useLocation();
+  const [isLogin, setIsLogin] = useState(false);
   return (
     <header className="w-full border-b">
       <div className="flex-between mx-auto h-[6rem]  w-full px-[3rem] lg:w-[144rem] lg:px-0">
@@ -25,9 +27,9 @@ const Header = () => {
             ))}
           </ul>
         </nav>
-        <div className="flex space-x-[4.9rem]">
-          <form className="flex space-x-[2.2rem]">
-            <label className="relative hidden h-[4.2rem] w-[35.6rem] items-center nm:flex">
+        <div className="flex">
+          <form className="flex">
+            <label className="relative mr-[2.2rem] hidden h-[4.2rem] w-[35.6rem] items-center nm:flex">
               <SearchSvg className="absolute w-[1.8rem] translate-x-7 text-primary-500" />
               <input
                 type="text"
@@ -35,11 +37,19 @@ const Header = () => {
                 placeholder="UX 디자이너 스터디"
               />
             </label>
-            <button className="Cap2 flex-center h-[4.3rem] w-[12.8rem]  rounded-full bg-primary-500 text-primary-100">
-              스터디 모집하기
-            </button>
           </form>
-          <div className="aspect-square w-[4.3rem] rounded-full bg-primary-200" />
+          {isLogin ? (
+            <>
+              <button className="Cap2 flex-center  mr-[4.9rem] h-[4.3rem] w-[12.8rem] rounded-full bg-primary-500 text-primary-100">
+                스터디 모집하기
+              </button>
+              <div className="aspect-square w-[4.3rem] rounded-full bg-primary-200" />
+            </>
+          ) : (
+            <button className="Cap2 flex-center h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-500 text-primary-100">
+              로그인
+            </button>
+          )}
         </div>
       </div>
     </header>
