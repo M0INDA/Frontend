@@ -49,7 +49,7 @@ const Header = () => {
               <div className="aspect-square w-[4.3rem] rounded-full bg-primary-200" />
             </>
           ) : (
-            <button className="Cap2 flex-center bg-primary-ㅡmain h-[4.3rem] w-[7rem] cursor-pointer rounded-full text-primary-100">
+            <button className="Cap2 flex-center bg-primary-ㅡmain h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-main text-primary-100">
               로그인
             </button>
           )}
