@@ -19,17 +19,21 @@ const Timer = () => {
   const restRef = useRef<HTMLInputElement>(null);
   const cycleRef = useRef<number>(0);
 
+  // 1초마다 실행시킬 함수
   const interValCallback = useCallback(() => {
     setTotalTime((prev) => prev - 1);
   }, []);
 
+  // isRun이 true일 때 interval 실행
   useInterval(isRun, interValCallback);
 
+  // isRun을 true false로 토글하는 기능. 32번째 줄은 필요없어 보인다.
   const onClickToggle = useCallback(() => {
     if (cycleRef.current === 0) cycleRef.current = 3;
     setIsRun((prev) => !prev);
   }, []);
 
+  // reset 버튼을 클릭했을 때 실행시킬 함수
   const onClickReset = useCallback(() => {
     if (!studyRef.current || !restRef.current) return;
     const studyTime = +studyRef.current?.value;
@@ -38,6 +42,7 @@ const Timer = () => {
     setTotalTime(studyTime * 4 + restTime * 3);
   }, []);
 
+  // 시간을 문자열로 변환하여 00:00처럼 보이게 하는 기능
   const viewTime = useMemo(() => {
     const minutes = (time / 60) | 0;
     const seconds = time % 60;
@@ -46,6 +51,7 @@ const Timer = () => {
     }`;
   }, [time]);
 
+  // 집중시간 / 쉬는시간을 입력하고 세팅하는 함수
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!studyRef.current || !restRef.current) return;
@@ -57,6 +63,7 @@ const Timer = () => {
     setDefaultTiem({ studyTime, restTime });
   };
 
+  // 총시간과 디폴트 시간이 변경되었을 때 실행
   useEffect(() => {
     const { studyTime, restTime } = defaultTime;
     if (!studyTime || !restTime) return;
@@ -83,8 +90,6 @@ const Timer = () => {
       setStudyState("study");
     }
   }, [totalTime, defaultTime]);
-
-  useEffect(() => {}, []);
 
   return (
     <div className="flex-center h-screen">
