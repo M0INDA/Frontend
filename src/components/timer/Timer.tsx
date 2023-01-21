@@ -37,10 +37,11 @@ const Timer = () => {
         "targetTime",
         Date.now() + (studyTime * 4 + restTime * 3) * 1000 + ""
       );
+      // 진행 상태와 stop시간을 제거한다.
       localStorage.setItem("isRun", "1");
       localStorage.removeItem("stopTime");
     } else {
-      // 정지시간 저장
+      // 정지시간 저장 / 목표 시간을 다시 정해준다. / 진행 상태를 stop으로 변경한다.
       localStorage.setItem("targetTime", Date.now() + totalTime * 1000 + "");
       localStorage.setItem("stopTime", Date.now() + "");
       localStorage.setItem("isRun", "0");
@@ -54,6 +55,7 @@ const Timer = () => {
     const studyTime = +studyRef.current?.value;
     const restTime = +restRef.current?.value;
     localStorage.removeItem("targetTime");
+    localStorage.removeItem("stopTime");
     setIsRun(false);
     setTotalTime(studyTime * 4 + restTime * 3);
   }, []);
@@ -111,6 +113,7 @@ const Timer = () => {
     }
   }, [totalTime, defaultTime]);
 
+  // 로컬에 저장된 시간을 불러와 run 상태였다면 실행. stop을 한번이라도 눌렀다면 목표 시간 - 스탑시간으로 계산한다.
   useEffect(() => {
     const targetTime = localStorage.getItem("targetTime");
     const runState = localStorage.getItem("isRun");
@@ -121,6 +124,7 @@ const Timer = () => {
     setTotalTime(((+targetTime - +stopTime) / 1000) | 0);
   }, []);
 
+  // 로컬에 저장된 집중 시간과 쉬는 시간을 불러와 state를 초기화 시킨다.
   useEffect(() => {
     const studyTime = localStorage.getItem("studyTime");
     const restTime = localStorage.getItem("restTime");
