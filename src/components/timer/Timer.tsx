@@ -31,7 +31,11 @@ const Timer = () => {
   }, []);
 
   const onClickReset = useCallback(() => {
+    if (!studyRef.current || !restRef.current) return;
+    const studyTime = +studyRef.current?.value;
+    const restTime = +restRef.current?.value;
     setIsRun(false);
+    setTotalTime(studyTime * 4 + restTime * 3);
   }, []);
 
   const viewTime = useMemo(() => {
@@ -59,23 +63,21 @@ const Timer = () => {
     const sumTime = studyTime + restTime;
     const cycle = ((totalTime + restTime) / sumTime) | 0;
     const remainTime = (totalTime + restTime) % sumTime || sumTime;
-    console.log(remainTime);
     cycleRef.current = cycle;
-    console.log("total", totalTime, cycle);
     if (totalTime === 0) {
       setStudyState("study");
+      setTotalTime(studyTime * 4 + restTime * 3);
       setTime(studyTime);
       setIsRun(false);
       return;
     }
-    console.log("remain", remainTime);
     if (cycle) {
       setTime(
         remainTime <= restTime
           ? remainTime % studyTime || restTime
           : (remainTime - restTime) % studyTime || studyTime
       );
-      setStudyState((prev) => (remainTime <= restTime ? "rest" : "study"));
+      setStudyState(remainTime <= restTime ? "rest" : "study");
     } else {
       setTime((remainTime - restTime) % studyTime || studyTime);
       setStudyState("study");
