@@ -6,7 +6,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const [isLogin, setIsLogin] = useState(false);
   return (
-    <header className="w-full border-b">
+    <header className="w-full border-b bg-white">
       <span className="h-10 w-10"></span>
       <div className="flex-between mx-auto h-[6rem]  w-full px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center space-x-[4.2rem]">
