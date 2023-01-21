@@ -2,9 +2,9 @@ import Home from "@pages/Home";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "@components/start/Login";
 import SignUp from "@components/start/SignUp";
-import Timer from "@pages/Timer";
+import Test from "@pages/Test";
 import Start from "@pages/Start";
-import OpenStudy from '@pages/OpenStudy';
+import OpenStudy from "@pages/OpenStudy";
 
 const Router = () => {
   return (
@@ -15,12 +15,11 @@ const Router = () => {
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
         </Route>
-        <Route path="/timer" element={<Timer />} />
+        <Route path="/test" element={<Test />} />
         <Route>
           <Route path="OpenStudy" element={<OpenStudy />} />
         </Route>
       </Routes>
-      
     </BrowserRouter>
   );
 };
