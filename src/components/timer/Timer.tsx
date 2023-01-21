@@ -30,14 +30,30 @@ const Timer = () => {
   // isRun을 true false로 토글하는 기능. 32번째 줄은 필요없어 보인다.
   const onClickToggle = useCallback(() => {
     if (cycleRef.current === 0) cycleRef.current = 3;
+    const { studyTime, restTime } = defaultTime;
+    if (!isRun) {
+      // 목표시간을 저장
+      localStorage.setItem(
+        "targetTime",
+        Date.now() + (studyTime * 4 + restTime * 3) * 1000 + ""
+      );
+      localStorage.setItem("isRun", "1");
+      localStorage.removeItem("stopTime");
+    } else {
+      // 정지시간 저장
+      localStorage.setItem("targetTime", Date.now() + totalTime * 1000 + "");
+      localStorage.setItem("stopTime", Date.now() + "");
+      localStorage.setItem("isRun", "0");
+    }
     setIsRun((prev) => !prev);
-  }, []);
+  }, [defaultTime, isRun, totalTime]);
 
   // reset 버튼을 클릭했을 때 실행시킬 함수
   const onClickReset = useCallback(() => {
     if (!studyRef.current || !restRef.current) return;
     const studyTime = +studyRef.current?.value;
     const restTime = +restRef.current?.value;
+    localStorage.removeItem("targetTime");
     setIsRun(false);
     setTotalTime(studyTime * 4 + restTime * 3);
   }, []);
@@ -59,6 +75,8 @@ const Timer = () => {
     // const restTime = +restRef.current?.value * 60;
     const studyTime = +studyRef.current?.value;
     const restTime = +restRef.current?.value;
+    localStorage.setItem("studyTime", studyTime + "");
+    localStorage.setItem("restTime", restTime + "");
     setTotalTime(studyTime * 4 + restTime * 3);
     setDefaultTiem({ studyTime, restTime });
   };
@@ -76,6 +94,8 @@ const Timer = () => {
       setTotalTime(studyTime * 4 + restTime * 3);
       setTime(studyTime);
       setIsRun(false);
+      localStorage.removeItem("targetTime");
+      localStorage.removeItem("stopTime");
       return;
     }
     if (cycle) {
@@ -91,10 +111,28 @@ const Timer = () => {
     }
   }, [totalTime, defaultTime]);
 
+  useEffect(() => {
+    const targetTime = localStorage.getItem("targetTime");
+    const runState = localStorage.getItem("isRun");
+    const stopTime = localStorage.getItem("stopTime");
+    if (!targetTime || !runState) return;
+    if (Boolean(+runState)) setIsRun(true);
+    if (!stopTime) return setTotalTime(((+targetTime - Date.now()) / 1000) | 0);
+    setTotalTime(((+targetTime - +stopTime) / 1000) | 0);
+  }, []);
+
+  useEffect(() => {
+    const studyTime = localStorage.getItem("studyTime");
+    const restTime = localStorage.getItem("restTime");
+    if (!studyTime || !restTime) return;
+    setDefaultTiem({ studyTime: +studyTime, restTime: +restTime });
+  }, []);
+
   return (
     <div className="flex-center h-screen">
       <div className="flex w-[30rem] flex-col items-center justify-center space-y-10 bg-red-200 py-[5rem]">
         <span>{studyState}</span>
+        <span>{totalTime}</span>
         <span className="text-[2rem]">{viewTime}</span>
         <div className="space-x-3">
           <button
