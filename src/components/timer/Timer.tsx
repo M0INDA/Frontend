@@ -1,9 +1,4 @@
 import useInterval from "@hooks/useInterval";
-import {
-  CircularProgressbarWithChildren,
-  buildStyles,
-} from "react-circular-progressbar";
-// import "react-circular-progressbar/dist/styles.css";
 import React, {
   useCallback,
   useEffect,
