@@ -1,4 +1,9 @@
 import useInterval from "@hooks/useInterval";
+import {
+  CircularProgressbarWithChildren,
+  buildStyles,
+} from "react-circular-progressbar";
+// import "react-circular-progressbar/dist/styles.css";
 import React, {
   useCallback,
   useEffect,
@@ -6,6 +11,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import ProgressBar from "./ProgressBar";
 
 type StudyState = "study" | "rest" | "end";
 
@@ -137,7 +143,18 @@ const Timer = () => {
       <div className="flex w-[30rem] flex-col items-center justify-center space-y-10 bg-red-200 py-[5rem]">
         <span>{studyState}</span>
         <span>{totalTime}</span>
-        <span className="text-[2rem]">{viewTime}</span>
+        <div className="flex-center aspect-square w-full">
+          <ProgressBar
+            value={
+              100 -
+              (totalTime /
+                (defaultTime.studyTime * 4 + defaultTime.restTime * 3)) *
+                100
+            }
+          >
+            <div className="absolute text-[2rem] ">{viewTime}</div>
+          </ProgressBar>
+        </div>
         <div className="space-x-3">
           <button
             className="border border-primary-600 p-2 text-[1.6rem]"
