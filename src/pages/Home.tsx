@@ -1,8 +1,8 @@
 import Layout from "@components/layout/Layout";
-import BestTag from "@components/main/\bBestTag";
+import BestTag from "@components/main/BestTag";
 import BestStudy from "@components/main/BestStudy";
 import CategoryBtn from "@components/main/CategoryBtn";
-import { NewStudy } from "@components/main/NewStudy";
+import NewStudy from "@components/main/NewStudy";
 import Pomodoro from "@components/main/Pomodoro";
 import Studing from "@components/main/Studing";
 import StudyCheck from "@components/main/StudyCheck";
