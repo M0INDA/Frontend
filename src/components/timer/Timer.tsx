@@ -169,8 +169,8 @@ const Timer = () => {
         </button>
       </div>
 
-      <div className="grid h-full  w-full grid-cols-2 items-center justify-items-center">
-        <div className="flex-center w-full">
+      <div className="flex-center h-full  w-full space-x-[7rem]">
+        <div className="flex-center">
           <ProgressBar
             value={
               100 -
