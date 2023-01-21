@@ -41,7 +41,7 @@ type TNumber =
   | 19
   | 20;
 
-const icons = {
+export const icons = {
   1: Icon1,
   2: Icon2,
   3: Icon3,
