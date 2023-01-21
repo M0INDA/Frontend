@@ -43,13 +43,13 @@ const Header = () => {
           </form>
           {isLogin ? (
             <>
-              <button className="Cap2 flex-center  mr-[4.9rem] h-[4.3rem] w-[12.8rem] rounded-full bg-primary-500 text-primary-100">
+              <button className="Cap2 flex-center  mr-[4.9rem] h-[4.3rem] w-[12.8rem] rounded-full bg-primary-main text-primary-100">
                 스터디 모집하기
               </button>
               <div className="aspect-square w-[4.3rem] rounded-full bg-primary-200" />
             </>
           ) : (
-            <button className="Cap2 flex-center h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-500 text-primary-100">
+            <button className="Cap2 flex-center bg-primary-ㅡmain h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-main text-primary-100">
               로그인
             </button>
           )}

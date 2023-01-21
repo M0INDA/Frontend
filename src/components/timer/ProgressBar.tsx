@@ -17,10 +17,10 @@ const ProgressBar = ({ children, value }: IProgressbar) => {
           </linearGradient>
         </defs>
       </svg>
-      <div className="flex-center relative h-[20rem] w-[20rem]">
+      <div className="flex-center relative h-[14rem] w-[14rem]">
         <CircularProgressbar
           value={value}
-          strokeWidth={10}
+          strokeWidth={8}
           styles={{
             path: {
               stroke: `url(#${"progress"})`,
