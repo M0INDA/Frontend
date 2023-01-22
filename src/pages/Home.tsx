@@ -20,10 +20,10 @@ const Home = () => {
           <NewStudy />
         </div>
         <div className=" ml-[5.2rem]">
-          <StudyCheck />
           <Studing />
-          <Pomodoro />
+          <StudyCheck />
           <BestTag />
+          <Pomodoro />
         </div>
       </div>
     </Layout>

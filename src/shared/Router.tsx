@@ -4,6 +4,7 @@ import Login from "@components/start/Login";
 import SignUp from "@components/start/SignUp";
 import Start from "@pages/Start";
 import OpenStudy from "@pages/OpenStudy";
+import Mypage from "@pages/Mypage";
 
 const Router = () => {
   return (
@@ -14,6 +15,7 @@ const Router = () => {
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
         </Route>
+        <Route path="/mypage" element={<Mypage />} />
         <Route>
           <Route path="OpenStudy" element={<OpenStudy />} />
         </Route>
