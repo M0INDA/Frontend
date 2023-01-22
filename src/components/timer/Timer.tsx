@@ -8,6 +8,7 @@ import React, {
   useState,
 } from "react";
 import ProgressBar from "./ProgressBar";
+import TimerForm from "./TimerForm";
 
 type StudyState = "집중타임" | "짧은휴식" | "end";
 
@@ -61,6 +62,7 @@ const Timer = () => {
       const restTime = defaultTime.restTime;
       localStorage.removeItem("targetTime");
       localStorage.removeItem("stopTime");
+      localStorage.removeItem("isRun");
       setIsRun(false);
       setTotalTime(studyTime * 4 + restTime * 3);
     },
@@ -91,10 +93,10 @@ const Timer = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!studyRef.current || !restRef.current) return;
-    const studyTime = +studyRef.current?.value * 60;
-    const restTime = +restRef.current?.value * 60;
-    // const studyTime = +studyRef.current?.value;
-    // const restTime = +restRef.current?.value;
+    // const studyTime = +studyRef.current?.value * 60;
+    // const restTime = +restRef.current?.value * 60;
+    const studyTime = +studyRef.current?.value;
+    const restTime = +restRef.current?.value;
     localStorage.setItem("studyTime", studyTime + "");
     localStorage.setItem("restTime", restTime + "");
     localStorage.setItem("storageTime", studyTime * 4 + restTime * 3 + "");
@@ -111,7 +113,7 @@ const Timer = () => {
     const cycle = ((totalTime + restTime) / sumTime) | 0;
     const remainTime = (totalTime + restTime) % sumTime || sumTime;
     cycleRef.current = cycle;
-    if (totalTime === 0) {
+    if (totalTime <= 0) {
       setStudyState("집중타임");
       setTotalTime(studyTime * 4 + restTime * 3);
       setTime(studyTime);
@@ -210,28 +212,11 @@ const Timer = () => {
       </div>
       {isSetting && (
         <div className="absolute top-0 flex h-full w-full flex-col items-center rounded-[1rem] bg-primary-sub3">
-          <form
-            className="flex  h-full w-3/4 flex-col items-center justify-center space-y-3"
+          <TimerForm
             onSubmit={onSubmit}
-          >
-            <input
-              type="number"
-              placeholder="집중시간 ex) 25분"
-              required
-              ref={studyRef}
-              className="w-[20rem] rounded-lg border border-primary-400 px-3 py-4  text-[1.2rem]"
-            />
-            <input
-              type="number"
-              placeholder="집중시간 ex) 5분"
-              required
-              ref={restRef}
-              className="w-[20rem] rounded-lg border border-primary-400 px-3 py-4  text-[1.2rem]"
-            />
-            <button className="w-[20rem] cursor-pointer rounded-lg bg-primary-main p-3  py-4 text-[1.3rem] text-primary-100 hover:bg-primary-sub1">
-              세팅
-            </button>
-          </form>
+            studyRef={studyRef}
+            restRef={restRef}
+          />
         </div>
       )}
     </>

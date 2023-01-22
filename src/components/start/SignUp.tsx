@@ -12,6 +12,7 @@ import { emailValid, nicknameValid, passwordValid } from "@utils/valids";
 import { ISignUpForm } from "allTypes/user";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import CheckSvg from "@assets/svg/CheckSvg.svg";
 
 const SignUp = () => {
   const {
@@ -21,10 +22,11 @@ const SignUp = () => {
     //setError,
     //getValues,
     formState: { errors },
-  } = useForm<ISignUpForm>();
+  } = useForm<ISignUpForm>({ mode: "onChange" });
 
   const [codeNum, setCodeNum] = useState(0);
-  //const [isValidCode, setIsValidCode] = useState(false);
+  const [isValidCode, setIsValidCode] = useState(false);
+  const [isValidNick, setIsValidNick] = useState(false);
 
   // 회원가입 기능
   const onValidSubmit = useCallback(
@@ -67,14 +69,16 @@ const SignUp = () => {
   // 닉네임 중복 검사
   const nicknameDup = useCallback(async (e: React.MouseEvent<HTMLElement>) => {
     // const response = await checkNickname({ nickname: getValues("nickname") });
-    // setIsValidCode()
+    // 존재할 시에 setError "사용 불가능한 닉네임입니다."
     e.preventDefault();
+    setIsValidNick(true);
   }, []);
 
   // 이메일 인증번호 검사
   const codeValid = useCallback(
     async (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
+      setIsValidCode(true);
       // if (codeNum !== getValues("emailCode")) return;
       // const response = await checkEmailNum({
       //   emailCode: getValues("emailCode"),
@@ -83,6 +87,8 @@ const SignUp = () => {
     []
     //[codeNum, getValues]
   );
+
+  console.log(errors);
 
   return (
     <>
@@ -93,25 +99,42 @@ const SignUp = () => {
         onSubmit={handleSubmit(onValidSubmit)}
         className="flex flex-col pt-[2rem]"
       >
-        <Label className="mb-[2.4rem] flex flex-col" label="이메일">
+        <Label
+          className={cls(
+            " flex flex-col",
+            codeNum ? "mb-[1rem]" : "mb-[2.4rem]"
+          )}
+          label="이메일"
+        >
           <InputWithButton
-            register={{ ...register("email", emailValid()) }}
+            register={{
+              ...register("email", emailValid()),
+            }}
             type="email"
             placeholder="이메일을 입력해주세요."
             buttonText="이메일 인증"
             onClick={emailDup}
+            disabled={isValidCode}
+            btnClass={
+              watch("email")?.length && !errors?.email && !isValidCode
+                ? "activeStartBtn"
+                : "startBtn"
+            }
           />
           <ErrorMessage text={errors.email?.message} />
         </Label>
 
         {codeNum !== 0 && (
-          <Label>
+          <Label className="mb-[2.4rem]">
             <InputWithButton
               register={{ ...register("emailCode", { required: true }) }}
               type="number"
               placeholder="인증번호"
               buttonText="인증 확인"
               onClick={codeValid}
+              btnClass={isValidCode ? "disabledCodeBtn" : "codeBtn"}
+              inputClass={isValidCode ? "disabledInput" : "startInput"}
+              disabled={isValidCode}
             />
           </Label>
         )}
@@ -123,7 +146,23 @@ const SignUp = () => {
             placeholder="닉네임을 입력해주세요."
             buttonText="중복검사"
             onClick={nicknameDup}
-          />
+            disabled={isValidNick}
+            btnClass={
+              watch("nickname")?.length && !errors?.nickname && !isValidNick
+                ? "activeStartBtn"
+                : "startBtn"
+            }
+          >
+            {isValidNick && (
+              <span className="flex-center absolute right-[13rem] h-[2rem] w-[2rem] rounded-full bg-primary-main">
+                <img
+                  src={CheckSvg}
+                  alt="Nickname check"
+                  className="h-[0.9rem] w-[1.2rem]"
+                />
+              </span>
+            )}
+          </InputWithButton>
           <ErrorMessage text={errors.nickname?.message} />
         </Label>
 
@@ -150,9 +189,10 @@ const SignUp = () => {
             "mt-[10vh] rounded-[3rem] bg-primary-main py-[1.8rem] text-[1.6rem] text-primary-100 transition-colors disabled:bg-[rgba(0,0,0,0.05)] disabled:text-primary-400"
           )}
           disabled={
-            (!watch("password") && !watch("confirmPassword")) ||
-            watch("password")?.length < 7 ||
-            watch("confirmPassword")?.length < 7
+            !watch("password") ||
+            !watch("confirmPassword") ||
+            Boolean(errors?.password) ||
+            Boolean(errors?.confirmPassword)
           }
         >
           가입하기

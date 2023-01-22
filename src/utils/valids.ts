@@ -38,7 +38,7 @@ export const nicknameValid = () => ({
   },
   pattern: {
     value: /^[가-힣a-zA-Z]+$/,
-    message: "형식에 맞지 않는 이름 입니다.",
+    message: "사용 불가능한 닉네임입니다.",
   },
 });
 

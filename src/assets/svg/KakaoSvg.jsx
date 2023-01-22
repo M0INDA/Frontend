@@ -1,6 +1,6 @@
 const KakaoSvg = () => {
   return (
-    <svg viewBox="0 0 57 56" class="css-1h47l4s">
+    <svg viewBox="0 0 57 56" className="css-1h47l4s">
       <path
         d="M0.5 28C0.5 12.536 13.036 0 28.5 0C43.964 0 56.5 12.536 56.5 28C56.5 43.464 43.964 56 28.5 56C13.036 56 0.5 43.464 0.5 28Z"
         fill="#FEE500"

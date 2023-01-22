@@ -1,6 +1,6 @@
 const GoogleSvg = () => {
   return (
-    <svg viewBox="0 0 57 56" class="css-1h47l4s">
+    <svg viewBox="0 0 57 56" className="css-1h47l4s">
       <path
         fillRule="evenodd"
         clipRule="evenodd"
