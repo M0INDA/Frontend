@@ -93,10 +93,10 @@ const Timer = () => {
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!studyRef.current || !restRef.current) return;
-    // const studyTime = +studyRef.current?.value * 60;
-    // const restTime = +restRef.current?.value * 60;
-    const studyTime = +studyRef.current?.value;
-    const restTime = +restRef.current?.value;
+    const studyTime = +studyRef.current?.value * 60;
+    const restTime = +restRef.current?.value * 60;
+    // const studyTime = +studyRef.current?.value;
+    // const restTime = +restRef.current?.value;
     localStorage.setItem("studyTime", studyTime + "");
     localStorage.setItem("restTime", restTime + "");
     localStorage.setItem("storageTime", studyTime * 4 + restTime * 3 + "");
