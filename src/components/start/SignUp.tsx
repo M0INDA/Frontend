@@ -12,6 +12,7 @@ import { emailValid, nicknameValid, passwordValid } from "@utils/valids";
 import { ISignUpForm } from "allTypes/user";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
+import CheckSvg from "@assets/svg/CheckSvg.svg";
 
 const SignUp = () => {
   const {
@@ -68,6 +69,7 @@ const SignUp = () => {
   // 닉네임 중복 검사
   const nicknameDup = useCallback(async (e: React.MouseEvent<HTMLElement>) => {
     // const response = await checkNickname({ nickname: getValues("nickname") });
+    // 존재할 시에 setError "사용 불가능한 닉네임입니다."
     e.preventDefault();
     setIsValidNick(true);
   }, []);
@@ -150,7 +152,17 @@ const SignUp = () => {
                 ? "activeStartBtn"
                 : "startBtn"
             }
-          />
+          >
+            {isValidNick && (
+              <span className="flex-center absolute right-[13rem] h-[2rem] w-[2rem] rounded-full bg-primary-main">
+                <img
+                  src={CheckSvg}
+                  alt="Nickname check"
+                  className="h-[0.9rem] w-[1.2rem]"
+                />
+              </span>
+            )}
+          </InputWithButton>
           <ErrorMessage text={errors.nickname?.message} />
         </Label>
 
@@ -177,7 +189,8 @@ const SignUp = () => {
             "mt-[10vh] rounded-[3rem] bg-primary-main py-[1.8rem] text-[1.6rem] text-primary-100 transition-colors disabled:bg-[rgba(0,0,0,0.05)] disabled:text-primary-400"
           )}
           disabled={
-            (!watch("password") && !watch("confirmPassword")) ||
+            !watch("password") ||
+            !watch("confirmPassword") ||
             Boolean(errors?.password) ||
             Boolean(errors?.confirmPassword)
           }
