@@ -26,7 +26,7 @@ const Login = () => {
     handleSubmit,
     watch,
     formState: { errors },
-  } = useForm<ILogin>();
+  } = useForm<ILogin>({ mode: "onChange" });
 
   // 로그인 기능
   const onValidSubmit = useCallback(async (data: ILogin) => {

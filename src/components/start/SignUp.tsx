@@ -21,7 +21,7 @@ const SignUp = () => {
     //setError,
     //getValues,
     formState: { errors },
-  } = useForm<ISignUpForm>();
+  } = useForm<ISignUpForm>({ mode: "onChange" });
 
   const [codeNum, setCodeNum] = useState(0);
   //const [isValidCode, setIsValidCode] = useState(false);
@@ -93,19 +93,32 @@ const SignUp = () => {
         onSubmit={handleSubmit(onValidSubmit)}
         className="flex flex-col pt-[2rem]"
       >
-        <Label className="mb-[2.4rem] flex flex-col" label="이메일">
+        <Label
+          className={cls(
+            " flex flex-col",
+            codeNum ? "mb-[1rem]" : "mb-[2.4rem]"
+          )}
+          label="이메일"
+        >
           <InputWithButton
-            register={{ ...register("email", emailValid()) }}
+            register={{
+              ...register("email", emailValid()),
+            }}
             type="email"
             placeholder="이메일을 입력해주세요."
             buttonText="이메일 인증"
             onClick={emailDup}
+            btnClass={
+              watch("email")?.length && !errors?.email
+                ? "activeStartBtn"
+                : "startBtn"
+            }
           />
           <ErrorMessage text={errors.email?.message} />
         </Label>
 
         {codeNum !== 0 && (
-          <Label>
+          <Label className="mb-[2.4rem]">
             <InputWithButton
               register={{ ...register("emailCode", { required: true }) }}
               type="number"
