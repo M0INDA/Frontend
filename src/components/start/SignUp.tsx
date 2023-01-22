@@ -24,7 +24,8 @@ const SignUp = () => {
   } = useForm<ISignUpForm>({ mode: "onChange" });
 
   const [codeNum, setCodeNum] = useState(0);
-  //const [isValidCode, setIsValidCode] = useState(false);
+  const [isValidCode, setIsValidCode] = useState(false);
+  const [isValidNick, setIsValidNick] = useState(false);
 
   // 회원가입 기능
   const onValidSubmit = useCallback(
@@ -67,14 +68,15 @@ const SignUp = () => {
   // 닉네임 중복 검사
   const nicknameDup = useCallback(async (e: React.MouseEvent<HTMLElement>) => {
     // const response = await checkNickname({ nickname: getValues("nickname") });
-    // setIsValidCode()
     e.preventDefault();
+    setIsValidNick(true);
   }, []);
 
   // 이메일 인증번호 검사
   const codeValid = useCallback(
     async (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
+      setIsValidCode(true);
       // if (codeNum !== getValues("emailCode")) return;
       // const response = await checkEmailNum({
       //   emailCode: getValues("emailCode"),
@@ -83,6 +85,8 @@ const SignUp = () => {
     []
     //[codeNum, getValues]
   );
+
+  console.log(errors);
 
   return (
     <>
@@ -108,8 +112,9 @@ const SignUp = () => {
             placeholder="이메일을 입력해주세요."
             buttonText="이메일 인증"
             onClick={emailDup}
+            disabled={isValidCode}
             btnClass={
-              watch("email")?.length && !errors?.email
+              watch("email")?.length && !errors?.email && !isValidCode
                 ? "activeStartBtn"
                 : "startBtn"
             }
@@ -125,6 +130,9 @@ const SignUp = () => {
               placeholder="인증번호"
               buttonText="인증 확인"
               onClick={codeValid}
+              btnClass={isValidCode ? "disabledCodeBtn" : "codeBtn"}
+              inputClass={isValidCode ? "disabledInput" : "startInput"}
+              disabled={isValidCode}
             />
           </Label>
         )}
@@ -136,6 +144,12 @@ const SignUp = () => {
             placeholder="닉네임을 입력해주세요."
             buttonText="중복검사"
             onClick={nicknameDup}
+            disabled={isValidNick}
+            btnClass={
+              watch("nickname")?.length && !errors?.nickname && !isValidNick
+                ? "activeStartBtn"
+                : "startBtn"
+            }
           />
           <ErrorMessage text={errors.nickname?.message} />
         </Label>
@@ -164,8 +178,8 @@ const SignUp = () => {
           )}
           disabled={
             (!watch("password") && !watch("confirmPassword")) ||
-            watch("password")?.length < 7 ||
-            watch("confirmPassword")?.length < 7
+            Boolean(errors?.password) ||
+            Boolean(errors?.confirmPassword)
           }
         >
           가입하기
