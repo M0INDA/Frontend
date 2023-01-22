@@ -1,10 +1,11 @@
 import SearchSvg from "@assets/svg/SearchSvg";
 import cls from "@utils/cls";
 import { Children, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const Header = () => {
   const { pathname } = useLocation();
   const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
   return (
     <header className="w-full border-b">
       <span className="h-10 w-10"></span>
@@ -49,7 +50,10 @@ const Header = () => {
               <div className="aspect-square w-[4.3rem] rounded-full bg-primary-200" />
             </>
           ) : (
-            <button className="Cap2 flex-center bg-primary-ㅡmain h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-main text-primary-100">
+            <button
+              className="Cap2 flex-center bg-primary-ㅡmain h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-main text-primary-100"
+              onClick={() => navigate("login")}
+            >
               로그인
             </button>
           )}
