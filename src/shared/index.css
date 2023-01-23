@@ -2,7 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+/* @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css); */
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/SpoqaHanSansNeo-Regular.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/SpoqaHanSansNeo-Medium.woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/SpoqaHanSansNeo-Bold.woff2");
+  font-weight: 700;
+}
 
 body {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
@@ -16,12 +34,6 @@ html {
     font-size: 46.8%;
   }
 }
-
-/* @media (max-width: 1120px) {
-  html {
-    font-size: 39%;
-  }
-} */
 
 * {
   box-sizing: border-box;
@@ -93,3 +105,9 @@ input[type="number"]::-webkit-inner-spin-button {
   font-weight: 400;
   font-size: 1.4rem;
 }
+
+/* @media (max-width: 1120px) {
+  html {
+    font-size: 39%;
+  }
+} */
