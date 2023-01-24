@@ -212,6 +212,7 @@ const Timer = () => {
       </div>
       {isSetting && (
         <div className="absolute top-0 flex h-full w-full flex-col items-center rounded-[1rem] bg-primary-sub3">
+          <div></div>
           <TimerForm
             onSubmit={onSubmit}
             studyRef={studyRef}
