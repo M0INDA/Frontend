@@ -19,18 +19,16 @@ const Header = () => {
           <ul className="hidden md:flex md:space-x-[3.6rem]">
             {Children.toArray(
               navs.map((nav) => (
-                <Link to={nav.pathname}>
-                  <li
-                    className={cls(
-                      styles.navItem,
-                      pathname === nav.pathname
-                        ? styles.activeItem
-                        : "Sub2 border-transparent"
-                    )}
-                  >
-                    {nav.name}
-                  </li>
-                </Link>
+                <li
+                  className={cls(
+                    styles.navItem,
+                    pathname === nav.pathname
+                      ? styles.activeItem
+                      : "Sub2 border-transparent"
+                  )}
+                >
+                  <Link to={nav.pathname}>{nav.name}</Link>
+                </li>
               ))
             )}
           </ul>
