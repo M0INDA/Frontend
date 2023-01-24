@@ -24,7 +24,7 @@ const Mypage = () => {
             <div className="mt-[3.2rem] flex">
               <div>
                 <div className="h-[58.4rem] w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
-                  <Studing />
+                  <Studing now="mypage" />
                 </div>
                 <StudyEnd />
               </div>
