@@ -1,8 +1,14 @@
+import SettingSvg from "@assets/svg/SettingSvg.svg";
+
 const Profile = () => {
   return (
     <div className="mb-[3.2rem] h-[33rem] w-[44.6rem] rounded-[1rem] bg-white px-[2.4rem] pt-[3rem] pb-[2.8rem]">
-      <div>
+      <div className="flex justify-between">
         <span className="H2">내 프로필</span>
+        <img
+          src={SettingSvg}
+          className="h-[2.2rem] w-[2.2rem] cursor-pointer"
+        />
       </div>
       <div className="mt-[3rem] flex">
         <div className="ml-[2.9rem] h-[9.6rem] w-[9.6rem] rounded-full bg-primary-sub1" />
