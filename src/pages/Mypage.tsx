@@ -15,7 +15,6 @@ const Mypage = () => {
         <div className="mt-[5rem] flex">
           <div className="">
             <Profile />
-            <StudyCheck />
             <Status />
             <LogoutBtn />
           </div>
