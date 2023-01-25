@@ -170,7 +170,7 @@ const Timer = () => {
           className="cursor-pointer hover:text-gray-500"
           onClick={() => setIsSetting(true)}
         >
-          <img src={SettingSvg} alt="설정" />
+          <img src={SettingSvg} alt="설정" className=" h-[2.2rem] w-[2.2rem]" />
         </button>
       </div>
 
