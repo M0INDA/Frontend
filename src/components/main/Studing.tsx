@@ -2,8 +2,10 @@ import Icon1 from "@assets/icons/Icon1.svg";
 import NextSvg from "@assets/svg/NextSvg.svg";
 import cls from "@utils/cls";
 import { NowProps } from "allTypes/props";
+import { useNavigate } from "react-router-dom";
 
 const Studing = ({ now }: NowProps) => {
+  const navigate = useNavigate();
   return (
     <div className={cls("mt-[5.4rem]", now && "mt-[0]")}>
       <h2 className="H2 mb-[1.8rem] text-primary-600">참여 중인 스터디그룹</h2>
@@ -12,6 +14,7 @@ const Studing = ({ now }: NowProps) => {
           "mb-[1.6rem] flex h-[11.8rem] items-center rounded-[1.4rem] border border-solid border-primary-350 px-[1.6rem]",
           now ? "w-[50.4rem]" : "w-[44.6rem]"
         )}
+        onClick={() => navigate("/mystudy/1")}
       >
         <div className="flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem] bg-green-400">
           <img src={Icon1} alt="studyIcon" className="h-[4rem] w-[4rem]" />

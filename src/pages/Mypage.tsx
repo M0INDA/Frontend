@@ -10,30 +10,28 @@ import StudyLog from "@components/profile/StudyLog";
 
 const Mypage = () => {
   return (
-    <div className="bg-[#F5F4F3]">
-      <Layout>
-        <div className="mt-[5rem] flex">
-          <div className="">
-            <Profile />
-            <StudyCheck />
-            <Status />
-            <LogoutBtn />
-          </div>
-          <div className="ml-[2.7rem]">
-            <StudyBar />
-            <div className="mt-[3.2rem] flex">
-              <div>
-                <div className="h-[58.4rem] w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
-                  <Studing now="mypage" />
-                </div>
-                <StudyEnd />
+    <Layout hasBgColor={true}>
+      <div className="mt-[5rem] flex">
+        <div className="">
+          <Profile />
+          <StudyCheck />
+          <Status />
+          <LogoutBtn />
+        </div>
+        <div className="ml-[2.7rem]">
+          <StudyBar />
+          <div className="mt-[3.2rem] flex">
+            <div>
+              <div className="h-[58.4rem] w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
+                <Studing now="mypage" />
               </div>
-              <StudyLog />
+              <StudyEnd />
             </div>
+            <StudyLog />
           </div>
         </div>
-      </Layout>
-    </div>
+      </div>
+    </Layout>
   );
 };
 
