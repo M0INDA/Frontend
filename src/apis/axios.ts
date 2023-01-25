@@ -26,22 +26,3 @@ export const postApi = axios.create({
 });
 
 export default instance;
-
-// instance.interceptors.request.use((config) => {
-//   const token = getCamperToken();
-//   if (token) {
-//     config.headers = { authorization: token };
-//     return config;
-//   }
-//   return config;
-// });
-
-// instance.interceptors.request.use(
-//   function (config) {
-//     config.headers["Authorization"] = `Bearer ${myToken}`;
-//     return config;
-//   },
-//   function (error) {
-//     return Promise.reject(error);
-//   }
-// );
