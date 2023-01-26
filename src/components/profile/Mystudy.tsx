@@ -4,10 +4,11 @@ import "swiper/css/pagination";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper";
 import NoStudy from "@components/profile/NoStudy";
+import PlusSvg from "@assets/svg/PlusSvg.svg";
 
 const Mystudy = () => {
   return (
-    <div className="h-[58.4rem] w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
+    <div className=" h-[61.8rem] w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
       <h2 className="H2 mb-[1.8rem] text-primary-600">참여 중인 스터디그룹</h2>
       <Swiper
         loop={true}
@@ -15,7 +16,7 @@ const Mystudy = () => {
           clickable: true,
         }}
         modules={[Pagination]}
-        className="h-[38.6rem] w-[50.4rem] bg-red-300"
+        className="h-[42rem] w-[50.4rem]"
       >
         <SwiperSlide>
           <Studing now="mypage" />
@@ -26,10 +27,16 @@ const Mystudy = () => {
           <NoStudy />
         </SwiperSlide>
       </Swiper>
-      <button className="Cap4 h-[6.8rem] w-[36.5rem] border border-dashed border-primary-350 text-primary-600">
-        <img />
-        스터디그룹 가입하기
-      </button>
+      <div className="flex-center mt-[2.4rem]">
+        <button className="flex-center Cap4 h-[6.8rem] w-[36.5rem] rounded-[1rem] border border-dashed border-primary-350 text-primary-600">
+          <img
+            src={PlusSvg}
+            alt="plusCon"
+            className="mr-[0.8rem] h-[1.8rem] w-[1.8rem]"
+          />
+          스터디그룹 가입하기
+        </button>
+      </div>
     </div>
   );
 };

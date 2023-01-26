@@ -1,5 +1,4 @@
 import Layout from "@components/layout/Layout";
-import StudyCheck from "@components/main/StudyCheck";
 import LogoutBtn from "@components/profile/LogoutBtn";
 import Mystudy from "@components/profile/Mystudy";
 import Profile from "@components/profile/Profile";
@@ -14,7 +13,6 @@ const Mypage = () => {
       <div className="mt-[5rem] flex">
         <div className="">
           <Profile />
-          <StudyCheck />
           <Status />
           <LogoutBtn />
         </div>
