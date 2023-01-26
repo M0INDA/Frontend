@@ -24,9 +24,9 @@ const styles = {
   startInput:
     "px-[1.3rem] text-primary-700 h-[5.8rem] text-[1.4rem] rounded border border-primary-200 placeholder:font-sans  placeholder:font-light placeholder:text-primary-400 focus:border-primary-main focus:outline-none focus:ring-transparent flex-1",
   disabledInput:
-    "px-[1.3rem] h-[5.8rem] text-[1.4rem] rounded lex-1 bg-primary-300 flex flex-1 border-none text-primary-700",
+    "px-[1.3rem] h-[5.8rem] text-[1.4rem] rounded lex-1 bg-primary-200 flex flex-1 border-none text-primary-700",
   startBtn:
-    "w-[10.8rem] text-[1.4rem] rounded h-[5.8rem] flex-center bg-primary-300 text-primary-500",
+    "w-[10.8rem] text-[1.4rem] rounded h-[5.8rem] flex-center bg-primary-200 text-primary-500",
   activeStartBtn:
     "w-[10.8rem] text-[1.4rem] rounded h-[5.8rem] flex-center bg-primary-main text-primary-100",
   codeBtn:

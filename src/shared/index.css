@@ -67,6 +67,14 @@ input[type="number"]::-webkit-inner-spin-button {
   align-items: center;
 }
 
+.header-height {
+  height: 6rem;
+}
+
+.body-height {
+  min-height: calc(100vh - 6.07rem);
+}
+
 .H1 {
   font-weight: 700;
   font-size: 3rem;

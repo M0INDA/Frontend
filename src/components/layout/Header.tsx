@@ -9,7 +9,7 @@ const Header = () => {
   return (
     <header className="w-full border-b bg-primary-100">
       <span className="h-10 w-10"></span>
-      <div className="flex-between mx-auto h-[6rem]  w-full px-[3rem] lg:w-[144rem] lg:px-0">
+      <div className="flex-between header-height mx-auto  w-full px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center">
           <Link to="/">
             <span className="mr-[4.2rem] text-[2.4rem] font-bold text-primary-main">
@@ -26,8 +26,9 @@ const Header = () => {
                       ? styles.activeItem
                       : "Sub2 border-transparent"
                   )}
+                  onClick={() => navigate(nav.pathname)}
                 >
-                  <Link to={nav.pathname}>{nav.name}</Link>
+                  {nav.name}
                 </li>
               ))
             )}
@@ -72,7 +73,7 @@ export default Header;
 
 const styles = {
   navItem:
-    "h-[6rem] flex px-1 items-center mb-[-3px] border-b-[3px] cursor-pointer",
+    "h-[6rem] flex-center px-1  mb-[-3px] border-b-[3px] cursor-pointer ",
   activeItem: "Sub1 border-primary-main ",
 };
 

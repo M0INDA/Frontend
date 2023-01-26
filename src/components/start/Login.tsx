@@ -10,7 +10,7 @@ import cls from "@utils/cls";
 import FacebookSvg from "@assets/svg/FacebookSvg";
 import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
-// import { logIn } from "@apis/query/userApi";
+import { logIn } from "@apis/query/userApi";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",
@@ -30,8 +30,8 @@ const Login = () => {
 
   // 로그인 기능
   const onValidSubmit = useCallback(async (data: ILogin) => {
-    //const response = await logIn(data);
-    alert("제출");
+    const response = await logIn(data);
+    console.log(response);
   }, []);
 
   // 카카오 로그인 버튼

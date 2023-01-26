@@ -14,7 +14,7 @@ export const signUp = async (data: ISignUp) => {
 
 // 로그인 api
 export const logIn = async (data: ILogin) => {
-  const response = await instance.post("auth/login", data);
+  const response = await instance.post("users/login", data);
   return response;
 };
 
