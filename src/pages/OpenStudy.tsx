@@ -1,12 +1,12 @@
 import Layout from "@components/layout/Layout";
 import React, { useState } from "react";
-import cls from '@utils/cls';
+import cls from "@utils/cls";
 
 const OpenStudy = () => {
   const [iscategoryActivate, setIsCategoryActivate] = useState(false);
   const CategoryHandler = () => {
-    setIsCategoryActivate((cur)=>!cur);
-  }
+    setIsCategoryActivate((cur) => !cur);
+  };
 
   return (
     <Layout>
@@ -39,7 +39,7 @@ const OpenStudy = () => {
         </div>
         <div className="flex flex-col">
           <form>
-            <button className="ml-[15.8rem] mt-[10.7rem] flex h-[8.8rem] w-[8.8rem] flex-[1] rounded-[0.8rem] bg-primary-300">
+            <button className="ml-[15.8rem] mt-[10.7rem] flex h-[8.8rem] w-[8.8rem] flex-[1] rounded-[0.8rem] bg-primary-200">
               <div className="flex flex-row items-center justify-center text-primary-100">
                 아이콘 설정
               </div>
@@ -53,8 +53,7 @@ const OpenStudy = () => {
               placeholder="2023 취뽀 스터디"
             ></input>
             <div className="Sub2 mt-[2.4rem] flex flex-row gap-[0.5rem] text-primary-500">
-              <button
-                className="ml-[15.8rem] h-[5.2rem] w-[10.2rem] flex-row items-center rounded-[4.8rem] border-primary-200 border-[0.1rem_#E1E1E1] bg-[#FCFBFA] px-[3.6rem] py-[1.4rem]">
+              <button className="ml-[15.8rem] h-[5.2rem] w-[10.2rem] flex-row items-center rounded-[4.8rem] border-primary-200 border-[0.1rem_#E1E1E1] bg-[#FCFBFA] px-[3.6rem] py-[1.4rem]">
                 어학
               </button>
               <button className="h-[5.2rem] w-[13.1rem] flex-row items-center rounded-[4.8rem] border-primary-200 bg-[#FCFBFA] px-[3.6rem] py-[1.4rem]">

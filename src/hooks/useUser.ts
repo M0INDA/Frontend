@@ -13,7 +13,7 @@ const useUser = () => {
   const navigate = useNavigate();
   useEffect(() => {
     const cookies = new Cookies();
-    const myToken = cookies.get("Authorization");
+    const myToken = cookies.get("RefreshToken");
 
     if (!myToken) {
       alert("로그인이 필요한 서비스입니다.");

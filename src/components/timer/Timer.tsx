@@ -9,6 +9,9 @@ import React, {
 } from "react";
 import ProgressBar from "./ProgressBar";
 import TimerForm from "./TimerForm";
+import CancelSvg from "@assets/svg/CancelSvg.svg";
+import SettingSvg from "@assets/svg/SettingSvg.svg";
+import ResetSvg from "@assets/svg/ResetSvg.svg";
 
 type StudyState = "집중타임" | "짧은휴식" | "end";
 
@@ -156,18 +159,18 @@ const Timer = () => {
 
   return (
     <>
-      <div className="absolute flex w-full justify-end space-x-3 p-[1.5rem] text-[1.4rem]">
+      <div className="absolute flex w-full justify-end space-x-[1.3rem] p-[1.5rem] text-[1.4rem]">
         <button
-          className="text-[1.3rem cursor-pointer hover:text-gray-500"
+          className="cursor-pointer text-[1.3rem] hover:text-gray-500"
           onClick={onClickReset}
         >
-          리셋
+          <img src={ResetSvg} alt="리셋" className=" h-[2.2rem] w-[2.2rem]" />
         </button>
         <button
           className="cursor-pointer hover:text-gray-500"
           onClick={() => setIsSetting(true)}
         >
-          설정
+          <img src={SettingSvg} alt="설정" className=" h-[2.2rem] w-[2.2rem]" />
         </button>
       </div>
 
@@ -212,7 +215,14 @@ const Timer = () => {
       </div>
       {isSetting && (
         <div className="absolute top-0 flex h-full w-full flex-col items-center rounded-[1rem] bg-primary-sub3">
-          <div></div>
+          <div className="absolute flex w-full justify-end p-[1.5rem]">
+            <img
+              src={CancelSvg}
+              alt="cancel"
+              className="h-[2.2rem] w-[2.2rem] cursor-pointer"
+              onClick={() => setIsSetting(false)}
+            />
+          </div>
           <TimerForm
             onSubmit={onSubmit}
             studyRef={studyRef}

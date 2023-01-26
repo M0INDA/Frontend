@@ -6,6 +6,7 @@ import Start from "@pages/Start";
 import OpenStudy from "@pages/OpenStudy";
 import Mypage from "@pages/Mypage";
 import Study from "@pages/Study";
+import MyStudy from "@pages/MyStudy";
 
 const Router = () => {
   return (
@@ -19,6 +20,7 @@ const Router = () => {
         <Route path="mypage" element={<Mypage />} />
         <Route path="openStudy" element={<OpenStudy />} />
         <Route path="Study" element={<Study />} />
+        <Route path="myStudy/:studyId" element={<MyStudy />} />
       </Routes>
     </BrowserRouter>
   );

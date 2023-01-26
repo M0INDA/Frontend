@@ -18,6 +18,10 @@ module.exports = {
           600: "#333333",
           700: "#1E1E1E",
         },
+        bgColor: {
+          100: "#FFFFFF",
+          200: "#F5F4F3",
+        },
       },
       fontFamily: {
         sans: ["Spoqa Han Sans Neo", "sans-serif"],

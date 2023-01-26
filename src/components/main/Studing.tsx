@@ -4,14 +4,17 @@ import CategorySvg from "@assets/svg/CategorySvg.svg";
 import GroupSvg from "@assets/svg/GroupSvg.svg";
 import cls from "@utils/cls";
 import { NowProps } from "allTypes/props";
+import { useNavigate } from "react-router-dom";
 
 const Studing = ({ now }: NowProps) => {
+  const navigate = useNavigate();
   return (
     <div
       className={cls(
         "mb-[1.6rem] flex h-[11.8rem] items-center rounded-[1.4rem] border border-solid border-primary-350 px-[1.6rem]",
         now ? "w-[50.4rem]" : "w-[44.6rem]"
       )}
+      onClick={() => navigate("/mystudy/1")}
     >
       <div className="flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem] bg-green-400">
         <img src={Icon1} alt="studyIcon" className="h-[4rem] w-[4rem]" />

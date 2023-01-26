@@ -1,6 +1,6 @@
 import { ISvg } from "allTypes/svg";
 
-const ArrowSvg = ({ className }: ISvg) => {
+const ArrowSvg = ({ className, strokeWidth }: ISvg) => {
   return (
     <svg
       width="30"
@@ -13,7 +13,7 @@ const ArrowSvg = ({ className }: ISvg) => {
       <path
         d="M18.75 5L8.75 15L18.75 25"
         stroke="currentColor"
-        strokeWidth="2"
+        strokeWidth={strokeWidth ? strokeWidth + "" : "2"}
         strokeLinecap="round"
         strokeLinejoin="round"
       />
