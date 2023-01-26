@@ -8,6 +8,7 @@ import { useCallback, useState } from "react";
 import LineProgressBar from "@components/studyRoom/LineProgressBar";
 import Members from "@components/studyRoom/Members";
 import Chats from "@components/studyRoom/Chats";
+import CancelSvg from "@assets/svg/CancelSvg.svg";
 const MyStudy = () => {
   const homeMatch = useMatch("/mystudy/:studyId");
   const diaryMatch = useMatch("/mystudy/:studyId/diary");
@@ -105,7 +106,18 @@ const MyStudy = () => {
           </div>
         </div>
         {isSetting ? (
-          <aside className="min-w-[20rem] bg-bgColor-100">목표시간</aside>
+          <aside className="min-w-[20rem]">
+            <div className="rounded-[1rem] bg-bgColor-100 p-[2rem] shadow-md">
+              <div className="relative flex justify-center">
+                <span className="Cap3">목표시간</span>
+                <img
+                  src={CancelSvg}
+                  alt="close"
+                  className="absolute right-0 w-[2rem] cursor-pointer"
+                />
+              </div>
+            </div>
+          </aside>
         ) : (
           <div />
         )}
