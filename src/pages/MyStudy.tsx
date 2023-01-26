@@ -105,7 +105,8 @@ const MyStudy = () => {
           </div>
         </div>
         {isSetting ? (
-          <aside className="min-w-[20rem]">
+          <aside className="flex min-w-[20rem] flex-col space-y-[2.6rem] ">
+            <div className="h-[8rem]" />
             <SettingTime onClick={onClickSetting} />
           </aside>
         ) : (
