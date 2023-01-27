@@ -120,3 +120,11 @@ input[type="number"]::-webkit-inner-spin-button {
     font-size: 39%;
   }
 } */
+
+/*스와이퍼 전용 스타일링*/
+.swiper-pagination-bullet-active {
+  background: #848484 !important;
+}
+.swiper-pagination-bullets {
+  height: 1%;
+}
