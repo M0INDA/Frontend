@@ -1,11 +1,13 @@
 import { CircularProgressbar } from "react-circular-progressbar";
+import { StudyState } from "./Timer";
 
 interface IProgressbar {
   children: JSX.Element | JSX.Element[];
   value: number;
+  studyState: StudyState;
 }
 
-const ProgressBar = ({ children, value }: IProgressbar) => {
+const ProgressBar = ({ children, value, studyState }: IProgressbar) => {
   const gradientTransform = `rotate(90)`;
   return (
     <div>
@@ -23,7 +25,10 @@ const ProgressBar = ({ children, value }: IProgressbar) => {
           strokeWidth={8}
           styles={{
             path: {
-              stroke: `url(#${"progress"})`,
+              stroke:
+                studyState === "집중타임"
+                  ? `url(#${"progress"})`
+                  : `url(#${"progress"})`,
               height: "100%",
               strokeLinecap: "round",
               transition: "stroke-dashoffset 1s linear 0s",

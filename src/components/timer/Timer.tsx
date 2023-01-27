@@ -13,7 +13,7 @@ import CancelSvg from "@assets/svg/CancelSvg.svg";
 import SettingSvg from "@assets/svg/SettingSvg.svg";
 import ResetSvg from "@assets/svg/ResetSvg.svg";
 
-type StudyState = "집중타임" | "짧은휴식" | "end";
+export type StudyState = "집중타임" | "짧은휴식" | "end";
 
 const Timer = () => {
   const [isRun, setIsRun] = useState(false);
@@ -140,13 +140,14 @@ const Timer = () => {
 
   // 로컬에 저장된 시간을 불러와 run 상태였다면 실행. stop을 한번이라도 눌렀다면 목표 시간 - 스탑시간으로 계산한다.
   useEffect(() => {
-    const targetTime = localStorage.getItem("targetTime");
+    const localTargetTime = localStorage.getItem("targetTime");
     const runState = localStorage.getItem("isRun");
     const stopTime = localStorage.getItem("stopTime");
-    if (!targetTime || !runState) return;
+    if (!localTargetTime || !runState) return;
     if (Boolean(+runState)) setIsRun(true);
-    if (!stopTime) return setTotalTime(((+targetTime - Date.now()) / 1000) | 0);
-    setTotalTime(((+targetTime - +stopTime) / 1000) | 0);
+    if (!stopTime)
+      return setTotalTime(((+localTargetTime - Date.now()) / 1000) | 0);
+    setTotalTime(((+localTargetTime - +stopTime) / 1000) | 0);
   }, []);
 
   // 로컬에 저장된 집중 시간과 쉬는 시간을 불러와 state를 초기화 시킨다.
@@ -179,12 +180,18 @@ const Timer = () => {
           <ProgressBar
             value={
               100 -
-              (totalTime /
-                (defaultTime.studyTime * 4 + defaultTime.restTime * 3)) *
+              ((defaultTime.studyTime * 4 + defaultTime.restTime * 3 ===
+              totalTime
+                ? time
+                : time - 1) /
+                (studyState === "집중타임"
+                  ? defaultTime.studyTime
+                  : defaultTime.restTime)) *
                 100
             }
+            studyState={studyState}
           >
-            <span className="absolute text-[3rem] text-primary-main ">
+            <span className={cls("absolute text-[3rem] text-primary-main")}>
               {viewTime}
             </span>
           </ProgressBar>
