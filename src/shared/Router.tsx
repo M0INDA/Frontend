@@ -4,7 +4,7 @@ import Login from "@components/start/Login";
 import SignUp from "@components/start/SignUp";
 import Timer from "@pages/Timer";
 import Start from "@pages/Start";
-import OpenStudy from '@pages/OpenStudy';
+import OpenStudy from "@pages/OpenStudy";
 
 const Router = () => {
   return (
@@ -16,11 +16,8 @@ const Router = () => {
           <Route path="login" element={<Login />} />
         </Route>
         <Route path="/timer" element={<Timer />} />
-        <Route>
-          <Route path="OpenStudy" element={<OpenStudy />} />
-        </Route>
+        <Route path="openStudy" element={<OpenStudy />} />
       </Routes>
-      
     </BrowserRouter>
   );
 };
