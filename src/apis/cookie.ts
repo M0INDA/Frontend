@@ -29,6 +29,7 @@ export const removeCookieToken = () => {
   return cookies.remove("Authorization", { sameSite: "strict", path: "/" });
 };
 
+let isTokenRefreshing = false;
 let refreshSubscribers: Array<(accessToken: string) => void> = [];
 
 const onTokenRefreshed = (accessToken: string) => {
@@ -43,20 +44,16 @@ axios.interceptors.response.use(
   (response) => {
     return response;
   },
-  // 응답 에러가 발생하였을 때
   async (error) => {
     const {
       config,
       response: { status },
     } = error;
-    // 기존에 보냈던 요청을 originalRequest에 할당
     const originalRequest = config;
-    // 인증 에러일 경우에 실행
     if (status === 401) {
-      // 배열에 실패한
-      addRefreshSubscriber(originalRequest);
-      // 실패요청을 담아둔 배열의 길이가 1 미만일 때 accessToken을 재발급하는 요청 수행
-      if (refreshSubscribers.length < 1) {
+      if (!isTokenRefreshing) {
+        // isTokenRefreshing이 false인 경우에만 token refresh 요청
+        isTokenRefreshing = true;
         const refreshToken = getRefreshToken();
         const { data } = await axios.post(
           `${process.env.REACT_APP_SERVER_URL}auth/refreshAccessToken`, // token refresh api
@@ -67,6 +64,7 @@ axios.interceptors.response.use(
         // 새로운 토큰 저장
         const { accessToken: newAccessToken } = data;
         setAccessToken(newAccessToken);
+        isTokenRefreshing = false;
         axios.defaults.headers.common.Authorization = `Bearer ${newAccessToken}`;
         // 새로운 토큰으로 지연되었던 요청 진행
         onTokenRefreshed(newAccessToken);
