@@ -1,10 +1,15 @@
-import React from "react";
+import cls from "@utils/cls";
+import { NowProps } from "allTypes/props";
 
-const StudyCheck = () => {
+const StudyCheck = ({ now }: NowProps) => {
   return (
-    <div className="mt-[5.4rem]">
-      <h2 className="H2 mb-[1.8rem] text-primary-600">출석체크</h2>
-      <button className="h-[6.8rem] w-[44.6rem] rounded-[1rem] bg-primary-400">
+    <div className="mt-[1.8rem]">
+      <button
+        className={cls(
+          "Sub2 h-[6.8rem] rounded-[1rem] bg-primary-main text-white",
+          now ? "w-[38.7rem]" : "w-[44.6rem]"
+        )}
+      >
         오늘 출석체크
       </button>
     </div>

@@ -4,7 +4,7 @@ const BestStudy = () => {
       <h2 className="H2 mb-[1.8rem] text-primary-600">
         카테고리 별 인기스터디
       </h2>
-      <div className="flex h-[8.6rem] w-[65.6rem] justify-between bg-orange-100 px-[3rem]">
+      <div className="flex h-[8.6rem] w-[65.6rem] justify-between rounded-[1rem] bg-orange-100 px-[3rem]">
         <div className="flex-center">
           <div className="mr-[2rem] h-[3.6rem] w-[3.6rem] rounded-full bg-primary-400" />
           <div>

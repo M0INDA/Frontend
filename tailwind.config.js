@@ -6,14 +6,21 @@ module.exports = {
       colors: {
         primary: {
           main: "#ED7868",
-          sub1: "EE6648",
+          sub1: "#FFB077",
+          sub2: "#FFE7D6",
+          sub3: "#FAEEEC",
           100: "#FFFFFF",
           200: "#E1E1E1",
           300: "#E3E3E3",
+          350: "#CCCCCC",
           400: "#C6C6C6",
           500: "#848484",
           600: "#333333",
           700: "#1E1E1E",
+        },
+        bgColor: {
+          100: "#FFFFFF",
+          200: "#F5F4F3",
         },
       },
       fontFamily: {

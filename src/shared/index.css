@@ -2,7 +2,25 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css);
+/* @import url(//spoqa.github.io/spoqa-han-sans/css/SpoqaHanSansNeo.css); */
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/SpoqaHanSansNeo-Regular.woff2");
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/SpoqaHanSansNeo-Medium.woff2");
+  font-weight: 500;
+}
+
+@font-face {
+  font-family: "Spoqa Han Sans Neo";
+  src: url("../../public/fonts/SpoqaHanSansNeo-Bold.woff2");
+  font-weight: 700;
+}
 
 body {
   font-family: "Spoqa Han Sans Neo", "sans-serif";
@@ -17,12 +35,6 @@ html {
   }
 }
 
-/* @media (max-width: 1120px) {
-  html {
-    font-size: 39%;
-  }
-} */
-
 * {
   box-sizing: border-box;
 }
@@ -36,6 +48,13 @@ input:-webkit-autofill:active {
   -webkit-box-shadow: 0 0 0px 1000px white inset !important;
 }
 
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
 .flex-center {
   display: flex;
   justify-content: center;
@@ -46,6 +65,14 @@ input:-webkit-autofill:active {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.header-height {
+  height: 6rem;
+}
+
+.body-height {
+  min-height: calc(100vh - 6.07rem);
 }
 
 .H1 {

@@ -1,18 +1,21 @@
 import SearchSvg from "@assets/svg/SearchSvg";
 import cls from "@utils/cls";
 import { Children, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 const Header = () => {
   const { pathname } = useLocation();
   const [isLogin, setIsLogin] = useState(false);
+  const navigate = useNavigate();
   return (
-    <header className="w-full border-b">
+    <header className="w-full border-b bg-primary-100">
       <span className="h-10 w-10"></span>
-      <div className="flex-between mx-auto h-[6rem]  w-full px-[3rem] lg:w-[144rem] lg:px-0">
-        <nav className="flex items-center space-x-[4.2rem]">
-          <span className="text-[2.4rem] font-bold text-primary-main ">
-            MOINDA
-          </span>
+      <div className="flex-between header-height mx-auto  w-full px-[3rem] lg:w-[144rem] lg:px-0">
+        <nav className="flex items-center">
+          <Link to="/">
+            <span className="mr-[4.2rem] text-[2.4rem] font-bold text-primary-main">
+              MOINDA
+            </span>
+          </Link>
           <ul className="hidden md:flex md:space-x-[3.6rem]">
             {Children.toArray(
               navs.map((nav) => (
@@ -23,6 +26,7 @@ const Header = () => {
                       ? styles.activeItem
                       : "Sub2 border-transparent"
                   )}
+                  onClick={() => navigate(nav.pathname)}
                 >
                   {nav.name}
                 </li>
@@ -43,13 +47,19 @@ const Header = () => {
           </form>
           {isLogin ? (
             <>
-              <button className="Cap2 flex-center  mr-[4.9rem] h-[4.3rem] w-[12.8rem] rounded-full bg-primary-500 text-primary-100">
+              <button
+                className="Cap2 flex-center  mr-[4.9rem] h-[4.3rem] w-[12.8rem] rounded-full bg-primary-main text-primary-100"
+                onClick={() => navigate("/openStudy")}
+              >
                 스터디 모집하기
               </button>
               <div className="aspect-square w-[4.3rem] rounded-full bg-primary-200" />
             </>
           ) : (
-            <button className="Cap2 flex-center h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-500 text-primary-100">
+            <button
+              className="Cap2 flex-center bg-primary-ㅡmain h-[4.3rem] w-[7rem] cursor-pointer rounded-full bg-primary-main text-primary-100"
+              onClick={() => navigate("/start/login")}
+            >
               로그인
             </button>
           )}
@@ -63,13 +73,13 @@ export default Header;
 
 const styles = {
   navItem:
-    "h-[6rem] flex px-1 items-center mb-[-3px] border-b-[3px] cursor-pointer",
+    "h-[6rem] flex-center px-1  mb-[-3px] border-b-[3px] cursor-pointer ",
   activeItem: "Sub1 border-primary-main ",
 };
 
 const navs = [
   { id: 0, name: "홈", pathname: "/" },
-  { id: 1, name: "마이페이지", pathname: "/profile" },
+  { id: 1, name: "마이페이지", pathname: "/mypage" },
   { id: 2, name: "스터디 게시판", pathname: "/study" },
   { id: 3, name: "🥫뽀모도로", pathname: "/timer" },
 ];
