@@ -24,7 +24,12 @@ const Home = () => {
           <NewStudy />
         </div>
         <div className=" ml-[5.2rem]">
-          <Studing />
+          <div>
+            <h2 className="H2 mb-[1.8rem] mt-[5.4rem] text-primary-600">
+              참여 중인 스터디그룹
+            </h2>
+            <Studing />
+          </div>
           <StudyCheck />
           <BestTag />
           <Pomodoro />
