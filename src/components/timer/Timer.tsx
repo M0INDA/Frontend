@@ -37,13 +37,10 @@ const Timer = () => {
   // isRun을 true false로 토글하는 기능. 32번째 줄은 필요없어 보인다.
   const onClickToggle = useCallback(() => {
     if (cycleRef.current === 0) cycleRef.current = 3;
-    const { studyTime, restTime } = defaultTime;
+
     if (!isRun) {
-      // 목표시간을 저장
-      localStorage.setItem(
-        "targetTime",
-        Date.now() + (studyTime * 4 + restTime * 3) * 1000 + ""
-      );
+      // 목표시간을 저장 (요거 때문이네 )
+      localStorage.setItem("targetTime", Date.now() + totalTime * 1000 + "");
       // 진행 상태와 stop시간을 제거한다.
       localStorage.setItem("isRun", "1");
       localStorage.removeItem("stopTime");
@@ -54,7 +51,7 @@ const Timer = () => {
       localStorage.setItem("isRun", "0");
     }
     setIsRun((prev) => !prev);
-  }, [defaultTime, isRun, totalTime]);
+  }, [isRun, totalTime]);
 
   // reset 버튼을 클릭했을 때 실행시킬 함수
   const onClickReset = useCallback(
