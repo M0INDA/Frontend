@@ -15,7 +15,7 @@ const SettingTime = ({ onClick }: TSettingTime) => {
   const [hours, setHours] = useState(0);
   const [minutes, setMinutes] = useState(0);
   return (
-    <div className="relative ml-[1rem] rounded-[1rem] bg-bgColor-100 p-[2rem] shadow-md">
+    <div className="relative ml-[1rem] rounded-[1rem] bg-bgColor-100 p-[2rem] shadow-[0px_0px_5px_0px_rgba(0,0,0,0.1)]">
       <div className="relative flex justify-center">
         <span className="Cap3">목표시간</span>
         <img
