@@ -11,6 +11,7 @@ import FacebookSvg from "@assets/svg/FacebookSvg";
 import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
 import { logIn } from "@apis/query/userApi";
+import axios from "axios";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",
@@ -30,8 +31,13 @@ const Login = () => {
 
   // 로그인 기능
   const onValidSubmit = useCallback(async (data: ILogin) => {
-    const response = await logIn(data);
-    console.log(response);
+    const {
+      data: { accessToken },
+      status,
+    } = await logIn(data);
+    if (status !== 201) return alert("로그인 실패");
+
+    axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }, []);
 
   // 카카오 로그인 버튼
