@@ -4,6 +4,7 @@ import Login from "@components/start/Login";
 import SignUp from "@components/start/SignUp";
 import Start from "@pages/Start";
 import OpenStudy from "@pages/OpenStudy";
+import Timer from '@components/timer/Timer';
 
 const Router = () => {
   return (
