@@ -19,9 +19,9 @@ const MyStudy = () => {
 
   return (
     <Layout hasBgColor={true}>
-      <div className="grid grid-cols-[2fr_9fr_3fr] gap-[2.6rem] py-[5rem]">
-        <aside>
-          <nav className="min-w-[16rem] rounded-[1rem] bg-bgColor-100 py-[2.4rem]">
+      <div className="grid grid-cols-[1fr_2fr_8fr_1fr] gap-[2.6rem] py-[5rem]">
+        <aside className="col-span-1 col-start-2 flex min-w-[16rem] flex-col">
+          <nav className="rounded-[1rem] bg-bgColor-100 py-[2.4rem]">
             <ul>
               <li
                 className={cls(
@@ -31,7 +31,7 @@ const MyStudy = () => {
                     : "text-[1.8rem] font-medium text-primary-500"
                 )}
               >
-                홈
+                그룹 홈
               </li>
               <li
                 className={cls(
@@ -90,8 +90,13 @@ const MyStudy = () => {
               </span>
             </div>
           </section>
-          <section className="rounded-[1rem] bg-bgColor-100">
+          <section className="relative rounded-[1rem] bg-bgColor-100">
             <LineProgressBar onClick={onClickSetting} />
+            {isSetting && (
+              <div className="absolute right-[3rem] top-[6rem] flex w-[30rem] flex-col space-y-[2.6rem] ">
+                <SettingTime onClick={onClickSetting} />
+              </div>
+            )}
           </section>
           <div className="bg-slate- grid grid-cols-[3.58fr_5.34fr] gap-[2.6rem]">
             <section className="flex min-h-[62rem] flex-col rounded-[1rem] bg-bgColor-100 p-[3rem]">
@@ -104,14 +109,6 @@ const MyStudy = () => {
             </section>
           </div>
         </div>
-        {isSetting ? (
-          <aside className="flex min-w-[20rem] flex-col space-y-[2.6rem] ">
-            <div className="h-[8rem]" />
-            <SettingTime onClick={onClickSetting} />
-          </aside>
-        ) : (
-          <div />
-        )}
       </div>
     </Layout>
   );
