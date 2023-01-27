@@ -4,7 +4,9 @@ import Login from "@components/start/Login";
 import SignUp from "@components/start/SignUp";
 import Start from "@pages/Start";
 import OpenStudy from "@pages/OpenStudy";
-import Timer from '@components/timer/Timer';
+import Mypage from "@pages/Mypage";
+import Study from "@pages/Study";
+import MyStudy from "@pages/MyStudy";
 
 const Router = () => {
   return (
@@ -15,8 +17,10 @@ const Router = () => {
           <Route path="signup" element={<SignUp />} />
           <Route path="login" element={<Login />} />
         </Route>
-        <Route path="/timer" element={<Timer />} />
+        <Route path="mypage" element={<Mypage />} />
         <Route path="openStudy" element={<OpenStudy />} />
+        <Route path="Study" element={<Study />} />
+        <Route path="myStudy/:studyId" element={<MyStudy />} />
       </Routes>
     </BrowserRouter>
   );
