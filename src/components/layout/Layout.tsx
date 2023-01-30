@@ -5,9 +5,10 @@ import Main from "./Main";
 interface ILayout {
   children: JSX.Element[] | JSX.Element;
   hasBgColor?: boolean;
+  isFullHeight?: boolean;
 }
 
-const Layout = ({ children, hasBgColor }: ILayout) => {
+const Layout = ({ children, hasBgColor, isFullHeight }: ILayout) => {
   return (
     <div
       className={cls(
@@ -16,7 +17,7 @@ const Layout = ({ children, hasBgColor }: ILayout) => {
       )}
     >
       <Header />
-      <Main>{children}</Main>
+      <Main isFullHeight={isFullHeight}>{children}</Main>
     </div>
   );
 };

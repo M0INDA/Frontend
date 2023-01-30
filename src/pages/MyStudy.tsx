@@ -3,8 +3,8 @@ import SideNav from "@components/studyRoom/SideNav";
 import { Outlet } from "react-router-dom";
 const MyStudy = () => {
   return (
-    <Layout hasBgColor={true}>
-      <div className="grid grid-cols-[1fr_2fr_8fr_1fr] gap-[2.6rem] py-[5rem]">
+    <Layout hasBgColor={true} isFullHeight>
+      <div className="grid flex-1 grid-cols-[1fr_2fr_8fr_1fr] gap-[2.6rem] py-[5rem]">
         <SideNav />
         <Outlet />
       </div>
