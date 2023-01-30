@@ -12,7 +12,7 @@ const Layout = ({ children, hasBgColor, isFullHeight }: ILayout) => {
   return (
     <div
       className={cls(
-        "min-w-max pb-[6rem]",
+        "min-w-max ",
         hasBgColor ? "bg-bgColor-200" : "bg-bgColor-100"
       )}
     >
