@@ -175,3 +175,14 @@ input[type="radio"] {
 .react-datepicker__day--selected:hover {
   background: #ffb077;
 }
+
+*::-webkit-scrollbar {
+  width: 12px;
+}
+
+*::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.13);
+  border-radius: 10px;
+  background-clip: padding-box;
+  border: 2px solid transparent;
+}

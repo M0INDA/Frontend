@@ -9,11 +9,11 @@ const DiaryList = () => {
   // 채팅 날짜별로 데이터를 묶어주는 함수
   const DiarySections = useMemo(() => {
     if (!diarys || diarys.length === 0) return [];
-    return makeSection(diarys);
+    return makeSection(diarys.reverse());
   }, []);
 
   return (
-    <div className="flex min-h-[34rem] flex-col">
+    <div className="flex max-h-[50vh] min-h-[30rem] flex-col overflow-scroll px-[3rem]">
       {Object.entries(DiarySections || {})?.map(([day, diarys]) => (
         <div className="flex flex-col space-y-[2.8rem] border-b py-[2.8rem] first:pt-0 last:border-none">
           <span className="flex-center Sub2 w-[11.6rem] rounded-full bg-primary-500 py-[0.6rem] text-primary-100">
@@ -81,5 +81,23 @@ const diarys: Diarys = [
     userId: 253,
     content: "ㅇㅎㅇ",
     createdAt: "2023-01-06T16:04:58.000Z",
+  },
+  {
+    diaryId: 9,
+    userId: 253,
+    content: "ㅇㅎㅇ",
+    createdAt: "2023-01-05T16:05:56.000Z",
+  },
+  {
+    diaryId: 10,
+    userId: 253,
+    content: "ㅇㅎㅇ",
+    createdAt: "2023-01-06T16:06:57.000Z",
+  },
+  {
+    diaryId: 11,
+    userId: 253,
+    content: "ㅇㅎㅇ",
+    createdAt: "2023-01-06T16:07:58.000Z",
   },
 ];
