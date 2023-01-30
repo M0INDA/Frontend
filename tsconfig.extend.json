@@ -11,7 +11,7 @@
       "@hooks/*": ["./hooks/*"],
       "@pages/*": ["./pages/*"],
       "@shared/*": ["./shared/*"],
-      "@allTypes/*": ["./types/*"],
+      "@allTypes/*": ["./allTypes/*"],
       "@utils/*": ["./utils/*"]
     }
   }

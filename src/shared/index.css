@@ -76,6 +76,10 @@ input[type="number"]::-webkit-inner-spin-button {
   min-height: calc(100vh - 6.07rem);
 }
 
+.font1 {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
+}
+
 .H1 {
   font-weight: 700;
   font-size: 3rem;

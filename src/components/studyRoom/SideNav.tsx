@@ -1,9 +1,10 @@
 import cls from "@utils/cls";
-import { useMatch } from "react-router-dom";
+import { useMatch, useNavigate } from "react-router-dom";
 
 const SideNav = () => {
   const homeMatch = useMatch("/mystudy/:studyId");
   const diaryMatch = useMatch("/mystudy/:studyId/diary");
+  const navigate = useNavigate();
   return (
     <aside className="col-span-1 col-start-2 flex min-w-[16rem] flex-col">
       <nav className="rounded-[1rem] bg-bgColor-100 py-[2.4rem]">
@@ -15,6 +16,7 @@ const SideNav = () => {
                 ? "H3 text-primary-600"
                 : "text-[1.8rem] font-medium text-primary-500"
             )}
+            onClick={() => navigate("/mystudy/1")}
           >
             그룹 홈
           </li>
@@ -25,6 +27,7 @@ const SideNav = () => {
                 ? "H3 text-primary-600"
                 : "text-[1.8rem] font-medium text-primary-500"
             )}
+            onClick={() => navigate("/mystudy/1/diary")}
           >
             스터디일지
           </li>
