@@ -10,6 +10,7 @@ module.exports = {
           sub2: "#FFE7D6",
           sub3: "#FAEEEC",
           100: "#FFFFFF",
+          250: "#F7F6F6",
           200: "#E1E1E1",
           300: "#E3E3E3",
           350: "#CCCCCC",

@@ -176,13 +176,10 @@ input[type="radio"] {
   background: #ffb077;
 }
 
-*::-webkit-scrollbar {
-  width: 12px;
+/*스와이퍼 전용 스타일링*/
+.swiper-pagination-bullet-active {
+  background: #848484 !important;
 }
-
-*::-webkit-scrollbar-thumb {
-  background-color: rgba(0, 0, 0, 0.13);
-  border-radius: 10px;
-  background-clip: padding-box;
-  border: 2px solid transparent;
+.swiper-pagination-bullets {
+  background-color: aqua;
 }
