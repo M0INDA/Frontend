@@ -171,3 +171,11 @@ input[type="radio"] {
 .react-datepicker__day--selected:hover {
   background: #ffb077;
 }
+
+/*스와이퍼 전용 스타일링*/
+.swiper-pagination-bullet-active {
+  background: #848484 !important;
+}
+.swiper-pagination-bullets {
+  background-color: aqua;
+}
