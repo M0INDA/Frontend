@@ -19,7 +19,7 @@ const TimerForm = ({ onSubmit, studyRef, restRef }: ITimer) => {
       />
       <input
         type="number"
-        placeholder="집중시간 ex) 5분"
+        placeholder="쉬는시간 ex) 5분"
         required
         ref={restRef}
         className="w-[20rem] rounded-lg border border-primary-400 px-3 py-4  text-[1.2rem]"
