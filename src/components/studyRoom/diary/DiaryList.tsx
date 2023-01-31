@@ -53,7 +53,7 @@ const diarys: Diarys = [
   {
     diaryId: 2,
     userId: 253,
-    content: "ㅇㅎㅇ",
+    content: "반가워용",
     createdAt: "2023-01-04T16:04:56.000Z",
   },
   {
