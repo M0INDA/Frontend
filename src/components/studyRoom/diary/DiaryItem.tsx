@@ -14,7 +14,7 @@ const DiaryItem = ({ diary }: IDiaryItem) => {
         <div className="flex items-center space-x-[1rem]">
           <strong className="Cap2">{diary.userId}</strong>
           <span className="Cap4 text-primary-500">
-            {dayjs(diary.createdAt).format("A HH:mm")}
+            {dayjs(diary.createdAt).subtract(9, "hour").format("A HH:mm")}
           </span>
         </div>
         <p className="text-[1.6rem]">{diary.content}</p>
