@@ -41,7 +41,13 @@ const Login = () => {
   }, []);
 
   // 카카오 로그인 버튼
-  const onClickKakao = useCallback(() => {}, []);
+  const onClickKakao = () => {
+    const REDIRECT_URL = process.env.REACT_APP_REDIRECT_URL;
+    const REST_API_KEY = process.env.REACT_APP_CLIENT_ID;
+    const url = `https://kauth.kakao.com/oauth/authorize?client_id=${REST_API_KEY}&redirect_uri=${REDIRECT_URL}&response_type=code`;
+
+    window.location.href = url;
+  };
 
   return (
     <>

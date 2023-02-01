@@ -9,6 +9,7 @@ import Study from "@pages/Study";
 import MyStudy from "@pages/MyStudy";
 import GroupHome from "@components/studyRoom/home/GroupHome";
 import GroupDiary from "@components/studyRoom/diary/GroupDiary";
+import KakaoLogin from "@components/start/KakaoLogin";
 
 const Router = () => {
   return (
@@ -22,6 +23,7 @@ const Router = () => {
         <Route path="mypage" element={<Mypage />} />
         <Route path="openStudy" element={<OpenStudy />} />
         <Route path="Study" element={<Study />} />
+        <Route path="oauth/callback/kakao" element={<KakaoLogin />} />
         <Route path="myStudy/:studyId" element={<MyStudy />}>
           <Route path="" element={<GroupHome />} />
           <Route path="diary" element={<GroupDiary />} />
