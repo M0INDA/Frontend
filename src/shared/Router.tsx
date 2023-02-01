@@ -7,6 +7,8 @@ import OpenStudy from "@pages/OpenStudy";
 import Mypage from "@pages/Mypage";
 import Study from "@pages/Study";
 import MyStudy from "@pages/MyStudy";
+import GroupHome from "@components/studyRoom/home/GroupHome";
+import GroupDiary from "@components/studyRoom/diary/GroupDiary";
 
 const Router = () => {
   return (
@@ -20,7 +22,10 @@ const Router = () => {
         <Route path="mypage" element={<Mypage />} />
         <Route path="openStudy" element={<OpenStudy />} />
         <Route path="Study" element={<Study />} />
-        <Route path="myStudy/:studyId" element={<MyStudy />} />
+        <Route path="myStudy/:studyId" element={<MyStudy />}>
+          <Route path="" element={<GroupHome />} />
+          <Route path="diary" element={<GroupDiary />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );

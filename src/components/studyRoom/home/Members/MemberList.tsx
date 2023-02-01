@@ -1,7 +1,8 @@
 import ArrowSvg from "@assets/svg/ArrowSvg";
 import { Children } from "react";
 
-const Members = () => {
+const MemberList = () => {
+  // 더보기 클릭시에 17번 Users 데이터 추가;
   return (
     <div className="flex flex-col">
       <div className="grid grid-cols-[6fr_8.6fr_8.6fr] px-[0.6rem]">
@@ -30,7 +31,7 @@ const Members = () => {
   );
 };
 
-export default Members;
+export default MemberList;
 
 const Headers = ["닉네임", "출석시간", "오늘 공부 시간"];
 

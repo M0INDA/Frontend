@@ -73,7 +73,11 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .body-height {
-  min-height: calc(100vh - 6.07rem);
+  min-height: calc(100vh - 6.1rem);
+}
+
+.font1 {
+  font-family: "Spoqa Han Sans Neo", "sans-serif";
 }
 
 .H1 {

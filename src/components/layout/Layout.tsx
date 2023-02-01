@@ -5,18 +5,19 @@ import Main from "./Main";
 interface ILayout {
   children: JSX.Element[] | JSX.Element;
   hasBgColor?: boolean;
+  isFullHeight?: boolean;
 }
 
-const Layout = ({ children, hasBgColor }: ILayout) => {
+const Layout = ({ children, hasBgColor, isFullHeight }: ILayout) => {
   return (
     <div
       className={cls(
-        "min-w-max pb-[6rem]",
+        "min-w-max ",
         hasBgColor ? "bg-bgColor-200" : "bg-bgColor-100"
       )}
     >
       <Header />
-      <Main>{children}</Main>
+      <Main isFullHeight={isFullHeight}>{children}</Main>
     </div>
   );
 };
