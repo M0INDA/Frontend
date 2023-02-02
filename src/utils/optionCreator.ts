@@ -1,4 +1,4 @@
-import { OptionCreator } from "../allTypes/OptionCreatorType";
+import { OptionCreator } from "@allTypes/OptionCreatorType";
 import {
   IIcon,
   IRecruit,
@@ -7,7 +7,7 @@ import {
   IHashtag,
   IStartdate,
   IStudyDetail,
-} from "../allTypes/study";
+} from "@allTypes/study";
 
 export const optionCreator: OptionCreator =
   (option) =>

@@ -1,12 +1,5 @@
 import makeSection from "@utils/makeSection";
-import {
-  Children,
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import DiaryItem from "./DiaryItem";
 import { IDiary } from "@allTypes/myStudy";
 import { Scrollbars } from "react-custom-scrollbars-2";
@@ -22,7 +15,6 @@ const DiaryList = () => {
 
   const getPage = useCallback(() => {
     if (!scrollRef.current) return;
-    console.log("hello");
     setPage((prev) => prev + 1);
     setScrollHeight(scrollRef.current.getScrollHeight());
   }, []);
@@ -58,23 +50,21 @@ const DiaryList = () => {
     <Scrollbars autoHide ref={scrollRef}>
       <div ref={targetRef} />
       <div className="flex flex-col px-[3rem] ">
-        {Children.toArray(
-          Object.entries(DiarySections || {})?.map(([day, diarys]) => (
-            <div
-              key={day}
-              className="flex flex-col space-y-[2.8rem] border-b py-[2.8rem]  last:border-none"
-            >
-              <span className="flex-center Sub2 w-[11.6rem] rounded-full bg-primary-500 py-[0.6rem] text-primary-100">
-                {day}
-              </span>
-              <ul className="flex flex-col space-y-[1.4rem]">
-                {diarys?.map((diary) => (
-                  <DiaryItem key={diary.userId} diary={diary} />
-                ))}
-              </ul>
-            </div>
-          ))
-        )}
+        {Object.entries(DiarySections || {})?.map(([day, diarys]) => (
+          <div
+            key={day}
+            className="flex flex-col space-y-[2.8rem] border-b py-[2.8rem]  last:border-none"
+          >
+            <span className="flex-center Sub2 w-[11.6rem] rounded-full bg-primary-500 py-[0.6rem] text-primary-100">
+              {day}
+            </span>
+            <ul className="flex flex-col space-y-[1.4rem]">
+              {diarys?.map((diary) => (
+                <DiaryItem key={diary.userId} diary={diary} />
+              ))}
+            </ul>
+          </div>
+        ))}
       </div>
     </Scrollbars>
   );
