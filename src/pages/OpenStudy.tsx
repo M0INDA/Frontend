@@ -6,6 +6,15 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
 import { useForm } from "react-hook-form";
+import {
+  regOptContact,
+  regOptHashtag,
+  regOptIcon,
+  regOptRecruit,
+  regOptStartdate,
+  regOptStudyDetail,
+  regOptStudyGroupName,
+} from "@utils/optionCreator";
 
 const OpenStudy = () => {
   const [isiconModal, setIsIconModal] = useState(false);
@@ -93,9 +102,7 @@ const OpenStudy = () => {
     reset,
   } = useForm();
 
-  const onValid = (data: any) => {
-    
-  };
+  const onValid = (data: any) => {};
 
   useEffect(() => {
     watch("studydetail");
@@ -136,7 +143,7 @@ const OpenStudy = () => {
             {/** 대표 아이콘 */}
             <div
               className="ml-[15.8rem] mt-[5rem] flex h-[8.8rem] w-[8.8rem] flex-[1] cursor-pointer items-center justify-center rounded-[0.8rem] bg-[#F7F6F6] text-primary-400"
-              
+              {...register(...regOptIcon.icon())}
               onClick={handleModal}
             >
               아이콘 선택
@@ -164,7 +171,7 @@ const OpenStudy = () => {
             {/** 모집글 제목 */}
             <input
               className="Sub2 textColor ml-[15.8rem] mt-[2.4rem] mr-[50.1rem] h-[5.2rem] w-[68.2rem] rounded-[0.8rem] border-[0.11rem_primary-200] bg-[#F9F7F6] px-[1.8rem] py-[1.4rem] opacity-[0.55] placeholder:text-primary-400"
-              
+              {...register(...regOptRecruit.recruittitle())}
               maxLength={64}
               placeholder="오전 9시 출석! 취업을 위한 열공 스터디를 모집합니다"
             />
@@ -175,7 +182,7 @@ const OpenStudy = () => {
             {/** 스터디팀 이름 */}
             <input
               className="Sub2 textColor ml-[15.8rem] mt-[2.4rem] mr-[50.1rem] h-[5.2rem] w-[68.2rem] rounded-[0.8rem] border-[0.11rem_primary-200] bg-[#F9F7F6] px-[1.8rem] py-[1.4rem] opacity-[0.55] placeholder:text-primary-400"
-              
+              {...register(...regOptStudyGroupName.studygroupname())}
               maxLength={25}
               placeholder="2023 취뽀 스터디"
             ></input>
@@ -360,7 +367,7 @@ const OpenStudy = () => {
             {/** 연락 수단 */}
             <input
               className="Sub2 textColor ml-[15.8rem] mt-[2.4rem] mr-[50.1rem] h-[5.2rem] w-[68.2rem] rounded-[0.8rem] border-[0.11rem_primary-200] bg-[#F9F7F6] px-[1.8rem] py-[1.4rem] opacity-[0.55] placeholder:text-primary-400"
-              
+              {...register(...regOptContact.contact())}
               placeholder="링크를 붙여 넣거나 휴대폰 번호를 적어주세요"
             ></input>
 
@@ -385,7 +392,7 @@ const OpenStudy = () => {
                 type="text"
                 onKeyDown={handleKeyDown}
                 className="Sub2 textColor mr-[3rem] flex w-[21rem] flex-col border-none bg-[#F9F7F6] leading-[1.96rem] placeholder:text-primary-400 focus:ring-0"
-                
+                {...register(...regOptHashtag.hashtag())}
                 placeholder="내용 입력 후 엔터를 누르세요"
                 maxLength={6}
               />
@@ -394,7 +401,7 @@ const OpenStudy = () => {
             {/** 스터디 시작일 */}
             <DatePicker
               className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[5.2rem] w-[68.2rem] cursor-pointer rounded-[0.8rem] border-none bg-[#F9F7F6] py-[1.4rem] pl-[1.8rem] leading-[2.4rem] underline opacity-[0.55] placeholder:text-primary-400 placeholder:underline focus:ring-0"
-              
+              {...register(...regOptStartdate.startdate())}
               locale={ko}
               selected={startDate}
               dateFormat="yyyy / MM / dd"
@@ -408,7 +415,7 @@ const OpenStudy = () => {
             {/** 스터디 스터디 내용 */}
             <textarea
               className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[34.0rem] w-[68.2rem] resize-none rounded-[0.8rem] border-none bg-[#F9F7F6] pl-[1.8rem] pr-[2.9rem] pt-[1.4rem] opacity-[0.55] placeholder:text-primary-400 focus:ring-0"
-              
+              {...register(...regOptStudyDetail.studydetail())}
               placeholder="취업을 위한 열공 스터디를 모집합니다!"
               maxLength={3_000}
             />
