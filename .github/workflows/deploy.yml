@@ -6,6 +6,11 @@ on: # Event 감지
 jobs: # Job 설정
   build:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.x]
+
     steps:
       - name: Checkout source code. # Repo checkout
         uses: actions/checkout@v3
@@ -13,7 +18,7 @@ jobs: # Job 설정
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: [16.x]
+          node-version: ${{ matrix.node-version }}
 
       - name: Check Node v # Node v 확인
         run: node -v
