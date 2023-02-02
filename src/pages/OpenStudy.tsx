@@ -22,6 +22,10 @@ const OpenStudy = () => {
     setIsIconModal(!isiconModal);
   };
 
+  const [isselecetiedIcon, setIsSelectiedIcon] = useState(false);
+
+  console.log(handleModal);
+
   const [checkCategory, setCheckCategory] = useState<string>("");
   const changeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
     if (event.target.checked) {
@@ -78,9 +82,6 @@ const OpenStudy = () => {
     if (!value.trim()) return;
     setHashtags([...hashtags, value]);
     e.currentTarget.value = "";
-    if (hashtags.length > 2) {
-      alert("해시태그는 최대 3개까지 등록 가능합니다.");
-    }
     e.preventDefault();
   };
   const removeHashtags = (index: number) => {
@@ -158,6 +159,7 @@ const OpenStudy = () => {
                 <div className="m-[0_2rem] flex flex-wrap gap-[1.6rem]">
                   {Object.values(icons).map((icon, i) => (
                     <img
+                      key={icon}
                       onClick={handleModal}
                       className=" h-[3rem] w-[3rem] cursor-pointer"
                       src={icon}
