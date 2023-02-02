@@ -9,12 +9,10 @@ import {
   IStudyDetail,
 } from "@allTypes/study";
 
-export const optionCreator: OptionCreator =
-  (option) =>
-  (customOpts = {}) => {
-    const [name, opts] = option;
-    return [name, { ...opts, ...customOpts }];
-  };
+export const optionCreator: OptionCreator = (option) => (customOpts) => {
+  const [name, opts] = option;
+  return [name, { ...opts, ...customOpts }];
+};
 
 export const regOptIcon = {
   icon: optionCreator<IIcon>([
