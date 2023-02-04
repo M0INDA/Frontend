@@ -28,10 +28,12 @@ const DiaryList = () => {
   }, [diarys]);
 
   useEffect(() => {
-    if (!scrollRef.current || page !== 0) return;
-    scrollRef.current?.scrollToBottom();
+    if (scrollRef.current && page === 0) {
+      scrollRef.current?.scrollToBottom();
+    }
   }, [DiarySections, page]);
 
+  // 지워야할 코드
   useEffect(() => {
     setDiarys((prev) => [
       ...prev,
@@ -40,10 +42,10 @@ const DiaryList = () => {
   }, [page]);
 
   useEffect(() => {
-    if (DiarySections.length <= 10 || !scrollRef.current) return;
-    let currentHeight = scrollRef.current.getScrollHeight();
-    if (scrollHeight === currentHeight) return;
-    scrollRef?.current.scrollTop(currentHeight - scrollHeight);
+    if (DiarySections.length > 10 && scrollRef.current) {
+      let currentHeight = scrollRef.current.getScrollHeight();
+      scrollRef?.current.scrollTop(currentHeight - scrollHeight);
+    }
   }, [DiarySections]);
 
   return (
