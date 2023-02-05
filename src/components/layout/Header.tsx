@@ -81,7 +81,6 @@ const navs = [
   { id: 0, name: "홈", pathname: "/" },
   { id: 1, name: "마이페이지", pathname: "/mypage" },
   { id: 2, name: "스터디 게시판", pathname: "/study" },
-  { id: 3, name: "🥫뽀모도로", pathname: "/timer" },
 ];
 
 // Children ! React.Children
