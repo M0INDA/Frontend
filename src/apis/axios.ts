@@ -1,37 +1,40 @@
 import axios from "axios";
 import { getRefreshToken } from "./cookie";
 
-// const baseURL = process.env.REACT_APP_SERVER_URL;
-
-// const myToken = getCookieToken();
-
-//const refreshToken = localStorage.getItem("token");
 export const instance = axios.create({
+  baseURL: process.env.REACT_APP_SERVER_URL,
   headers: {
     "Cache-Control": "no-cache",
+    withCredentials: true,
   },
 });
 
 export const postApi = axios.create({
+  baseURL: process.env.REACT_APP_SERVER_URL,
   headers: {
     "Content-Type": "multipart/form-data",
     "Cache-Control": "no-cache",
+    withCredentials: true,
   },
 });
 
+// 리프레시 토큰을 발급 중인지 확인하는 boolean 값
 let isTokenRefreshing = false;
 
+// 실패한 요청들의 배열
 let refreshSubscribers: Array<(accessToken: string) => void> = [];
 
+// 실패한 요청들을 배열에 추가해주는 함수
 const addRefreshSubscriber = (callback: (accessToken: string) => void) => {
   refreshSubscribers.push(callback);
 };
 
+// 실패한 요청들을 다시 실행시켜주는 함수
 const onTokenRefreshed = (accessToken: string) => {
   refreshSubscribers.map((callback) => callback(accessToken));
 };
 
-axios.interceptors.response.use(
+instance.interceptors.response.use(
   (response) => {
     return response;
   },
