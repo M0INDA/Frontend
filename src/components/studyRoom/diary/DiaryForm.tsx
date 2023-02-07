@@ -17,7 +17,7 @@ const DiaryForm = () => {
       if (e.key === "Enter" && e.shiftKey) {
         return;
       } else if (e.key === "Enter") {
-        // [Enter] 치면 메시지 보내기
+        // enter 입력 시 전송
         handleOnSubmit();
       }
     },
