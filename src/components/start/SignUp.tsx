@@ -79,19 +79,28 @@ const SignUp = () => {
   );
 
   // 회원가입 기능
-  const onValidSubmit = useCallback(async (data: ISignUpForm) => {
-    const { email, password, nickname } = data;
-
-    const response = await signUp({
-      email,
-      password,
-      nickname,
-    });
-    console.log(response);
-    // 실패했을 때 함수
-    // 성공했을 때 함수
-    // navigate("start/login");
-  }, []);
+  const onValidSubmit = useCallback(
+    async (data: ISignUpForm) => {
+      const { email, password, nickname, confirmPassword } = data;
+      if (confirmPassword !== password) {
+        return setError(
+          "confirmPassword",
+          { message: "비밀번호가 일치하지 않습니다." },
+          { shouldFocus: true }
+        );
+      }
+      const response = await signUp({
+        email,
+        password,
+        nickname,
+      });
+      console.log(response);
+      // 실패했을 때 함수
+      // 성공했을 때 함수
+      // navigate("start/login");
+    },
+    [setError]
+  );
 
   return (
     <>
@@ -184,18 +193,7 @@ const SignUp = () => {
           <>
             <Input
               register={{
-                ...register(
-                  "confirmPassword",
-                  passwordCheckValid({
-                    validate: {
-                      check: (val: string | undefined) => {
-                        if (getValues("password") !== val) {
-                          return "비밀번호가 일치하지 않습니다.";
-                        }
-                      },
-                    },
-                  })
-                ),
+                ...register("confirmPassword", passwordValid()),
               }}
               type="password"
               placeholder="비밀번호를 다시 한번 입력해주세요."
