@@ -1,4 +1,4 @@
-import { IDiary } from "@allTypes/myStudy";
+import { IDiary } from "@allTypes/studyRoom";
 import dayjs from "dayjs";
 import "dayjs/locale/ko";
 dayjs.locale("ko");
