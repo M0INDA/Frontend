@@ -9,7 +9,6 @@ import Study from "@pages/Study";
 import MyStudy from "@pages/MyStudy";
 import GroupHome from "@components/studyRoom/home/GroupHome";
 import GroupDiary from "@components/studyRoom/diary/GroupDiary";
-import Test from "@pages/Test";
 
 const Router = () => {
   return (
@@ -27,7 +26,6 @@ const Router = () => {
           <Route path="" element={<GroupHome />} />
           <Route path="diary" element={<GroupDiary />} />
         </Route>
-        <Route path="test" element={<Test />} />
       </Routes>
     </BrowserRouter>
   );
