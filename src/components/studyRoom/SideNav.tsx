@@ -51,7 +51,7 @@ const SideNav = () => {
             <span>상태 설정</span>
             <ArrowSvg
               className={cls(
-                "w-[2.2rem]",
+                "w-[2.2rem] transition-transform duration-300",
                 isStatusFocus ? "rotate-90" : "rotate-[-90deg]"
               )}
             />
