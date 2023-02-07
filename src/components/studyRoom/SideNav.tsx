@@ -1,4 +1,4 @@
-import type { studyStatus } from "@allTypes/studyRoom";
+import type { TStudyStatus } from "@allTypes/studyRoom";
 import ArrowSvg from "@assets/svg/ArrowSvg";
 import CircleSvg from "@assets/svg/CircleSvg";
 import cls from "@utils/cls";
@@ -9,7 +9,7 @@ const SideNav = () => {
   const homeMatch = useMatch("/mystudy/:studyId");
   const diaryMatch = useMatch("/mystudy/:studyId/diary");
   const [isStatusFocus, setIsStatusFocus] = useState(false);
-  const [studyStatus, setStudyStatus] = useState<studyStatus>("모집중");
+  const [studyStatus, setStudyStatus] = useState<TStudyStatus>("모집중");
   const navigate = useNavigate();
   return (
     <aside className="col-span-1 col-start-2 flex min-w-[16rem] flex-col space-y-[6.8rem]">
