@@ -188,7 +188,7 @@ const SignUp = () => {
                   "confirmPassword",
                   passwordCheckValid({
                     validate: {
-                      check: (val: string) => {
+                      check: (val: string | undefined) => {
                         if (getValues("password") !== val) {
                           return "비밀번호가 일치하지 않습니다.";
                         }
