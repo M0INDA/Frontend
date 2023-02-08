@@ -22,7 +22,7 @@ const StudyListSection = () => {
     <section className="relative flex flex-col space-y-[0.6rem]">
       <StudyItem onClick={handleToggle} isCurrent isActive={isSpread} />
       {isSpread && (
-        <div className="absolute top-[8.4rem] z-10 flex w-full flex-col rounded-[1rem] bg-bgColor-100 p-[1.2rem] shadow-[0.2rem_0.8rem_1.8rem_rgba(0,0,0,0.13)]">
+        <div className="absolute top-[8.4rem] z-10 flex w-full select-none flex-col rounded-[1rem] bg-bgColor-100 p-[1.2rem] shadow-[0.2rem_0.8rem_1.8rem_rgba(0,0,0,0.13)]">
           {data.map((item) => (
             <StudyItem
               key={item}

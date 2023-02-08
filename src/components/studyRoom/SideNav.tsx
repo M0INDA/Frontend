@@ -57,7 +57,7 @@ const SideNav = () => {
             />
           </button>
           {isStatusFocus && (
-            <div className="flex flex-col ">
+            <div className="flex flex-col pt-[1.2rem] ">
               {Children.toArray(
                 STATUS_BTNS.map((value) => (
                   <button
@@ -85,7 +85,7 @@ const styles = {
   // 상태 설정 안에 있는 버튼들
   statusBtn: (bool: boolean) =>
     cls(
-      "Sub2 w-full  px-[3.6rem] py-[1.2rem] text-end",
+      "Sub2 w-full  px-[3.6rem] py-[1.2rem] text-end last:pb-0",
       bool ? "text-primary-main" : "text-primary-500"
     ),
   // 그룹홈 그룹일지 버튼
@@ -102,6 +102,6 @@ const styles = {
       "flex cursor-pointer items-center justify-between  py-[1.4rem] px-[3.6rem]",
       bool
         ? "text-[1.8rem] font-medium text-primary-500"
-        : "H3 text-primary-600"
+        : "H3 text-primary-600 border-b border-[rgba(0,0,0,0.05)]"
     ),
 };
