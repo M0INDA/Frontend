@@ -1,10 +1,10 @@
-import { IStudy, ITargetTime } from "@allTypes/studyRoom";
+import { IStudyRoom, ITargetTime } from "@allTypes/studyRoom";
 import { instance } from "@apis/axios";
 import { useMutation, useQuery } from "@tanstack/react-query";
 
 /** 본인이 속한 스터디 그룹들을 조회 */
 const ReadStudyList = (studyId: string) => {
-  return useQuery<IStudy[]>(
+  return useQuery<IStudyRoom[]>(
     ["studyList"],
     async () => {
       const { data } = await instance.get(`study/${studyId}/room/studyList`);
