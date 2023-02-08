@@ -16,9 +16,9 @@ const StudyItem = ({ onClick, isCurrent, isActive }: MyStudyItemProps) => {
       className={cls(
         "grid grid-cols-2 rounded-[1rem] bg-bgColor-100",
         isCurrent
-          ? "p-[1.3rem_3rem]"
+          ? "p-[1.3rem_3rem] ring-1"
           : "p-[1.3rem_1.8rem] hover:cursor-pointer hover:bg-[#F7F6F6]",
-        isActive && "ring-1 ring-primary-main"
+        isActive && isCurrent ? "ring-primary-main" : "ring-primary-200"
       )}
       onClick={!isCurrent ? onClick : () => {}}
     >
