@@ -4,12 +4,7 @@ import Input from "@elements/Input";
 import InputWithButton from "@elements/InputWithButton";
 import Label from "@elements/Label";
 import cls from "@utils/cls";
-import {
-  emailValid,
-  nicknameValid,
-  passwordCheckValid,
-  passwordValid,
-} from "@utils/valids";
+import { emailValid, nicknameValid, passwordValid } from "@utils/valids";
 import { ISignUpForm } from "allTypes/user";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
