@@ -9,7 +9,7 @@ const Main = ({ children, isFullHeight }: IMain) => {
   return (
     <main
       className={cls(
-        "body-height mx-auto w-full px-[3rem] pb-[6rem] lg:w-[144rem] lg:px-0",
+        "body-height mx-auto w-full px-[3rem] pb-[6rem]  lg:w-[144rem] lg:px-0",
         isFullHeight && "flex flex-col"
       )}
     >

@@ -1,11 +1,26 @@
 import getIcon from "@utils/getIcon";
 import GroupSvg from "@assets/svg/GroupSvg.svg";
 import ArrowSvg from "@assets/svg/ArrowSvg";
+import cls from "@utils/cls";
 
-const StudiesSection = () => {
-  // ArrowSvg 클릭 시에 내가 속한 그룹 정보들 조회
+interface MyStudyItemProps {
+  onClick?: () => void;
+  isCurrent: boolean;
+  isActive?: boolean;
+}
+
+const StudyItem = ({ onClick, isCurrent, isActive }: MyStudyItemProps) => {
   return (
-    <section className="grid grid-cols-2 rounded-[1rem] bg-bgColor-100 p-[1.3rem_3rem]">
+    <div
+      className={cls(
+        "grid grid-cols-2 rounded-[1rem] bg-bgColor-100",
+        isCurrent
+          ? "p-[1.3rem_3rem]"
+          : "p-[1.3rem_1.8rem] hover:cursor-pointer hover:bg-[#F7F6F6]",
+        isActive && "ring-1 ring-primary-main"
+      )}
+      onClick={!isCurrent ? onClick : () => {}}
+    >
       <div className="flex items-center space-x-[1.6rem]">
         <div className="flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem] bg-[#94B7F7]">
           <img src={getIcon(17)} className="h-[4rem] w-[4rem]" alt="icon" />
@@ -30,12 +45,22 @@ const StudiesSection = () => {
           <div className="mr-[0.6rem] h-[2rem] w-[2rem] bg-primary-500" />
           어학
         </span>
-        <span className="flex flex-1 cursor-pointer justify-end text-primary-500">
-          <ArrowSvg className="w-[2.2rem] rotate-[-90deg]" strokeWidth="2.4" />
+        <span
+          className="flex flex-1 cursor-pointer justify-end text-primary-500"
+          onClick={isCurrent ? onClick : () => {}}
+        >
+          {isCurrent && (
+            <ArrowSvg
+              className={cls(
+                "w-[2.2rem] text-primary-700 transition-transform duration-300",
+                isActive ? "rotate-90" : "rotate-[-90deg]"
+              )}
+            />
+          )}
         </span>
       </div>
-    </section>
+    </div>
   );
 };
 
-export default StudiesSection;
+export default StudyItem;

@@ -112,7 +112,7 @@ const UpdateDiary = (studyId: string) => {
     },
     {
       onMutate: async (newDiary) => {
-        // 쿼리 get 요청 취소
+        // 쿼리 get 요청 취소 (이전 데이터가 업데이트 데이터 덮어쓰기를 방지)
         await queryClient.cancelQueries(["diaryList", studyId]);
         // 이전 값 저장
         const prevDiaryList: IDiary[] =
@@ -150,7 +150,7 @@ const RemoveDiary = (studyId: string) => {
       const response = await instance.delete(
         `/study/${studyId}/diary/${diaryId}`
       );
-      return;
+      return response;
     },
     {
       onMutate: async (diaryId: string) => {

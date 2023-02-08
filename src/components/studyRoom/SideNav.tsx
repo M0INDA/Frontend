@@ -2,7 +2,7 @@ import type { TStudyStatus } from "@allTypes/studyRoom";
 import ArrowSvg from "@assets/svg/ArrowSvg";
 import CircleSvg from "@assets/svg/CircleSvg";
 import cls from "@utils/cls";
-import { useState } from "react";
+import { Children, useState } from "react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 
 const SideNav = () => {
@@ -58,27 +58,17 @@ const SideNav = () => {
           </button>
           {isStatusFocus && (
             <div className="flex flex-col ">
-              <button
-                className={styles.statusBtn(studyStatus === "모집중")}
-                onClick={() => setStudyStatus("모집중")}
-                disabled={studyStatus === "모집중"}
-              >
-                모집중
-              </button>
-              <button
-                className={styles.statusBtn(studyStatus === "진행중")}
-                onClick={() => setStudyStatus("진행중")}
-                disabled={studyStatus === "진행중"}
-              >
-                진행중
-              </button>
-              <button
-                className={styles.statusBtn(studyStatus === "완료")}
-                onClick={() => setStudyStatus("완료")}
-                disabled={studyStatus === "완료"}
-              >
-                완료
-              </button>
+              {Children.toArray(
+                STATUS_BTNS.map((value) => (
+                  <button
+                    className={styles.statusBtn(studyStatus === value)}
+                    onClick={() => setStudyStatus(value)}
+                    disabled={studyStatus === value}
+                  >
+                    {value}
+                  </button>
+                ))
+              )}
             </div>
           )}
         </nav>
@@ -88,6 +78,8 @@ const SideNav = () => {
 };
 
 export default SideNav;
+
+const STATUS_BTNS: TStudyStatus[] = ["모집중", "진행중", "완료"];
 
 const styles = {
   // 상태 설정 안에 있는 버튼들
