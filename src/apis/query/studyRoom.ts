@@ -1,4 +1,4 @@
-import { IDiary, IMyStudy, ITargetTime } from "@allTypes/studyRoom";
+import { IDiary, IMyStudy, ITargetTimeProps } from "@allTypes/studyRoom";
 import { instance } from "@apis/axios";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -48,7 +48,7 @@ const ReadMemberList = (studyId: string) => {
 };
 
 /** 그룹의 목표 시간을 설정   */
-const SetGroupTargetTime = ({ studyId, targetTime }: ITargetTime) => {
+const SetGroupTargetTime = ({ studyId, targetTime }: ITargetTimeProps) => {
   return useMutation(async () => {
     const response = await instance.post(`/study/${studyId}/room/targetTime`, {
       targetTime,

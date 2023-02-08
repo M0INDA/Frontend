@@ -1,6 +1,7 @@
 import getIcon from "@utils/getIcon";
 import GroupSvg from "@assets/svg/GroupSvg.svg";
 import ArrowSvg from "@assets/svg/ArrowSvg";
+import CategorySvg from "@assets/svg/CategorySvg.svg";
 import cls from "@utils/cls";
 
 interface MyStudyItemProps {
@@ -32,8 +33,8 @@ const StudyItem = ({ onClick, isCurrent, isActive }: MyStudyItemProps) => {
           </span>
         </div>
       </div>
-      <div className="flex items-center  space-x-[1rem] text-primary-500">
-        <span className="Cap3 flex space-x-[0.6rem]">
+      <div className="flex items-center  space-x-[2rem] text-primary-500">
+        <span className="Cap3 flex items-center ">
           <img
             src={GroupSvg}
             className="mr-[0.6rem] h-[2rem] w-[2rem]"
@@ -41,8 +42,8 @@ const StudyItem = ({ onClick, isCurrent, isActive }: MyStudyItemProps) => {
           />
           4명 참여중
         </span>
-        <span className="Cap3 space-x-[0.6rem text-primary-500] flex">
-          <div className="mr-[0.6rem] h-[2rem] w-[2rem] bg-primary-500" />
+        <span className="Cap3 flex items-center  text-primary-500">
+          <img src={CategorySvg} alt="icon" className="mr-[0.6rem]" />
           어학
         </span>
         <span

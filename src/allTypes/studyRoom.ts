@@ -23,11 +23,13 @@ export interface IMyStudy {
   hashTags: string[]; // 해시태그 배열
 }
 
-export interface ITargetTime {
+// 목표시간 props
+export interface ITargetTimeProps {
   studyId: string;
   targetTime: number;
 }
 
+// 맴버 모양
 export interface IMember {
   id: string;
   userId: string;
