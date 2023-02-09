@@ -1,15 +1,15 @@
-import type { studyStatus } from "@allTypes/studyRoom";
+import type { TStudyStatus } from "@allTypes/studyRoom";
 import ArrowSvg from "@assets/svg/ArrowSvg";
 import CircleSvg from "@assets/svg/CircleSvg";
 import cls from "@utils/cls";
-import { useState } from "react";
+import { Children, useState } from "react";
 import { Link, useMatch, useNavigate } from "react-router-dom";
 
 const SideNav = () => {
   const homeMatch = useMatch("/mystudy/:studyId");
   const diaryMatch = useMatch("/mystudy/:studyId/diary");
   const [isStatusFocus, setIsStatusFocus] = useState(false);
-  const [studyStatus, setStudyStatus] = useState<studyStatus>("모집중");
+  const [studyStatus, setStudyStatus] = useState<TStudyStatus>("모집중");
   const navigate = useNavigate();
   return (
     <aside className="col-span-1 col-start-2 flex min-w-[16rem] flex-col space-y-[6.8rem]">
@@ -51,34 +51,24 @@ const SideNav = () => {
             <span>상태 설정</span>
             <ArrowSvg
               className={cls(
-                "w-[2.2rem]",
+                "w-[2.2rem] transition-transform duration-300",
                 isStatusFocus ? "rotate-90" : "rotate-[-90deg]"
               )}
             />
           </button>
           {isStatusFocus && (
-            <div className="flex flex-col ">
-              <button
-                className={styles.statusBtn(studyStatus === "모집중")}
-                onClick={() => setStudyStatus("모집중")}
-                disabled={studyStatus === "모집중"}
-              >
-                모집중
-              </button>
-              <button
-                className={styles.statusBtn(studyStatus === "진행중")}
-                onClick={() => setStudyStatus("진행중")}
-                disabled={studyStatus === "진행중"}
-              >
-                진행중
-              </button>
-              <button
-                className={styles.statusBtn(studyStatus === "완료")}
-                onClick={() => setStudyStatus("완료")}
-                disabled={studyStatus === "완료"}
-              >
-                완료
-              </button>
+            <div className="flex flex-col pt-[1.2rem] ">
+              {Children.toArray(
+                STATUS_BTNS.map((value) => (
+                  <button
+                    className={styles.statusBtn(studyStatus === value)}
+                    onClick={() => setStudyStatus(value)}
+                    disabled={studyStatus === value}
+                  >
+                    {value}
+                  </button>
+                ))
+              )}
             </div>
           )}
         </nav>
@@ -89,11 +79,13 @@ const SideNav = () => {
 
 export default SideNav;
 
+const STATUS_BTNS: TStudyStatus[] = ["모집중", "진행중", "완료"];
+
 const styles = {
   // 상태 설정 안에 있는 버튼들
   statusBtn: (bool: boolean) =>
     cls(
-      "Sub2 w-full  px-[3.6rem] py-[1.2rem] text-end",
+      "Sub2 w-full  px-[3.6rem] py-[1.2rem] text-end last:pb-0",
       bool ? "text-primary-main" : "text-primary-500"
     ),
   // 그룹홈 그룹일지 버튼
@@ -110,6 +102,6 @@ const styles = {
       "flex cursor-pointer items-center justify-between  py-[1.4rem] px-[3.6rem]",
       bool
         ? "text-[1.8rem] font-medium text-primary-500"
-        : "H3 text-primary-600"
+        : "H3 text-primary-600 border-b border-[rgba(0,0,0,0.05)]"
     ),
 };
