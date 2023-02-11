@@ -7,8 +7,7 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   return (
-    <header className="w-full border-b bg-primary-100">
-      <span className="h-10 w-10"></span>
+    <header className="fixed top-0 z-[100] w-full border-b bg-primary-100">
       <div className="flex-between header-height mx-auto  w-full px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center">
           <Link to="/">
