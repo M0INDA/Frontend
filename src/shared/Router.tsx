@@ -6,9 +6,11 @@ import Start from "@pages/Start";
 import OpenStudy from "@pages/OpenStudy";
 import Mypage from "@pages/Mypage";
 import Study from "@pages/Study";
-import StudyRoom from "@pages/StudyRoom";
+import MyStudy from "@pages/StudyRoom";
 import GroupHome from "@components/studyRoom/home/GroupHome";
 import GroupDiary from "@components/studyRoom/diary/GroupDiary";
+import DetailStudy from "@pages/DetailStudy";
+import EditStudy from "@pages/EditStudy";
 
 const Router = () => {
   return (
@@ -21,8 +23,10 @@ const Router = () => {
         </Route>
         <Route path="mypage" element={<Mypage />} />
         <Route path="openStudy" element={<OpenStudy />} />
+        <Route path="detailStudy" element={<DetailStudy />} />
+        <Route path="editStudy" element={<EditStudy />} />
         <Route path="Study" element={<Study />} />
-        <Route path="myStudy/:studyId" element={<StudyRoom />}>
+        <Route path="myStudy/:studyId" element={<MyStudy />}>
           <Route path="" element={<GroupHome />} />
           <Route path="diary" element={<GroupDiary />} />
         </Route>
