@@ -25,3 +25,5 @@ export interface IStartdate {
 export interface IStudyDetail {
   studydetail: string | number;
 }
+
+
