@@ -119,12 +119,14 @@ input[type="number"]::-webkit-inner-spin-button {
   font-size: 1.4rem;
 }
 
+/** 라디오버튼 커스텀용 */
 input[type="radio"] {
   display: none;
   appearance: none;
   outline: none;
 }
 
+/** input 입력 후 텍스트 컬러 */
 .textColor {
   color: #1e1e1e;
 }
@@ -133,6 +135,7 @@ input[type="radio"] {
   box-shadow: 2px 4px 18px rgba(0, 0, 0, 0.13);
 }
 
+/** 스터디 개설 캘린더 스타일링 */
 .react-datepicker {
   position: fixed;
   width: 30rem;
