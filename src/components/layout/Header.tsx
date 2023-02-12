@@ -7,8 +7,7 @@ const Header = () => {
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
   return (
-    <header className="w-full border-b bg-primary-100">
-      <span className="h-10 w-10"></span>
+    <header className="fixed top-0 z-[100] w-full border-b bg-primary-100">
       <div className="flex-between header-height mx-auto  w-full px-[3rem] lg:w-[144rem] lg:px-0">
         <nav className="flex items-center">
           <Link to="/">
@@ -81,7 +80,6 @@ const navs = [
   { id: 0, name: "홈", pathname: "/" },
   { id: 1, name: "마이페이지", pathname: "/mypage" },
   { id: 2, name: "스터디 게시판", pathname: "/study" },
-  { id: 3, name: "🥫뽀모도로", pathname: "/timer" },
 ];
 
 // Children ! React.Children

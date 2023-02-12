@@ -4,7 +4,7 @@ import "./shared/index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import axios from "axios";
 
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 axios.defaults.baseURL = process.env.REACT_APP_SERVER_URL;
 
 const queryClient = new QueryClient();

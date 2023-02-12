@@ -15,27 +15,12 @@ import {
   regOptStudyDetail,
   regOptStudyGroupName,
 } from "@utils/valids";
-import cls from "@utils/cls";
-import RatingSvg from "@assets/svg/RatingSvg";
 
-const OpenStudy = () => {
+const EditStudy = () => {
   const [isiconModal, setIsIconModal] = useState(false);
   const handleModal = () => {
     setIsIconModal(!isiconModal);
   };
-
-  const members = [
-    "팀원 1",
-    "스터디원 2",
-    "스터디원 3",
-    "nicknamehere",
-    "하하haha_2",
-    "namehere1",
-    "namehere2",
-    "namehere3",
-    "namehere4",
-  ];
-  const [click, setClick] = useState("팀원 1");
 
   const [checkCategory, setCheckCategory] = useState<string>("");
   const changeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -411,19 +396,19 @@ const OpenStudy = () => {
 
             {/** 스터디 시작일 */}
             <div>
-              <DatePicker
-                className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[5.2rem] w-[68.2rem] cursor-pointer rounded-[0.8rem] border-none bg-[#F9F7F6] py-[1.4rem] pl-[1.8rem] leading-[2.4rem] underline opacity-[0.55] placeholder:text-primary-400 placeholder:underline focus:ring-0 "
-                {...register("startdate", regOptStartdate())}
-                locale={ko}
-                selected={startDate}
-                dateFormat="yyyy / MM / dd"
-                onChange={(date: Date) => setStartDate(date)}
-                minDate={new Date()} /** 이전 달 비활성화 */
-                showPopperArrow={false} /** 말풍선 꼬리 기본값 제거 */
-                placeholderText="2022 / 02 / 01"
-                fixedHeight
-              />
-              <CalendarSvg className="pointer-events-none absolute ml-[79.5rem] mt-[-4rem]" />
+            <DatePicker
+              className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[5.2rem] w-[68.2rem] cursor-pointer rounded-[0.8rem] border-none bg-[#F9F7F6] py-[1.4rem] pl-[1.8rem] leading-[2.4rem] underline opacity-[0.55] placeholder:text-primary-400 placeholder:underline focus:ring-0 "
+              {...register("startdate", regOptStartdate())}
+              locale={ko}
+              selected={startDate}
+              dateFormat="yyyy / MM / dd"
+              onChange={(date: Date) => setStartDate(date)}
+              minDate={new Date()} /** 이전 달 비활성화 */
+              showPopperArrow={false} /** 말풍선 꼬리 기본값 제거 */
+              placeholderText="2022 / 02 / 01"
+              fixedHeight
+            />
+            <CalendarSvg className='absolute ml-[79.5rem] mt-[-4rem] pointer-events-none'/>
             </div>
 
             {/** 스터디 스터디 내용 */}
@@ -431,7 +416,7 @@ const OpenStudy = () => {
               className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[34.0rem] w-[68.2rem] resize-none rounded-[0.8rem] border-none bg-[#F9F7F6] pl-[1.8rem] pr-[2.9rem] pt-[1.4rem] opacity-[0.55] placeholder:text-primary-400 focus:ring-0"
               {...register("studydetail", regOptStudyDetail())}
               placeholder="취업을 위한 열공 스터디를 모집합니다!"
-              maxLength={3000}
+              maxLength={3_000}
             />
             <div className="mt-[1rem] ml-[77.5rem]">
               {watch("studydetail.length") === 3_000 ? (
@@ -456,4 +441,4 @@ const OpenStudy = () => {
   );
 };
 
-export default OpenStudy;
+export default EditStudy;

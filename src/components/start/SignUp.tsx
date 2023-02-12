@@ -1,9 +1,4 @@
-import {
-  //checkEmail,
-  //checkEmailNum,
-  checkNickname,
-  signUp,
-} from "@apis/query/userApi";
+import { checkEmail, checkNickname, signUp } from "@apis/query/userApi";
 import ErrorMessage from "@elements/ErrorMessage";
 import Input from "@elements/Input";
 import InputWithButton from "@elements/InputWithButton";
@@ -14,6 +9,7 @@ import { ISignUpForm } from "allTypes/user";
 import React, { useCallback, useState } from "react";
 import { useForm } from "react-hook-form";
 import CheckSvg from "@assets/svg/CheckSvg.svg";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const {
@@ -24,48 +20,39 @@ const SignUp = () => {
     getValues,
     formState: { errors },
   } = useForm<ISignUpForm>({ mode: "onChange" });
-
+  const navigate = useNavigate();
   const [codeNum, setCodeNum] = useState(0);
   const [isValidCode, setIsValidCode] = useState(false);
   const [isValidNick, setIsValidNick] = useState(false);
 
-  // 회원가입 기능
-  const onValidSubmit = useCallback(
-    async (data: ISignUpForm) => {
-      const { email, password, nickname, confirmPassword } = data;
-      if (password === confirmPassword) {
-        setError(
-          "confirmPassword",
-          { message: "비밀번호가 일치하지 않습니다." },
+  // 이메일 인증
+  const emailDup = useCallback(
+    async (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      const { status, data } = await checkEmail({ email: getValues("email") });
+      console.log(status, data);
+      if (status !== 201) return alert("사용할 수 없는 이메일입니다.");
+      // response로 받은 인증번호를 codeNum에 저장
+      setCodeNum(data);
+    },
+    [getValues]
+  );
+
+  // 이메일 인증번호 검사
+  const codeValid = useCallback(
+    async (e: React.MouseEvent<HTMLElement>) => {
+      e.preventDefault();
+      if (codeNum !== +getValues("emailCode")) {
+        return setError(
+          "emailCode",
+          { message: "인증번호가 일치하지 않습니다." },
           { shouldFocus: true }
         );
       }
-      // if (!isValidCode) {
-      //   return setError(
-      //     "emailCode",
-      //     { message: "" },
-      //     { shouldFocus: true }
-      //   );
-      // }
-      if (!isValidNick) return alert("닉네임을 확인해주세요");
-      const response = await signUp({
-        email,
-        password,
-        nickname,
-      });
-      console.log(response);
-      // 실패했을 때 함수
-      // 성공했을 때 함수
+      setIsValidCode(true);
     },
-    [setError, isValidNick]
+    [codeNum, getValues, setError]
   );
-
-  // // 이메일 인증
-  // const emailDup = useCallback(async (e: React.MouseEvent<HTMLElement>) => {
-  //   e.preventDefault();
-  //   // const response = await checkEmail({ email: getValues("email") });
-  //   setCodeNum(1);
-  // }, []);
 
   // 닉네임 중복 검사
   const nicknameDup = useCallback(
@@ -74,10 +61,10 @@ const SignUp = () => {
       const response = await checkNickname({ nickname: getValues("nickname") });
       console.log(response);
       // 존재할 시에 setError "사용 불가능한 닉네임입니다."
-      if (response.status !== 200) {
+      if (response.status !== 201) {
         return setError(
           "nickname",
-          { message: "이미 사용중인 닉네임입니다." },
+          { message: "사용할 수 없는 이메일입니다." },
           { shouldFocus: true }
         );
       }
@@ -86,19 +73,29 @@ const SignUp = () => {
     [getValues, setError]
   );
 
-  // // 이메일 인증번호 검사
-  // const codeValid = useCallback(
-  //   async (e: React.MouseEvent<HTMLElement>) => {
-  //     e.preventDefault();
-  //     setIsValidCode(true);
-  //     // if (codeNum !== getValues("emailCode")) return;
-  //     // const response = await checkEmailNum({
-  //     //   emailCode: getValues("emailCode"),
-  //     // });
-  //   },
-  //   []
-  //   //[codeNum, getValues]
-  // );
+  // 회원가입 기능
+  const onValidSubmit = useCallback(
+    async (data: ISignUpForm) => {
+      const { email, password, nickname, confirmPassword } = data;
+      if (confirmPassword !== password) {
+        return setError(
+          "confirmPassword",
+          { message: "비밀번호가 일치하지 않습니다." },
+          { shouldFocus: true }
+        );
+      }
+      const response = await signUp({
+        email,
+        password,
+        nickname,
+      });
+      console.log(response);
+      // 실패했을 때 함수
+      // 성공했을 때 함수
+      // navigate("start/login");
+    },
+    [setError]
+  );
 
   return (
     <>
@@ -123,13 +120,13 @@ const SignUp = () => {
             type="email"
             placeholder="이메일을 입력해주세요."
             buttonText="이메일 인증"
-            // onClick={emailDup}
             disabled={isValidCode}
             btnClass={
               watch("email")?.length && !errors?.email && !isValidCode
                 ? "activeStartBtn"
                 : "startBtn"
             }
+            onClick={emailDup}
           />
           <ErrorMessage text={errors.email?.message} />
         </Label>
@@ -145,7 +142,9 @@ const SignUp = () => {
               btnClass={isValidCode ? "disabledCodeBtn" : "codeBtn"}
               inputClass={isValidCode ? "disabledInput" : "startInput"}
               disabled={isValidCode}
+              onClick={codeValid}
             />
+            <ErrorMessage text={errors.emailCode?.message} />
           </Label>
         )}
 
@@ -184,10 +183,13 @@ const SignUp = () => {
           />
           <ErrorMessage text={errors.password?.message} />
         </Label>
+
         <Label className="mt-[1.4rem]">
           <>
             <Input
-              register={{ ...register("confirmPassword", passwordValid()) }}
+              register={{
+                ...register("confirmPassword", passwordValid()),
+              }}
               type="password"
               placeholder="비밀번호를 다시 한번 입력해주세요."
             />
@@ -202,7 +204,9 @@ const SignUp = () => {
             !watch("password") ||
             !watch("confirmPassword") ||
             Boolean(errors?.password) ||
-            Boolean(errors?.confirmPassword)
+            Boolean(errors?.confirmPassword) ||
+            !isValidCode ||
+            !isValidNick
           }
         >
           가입하기
