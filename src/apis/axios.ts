@@ -1,10 +1,13 @@
 import axios from "axios";
-import { getRefreshToken } from "./cookie";
+import { getAccessToken } from "./cookie";
+
+const myToken = getAccessToken();
 
 export const instance = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   headers: {
     "Cache-Control": "no-cache",
+    Authorization: myToken,
     withCredentials: true,
   },
 });
@@ -13,11 +16,13 @@ export const postApi = axios.create({
   baseURL: process.env.REACT_APP_SERVER_URL,
   headers: {
     "Content-Type": "multipart/form-data",
+    Authorization: myToken,
     "Cache-Control": "no-cache",
     withCredentials: true,
   },
 });
 
+/*
 // 리프레시 토큰을 발급 중인지 확인하는 boolean 값
 let isTokenRefreshing = false;
 
@@ -78,5 +83,5 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-
+*/
 export default instance;
