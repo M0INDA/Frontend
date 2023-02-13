@@ -1,7 +1,6 @@
 export interface IIcon {
-  SelectIconHandler : () => void;
   i : number;
-  icon: number;
+  icon: string;
 }
 
 export interface IRecruit {

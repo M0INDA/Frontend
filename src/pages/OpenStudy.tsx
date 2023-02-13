@@ -15,11 +15,17 @@ import {
   regOptStudyDetail,
   regOptStudyGroupName,
 } from "@utils/valids";
+import { IIcon } from "@allTypes/study";
 
 const OpenStudy = () => {
   const [isiconModal, setIsIconModal] = useState(false);
-  const [isIconSelect, setIsIconSelect] = useRecoilState(isIcon); 
   const handleModal = () => {
+    setIsIconModal(!isiconModal);
+  };
+
+  const [isIconSelect, setIsIconSelect] = useState<IIcon["icon"]>("");
+  const SelectIconHandler = (i: IIcon) => () => {
+    setIsIconSelect(i.icon);
     setIsIconModal(!isiconModal);
   };
 
@@ -63,7 +69,7 @@ const OpenStudy = () => {
     setIsEtcStatus(false);
   };
   const [isetcStatus, setIsEtcStatus] = useState(false);
-  const handleOther = () => {
+  const handleEtc = () => {
     setIsLanguageStatus(false);
     setIsCareerStatus(false);
     setHobbyStatus(false);
@@ -77,6 +83,7 @@ const OpenStudy = () => {
     if (e.key !== "Enter") return;
     const value = e.currentTarget.value;
     if (!value.trim()) return;
+    if (hashtags.length >= 3) return;
     setHashtags([...hashtags, value]);
     e.currentTarget.value = "";
     e.preventDefault();
@@ -97,13 +104,18 @@ const OpenStudy = () => {
     formState: { errors },
     watch,
     reset,
+    setValue,
   } = useForm();
 
   const onValid = (data: any) => {};
-
+  
   useEffect(() => {
     watch("studydetail");
   }, [watch]);
+
+  useEffect(() => {
+    setValue("studydetail", "");
+  }, [setValue]);
 
   return (
     <Layout>
@@ -141,21 +153,29 @@ const OpenStudy = () => {
             <div
               className="ml-[15.8rem] mt-[5rem] flex h-[8.8rem] w-[8.8rem] flex-[1] cursor-pointer items-center justify-center rounded-[0.8rem] bg-[#F7F6F6] text-primary-400"
               {...register("icon", regOptIcon())}
-              onClick={handleModal} 
+              onClick={handleModal}
             >
-              {!isIconSelect ? <div>아이콘 선택</div> : <div>{icons.Object.entries(el => el === setIsIconSelect)}</div>} 
-            </div> 
+              {!isIconSelect ? (
+                <div>아이콘 선택</div>
+              ) : (
+                <img
+                  className="h-[6.8rem] w-[6.8rem] leading-[8.2rem]"
+                  src={isIconSelect}
+                  alt=""
+                />
+              )}
+            </div>
 
             {isiconModal && (
               <div className="boxShadow absolute z-[10] ml-[15.8rem] mt-[1rem] flex h-[24.2rem] w-[25.5rem] flex-col rounded-[1rem] bg-primary-100">
                 <p className="Cap3 mt-[1.8rem] mb-[1.4rem] flex justify-center text-primary-600">
                   대표 아이콘 선택
-                </p> 
+                </p>
                 <div className="m-[0_2rem] flex flex-wrap gap-[1.6rem]">
                   {Object.values(icons).map((icon, i) => (
                     <img
                       key={icon}
-                      onClick={SelectIconHandler(icon)}
+                      onClick={SelectIconHandler({ i, icon })}
                       className="h-[3rem] w-[3rem] cursor-pointer"
                       src={icon}
                       alt=""
@@ -338,7 +358,7 @@ const OpenStudy = () => {
                     value="etc"
                     onChange={changeRadio}
                     checked={isetcStatus}
-                    onClick={handleOther}
+                    onClick={handleEtc}
                   />
                   기타
                 </label>
@@ -354,7 +374,7 @@ const OpenStudy = () => {
                     value="etc"
                     onChange={changeRadio}
                     checked={isetcStatus}
-                    onClick={handleOther}
+                    onClick={handleEtc}
                   />
                   기타
                 </label>

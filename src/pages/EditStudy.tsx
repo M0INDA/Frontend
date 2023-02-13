@@ -1,7 +1,7 @@
 import CalendarSvg from "@assets/svg/CalendarSvg";
 import Layout from "@components/layout/Layout";
 import { icons } from "@utils/getIcon";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
@@ -15,10 +15,17 @@ import {
   regOptStudyDetail,
   regOptStudyGroupName,
 } from "@utils/valids";
+import { IIcon } from "@allTypes/study";
 
 const EditStudy = () => {
   const [isiconModal, setIsIconModal] = useState(false);
+  const [isIconSelect, setIsIconSelect] = useState<IIcon["icon"]>("");
   const handleModal = () => {
+    setIsIconModal(!isiconModal);
+  };
+
+  const SelectIconHandler = (i: IIcon) => () => {
+    setIsIconSelect(i.icon);
     setIsIconModal(!isiconModal);
   };
 
@@ -32,42 +39,42 @@ const EditStudy = () => {
   const [islanguageStatus, setIsLanguageStatus] = useState(false);
   const handleLanguage = () => {
     setIsLanguageStatus(!islanguageStatus);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(false);
     setIsPublicStatus(false);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
-  const [isjobStatus, setIsJobStatus] = useState(false);
+  const [iscareerStatus, setIsCareerStatus] = useState(false);
   const handleJob = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(!isjobStatus);
+    setIsCareerStatus(!iscareerStatus);
     setHobbyStatus(false);
     setIsPublicStatus(false);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
   const [ishobbyStatus, setHobbyStatus] = useState(false);
   const handleHobby = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(!ishobbyStatus);
     setIsPublicStatus(false);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
   const [ispublicStatus, setIsPublicStatus] = useState(false);
   const handlePublic = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(false);
     setIsPublicStatus(!ispublicStatus);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
-  const [isotherStatus, setIsOtherStatus] = useState(false);
-  const handleOther = () => {
+  const [isetcStatus, setIsEtcStatus] = useState(false);
+  const handleEtc = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(false);
     setIsPublicStatus(false);
-    setIsOtherStatus(!isotherStatus);
+    setIsEtcStatus(!isetcStatus);
   };
 
   const [hashtags, setHashtags] = useState<string[]>([]);
@@ -76,6 +83,7 @@ const EditStudy = () => {
     if (e.key !== "Enter") return;
     const value = e.currentTarget.value;
     if (!value.trim()) return;
+    if (hashtags.length >= 3) return;
     setHashtags([...hashtags, value]);
     e.currentTarget.value = "";
     e.preventDefault();
@@ -96,6 +104,7 @@ const EditStudy = () => {
     formState: { errors },
     watch,
     reset,
+    setValue,
   } = useForm();
 
   const onValid = (data: any) => {};
@@ -103,6 +112,10 @@ const EditStudy = () => {
   useEffect(() => {
     watch("studydetail");
   }, [watch]);
+
+  useEffect(() => {
+    setValue("studydetail", "");
+  }, [setValue]);
 
   return (
     <Layout>
@@ -142,7 +155,15 @@ const EditStudy = () => {
               {...register("icon", regOptIcon())}
               onClick={handleModal}
             >
-              아이콘 선택
+              {!isIconSelect ? (
+                <div>아이콘 선택</div>
+              ) : (
+                <img
+                  className="h-[6.8rem] w-[6.8rem] leading-[8.2rem]"
+                  src={isIconSelect}
+                  alt=""
+                />
+              )}
             </div>
 
             {isiconModal && (
@@ -154,8 +175,8 @@ const EditStudy = () => {
                   {Object.values(icons).map((icon, i) => (
                     <img
                       key={icon}
-                      onClick={handleModal}
-                      className=" h-[3rem] w-[3rem] cursor-pointer"
+                      onClick={SelectIconHandler({ i, icon })}
+                      className="h-[3rem] w-[3rem] cursor-pointer"
                       src={icon}
                       alt=""
                     />
@@ -221,34 +242,34 @@ const EditStudy = () => {
                 </label>
               )}
 
-              {!isjobStatus ? (
+              {!iscareerStatus ? (
                 <label
-                  htmlFor="job"
+                  htmlFor="career"
                   className="h-[5.2rem] w-[13.1rem] cursor-pointer flex-row items-center rounded-[4.8rem] border-primary-200 bg-[#FCFBFA] px-[3.6rem] py-[1.4rem]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="job"
-                    value="job"
+                    id="career"
+                    value="career"
                     onChange={changeRadio}
-                    checked={isjobStatus}
+                    checked={iscareerStatus}
                     onClick={handleJob}
                   />
                   취업준비
                 </label>
               ) : (
                 <label
-                  htmlFor="job"
+                  htmlFor="career"
                   className="h-[5.2rem] w-[13.1rem] cursor-pointer flex-row items-center rounded-[4.8rem] bg-[#ffb077] px-[3.6rem] py-[1.4rem] text-[#ffffff]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="job"
-                    value="job"
+                    id="career"
+                    value="career"
                     onChange={changeRadio}
-                    checked={isjobStatus}
+                    checked={iscareerStatus}
                     onClick={handleJob}
                   />
                   취업준비
@@ -325,35 +346,35 @@ const EditStudy = () => {
                 </label>
               )}
 
-              {!isotherStatus ? (
+              {!isetcStatus ? (
                 <label
-                  htmlFor="other"
+                  htmlFor="etc"
                   className="h-[5.2rem] w-[10.2rem] cursor-pointer flex-row items-center rounded-[4.8rem] border-primary-200 bg-[#FCFBFA] px-[3.6rem] py-[1.4rem]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="other"
-                    value="other"
+                    id="etc"
+                    value="etc"
                     onChange={changeRadio}
-                    checked={isotherStatus}
-                    onClick={handleOther}
+                    checked={isetcStatus}
+                    onClick={handleEtc}
                   />
                   기타
                 </label>
               ) : (
                 <label
-                  htmlFor="other"
+                  htmlFor="etc"
                   className="h-[5.2rem] w-[10.2rem] cursor-pointer flex-row items-center rounded-[4.8rem] bg-[#ffb077] px-[3.6rem] py-[1.4rem] text-[#ffffff]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="other"
-                    value="other"
+                    id="etc"
+                    value="etc"
                     onChange={changeRadio}
-                    checked={isotherStatus}
-                    onClick={handleOther}
+                    checked={isetcStatus}
+                    onClick={handleEtc}
                   />
                   기타
                 </label>
@@ -396,19 +417,19 @@ const EditStudy = () => {
 
             {/** 스터디 시작일 */}
             <div>
-            <DatePicker
-              className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[5.2rem] w-[68.2rem] cursor-pointer rounded-[0.8rem] border-none bg-[#F9F7F6] py-[1.4rem] pl-[1.8rem] leading-[2.4rem] underline opacity-[0.55] placeholder:text-primary-400 placeholder:underline focus:ring-0 "
-              {...register("startdate", regOptStartdate())}
-              locale={ko}
-              selected={startDate}
-              dateFormat="yyyy / MM / dd"
-              onChange={(date: Date) => setStartDate(date)}
-              minDate={new Date()} /** 이전 달 비활성화 */
-              showPopperArrow={false} /** 말풍선 꼬리 기본값 제거 */
-              placeholderText="2022 / 02 / 01"
-              fixedHeight
-            />
-            <CalendarSvg className='absolute ml-[79.5rem] mt-[-4rem] pointer-events-none'/>
+              <DatePicker
+                className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[5.2rem] w-[68.2rem] cursor-pointer rounded-[0.8rem] border-none bg-[#F9F7F6] py-[1.4rem] pl-[1.8rem] leading-[2.4rem] underline opacity-[0.55] placeholder:text-primary-400 placeholder:underline focus:ring-0 "
+                {...register("startdate", regOptStartdate())}
+                locale={ko}
+                selected={startDate}
+                dateFormat="yyyy / MM / dd"
+                onChange={(date: Date) => setStartDate(date)}
+                minDate={new Date()} /** 이전 달 비활성화 */
+                showPopperArrow={false} /** 말풍선 꼬리 기본값 제거 */
+                placeholderText="2022 / 02 / 01"
+                fixedHeight
+              />
+              <CalendarSvg className="pointer-events-none absolute ml-[79.5rem] mt-[-4rem]" />
             </div>
 
             {/** 스터디 스터디 내용 */}
@@ -416,7 +437,7 @@ const EditStudy = () => {
               className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[34.0rem] w-[68.2rem] resize-none rounded-[0.8rem] border-none bg-[#F9F7F6] pl-[1.8rem] pr-[2.9rem] pt-[1.4rem] opacity-[0.55] placeholder:text-primary-400 focus:ring-0"
               {...register("studydetail", regOptStudyDetail())}
               placeholder="취업을 위한 열공 스터디를 모집합니다!"
-              maxLength={3_000}
+              maxLength={3000}
             />
             <div className="mt-[1rem] ml-[77.5rem]">
               {watch("studydetail.length") === 3_000 ? (
