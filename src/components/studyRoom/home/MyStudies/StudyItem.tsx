@@ -1,4 +1,4 @@
-import getIcon from "@utils/getIcon";
+import getIcon, { iconBackgrounds, TNumber } from "@utils/getIcon";
 import GroupSvg from "@assets/svg/GroupSvg.svg";
 import ArrowSvg from "@assets/svg/ArrowSvg";
 import CategorySvg from "@assets/svg/CategorySvg.svg";
@@ -8,9 +8,15 @@ interface MyStudyItemProps {
   onClick?: () => void;
   isCurrent: boolean;
   isActive?: boolean;
+  icon: TNumber;
 }
 
-const StudyItem = ({ onClick, isCurrent, isActive }: MyStudyItemProps) => {
+const StudyItem = ({
+  onClick,
+  isCurrent,
+  isActive,
+  icon,
+}: MyStudyItemProps) => {
   return (
     <div
       className={cls(
@@ -23,8 +29,10 @@ const StudyItem = ({ onClick, isCurrent, isActive }: MyStudyItemProps) => {
       onClick={!isCurrent ? onClick : () => {}}
     >
       <div className="flex items-center space-x-[1.6rem]">
-        <div className="flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem] bg-[#94B7F7]">
-          <img src={getIcon(17)} className="h-[4rem] w-[4rem]" alt="icon" />
+        <div
+          className={`flex-center h-[5.4rem] w-[5.4rem] rounded-[1.2rem] ${iconBackgrounds[icon]}`}
+        >
+          <img src={getIcon(icon)} className="h-[4rem] w-[4rem]" alt="icon" />
         </div>
         <div className="flex flex-col justify-between py-[0.2rem]">
           <h3 className="Sub2">토익 900 달성 스터디</h3>

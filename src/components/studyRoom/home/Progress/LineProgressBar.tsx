@@ -1,4 +1,5 @@
 import ArrowSvg from "@assets/svg/ArrowSvg";
+import { iconBackgrounds } from "@utils/getIcon";
 
 interface ILineProgress {
   onClick?: () => void;
@@ -36,7 +37,9 @@ const LineProgressBar = ({ onClick }: ILineProgress) => {
       </div>
 
       <div className="relative   h-[2rem]  rounded-[2.1rem] bg-primary-200">
-        <div className="absolute left-0 top-0 h-[2rem] w-3/4 rounded-[2.1rem] bg-[#94B7F7]" />
+        <div
+          className={`absolute left-0 top-0 h-[2rem] w-3/4 rounded-[2.1rem] ${iconBackgrounds[1]}`}
+        />
       </div>
     </div>
   );
