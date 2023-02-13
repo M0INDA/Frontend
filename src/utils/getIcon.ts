@@ -19,7 +19,7 @@ import Icon18 from "@assets/icons/Icon18.svg";
 import Icon19 from "@assets/icons/Icon19.svg";
 import Icon20 from "@assets/icons/Icon20.svg";
 
-type TNumber =
+export type TNumber =
   | 1
   | 2
   | 3
@@ -62,6 +62,29 @@ export const icons = {
   18: Icon18,
   19: Icon19,
   20: Icon20,
+};
+
+export const iconBackgrounds = {
+  1: "bg-[#F5BEBE]",
+  2: "bg-[#B0F47B]",
+  3: "bg-[#94B7F7]",
+  4: "bg-[#F7D594]",
+  5: "bg-[#FFA07D]",
+  6: "bg-[#F7D594]",
+  7: "bg-[#FFA07D]",
+  8: "bg-[#B0F47B]",
+  9: "bg-[#FFA07D]",
+  10: "bg-[#F5BEBE]",
+  11: "bg-[#94B7F7]",
+  12: "bg-[#B0F47B]",
+  13: "bg-[#F7D594]",
+  14: "bg-[#F5BEBE]",
+  15: "bg-[#F7D594]",
+  16: "bg-[#F5BEBE]",
+  17: "bg-[#94B7F7]",
+  18: "bg-[#FFA07D]",
+  19: "bg-[#F7D594]",
+  20: "bg-[#B0F47B]",
 };
 
 const getIcon = (num: TNumber) => {
