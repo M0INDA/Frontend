@@ -15,27 +15,12 @@ import {
   regOptStudyDetail,
   regOptStudyGroupName,
 } from "@utils/valids";
-import cls from "@utils/cls";
-import RatingSvg from "@assets/svg/RatingSvg";
 
 const OpenStudy = () => {
   const [isiconModal, setIsIconModal] = useState(false);
   const handleModal = () => {
     setIsIconModal(!isiconModal);
   };
-
-  const members = [
-    "팀원 1",
-    "스터디원 2",
-    "스터디원 3",
-    "nicknamehere",
-    "하하haha_2",
-    "namehere1",
-    "namehere2",
-    "namehere3",
-    "namehere4",
-  ];
-  const [click, setClick] = useState("팀원 1");
 
   const [checkCategory, setCheckCategory] = useState<string>("");
   const changeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
