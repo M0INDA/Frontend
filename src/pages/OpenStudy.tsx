@@ -1,7 +1,7 @@
 import CalendarSvg from "@assets/svg/CalendarSvg";
 import Layout from "@components/layout/Layout";
 import { icons } from "@utils/getIcon";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { ko } from "date-fns/esm/locale";
@@ -15,27 +15,20 @@ import {
   regOptStudyDetail,
   regOptStudyGroupName,
 } from "@utils/valids";
-import cls from "@utils/cls";
-import RatingSvg from "@assets/svg/RatingSvg";
+import { useRecoilState } from 'recoil';
+import { isIcon } from '@allTypes/IconAtom';
+import { IIcon } from '@allTypes/study';
 
 const OpenStudy = () => {
   const [isiconModal, setIsIconModal] = useState(false);
+  const [isIconSelect, setIsIconSelect] = useRecoilState(isIcon); 
   const handleModal = () => {
     setIsIconModal(!isiconModal);
-  };
-
-  const members = [
-    "팀원 1",
-    "스터디원 2",
-    "스터디원 3",
-    "nicknamehere",
-    "하하haha_2",
-    "namehere1",
-    "namehere2",
-    "namehere3",
-    "namehere4",
-  ];
-  const [click, setClick] = useState("팀원 1");
+  }; 
+  const SelectIconHandler = (i : IIcon) => () => {
+    setIsIconSelect(i.icon);
+    setIsIconModal(!isiconModal);
+  }
 
   const [checkCategory, setCheckCategory] = useState<string>("");
   const changeRadio = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -47,42 +40,42 @@ const OpenStudy = () => {
   const [islanguageStatus, setIsLanguageStatus] = useState(false);
   const handleLanguage = () => {
     setIsLanguageStatus(!islanguageStatus);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(false);
     setIsPublicStatus(false);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
-  const [isjobStatus, setIsJobStatus] = useState(false);
+  const [iscareerStatus, setIsCareerStatus] = useState(false);
   const handleJob = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(!isjobStatus);
+    setIsCareerStatus(!iscareerStatus);
     setHobbyStatus(false);
     setIsPublicStatus(false);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
   const [ishobbyStatus, setHobbyStatus] = useState(false);
   const handleHobby = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(!ishobbyStatus);
     setIsPublicStatus(false);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
   const [ispublicStatus, setIsPublicStatus] = useState(false);
   const handlePublic = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(false);
     setIsPublicStatus(!ispublicStatus);
-    setIsOtherStatus(false);
+    setIsEtcStatus(false);
   };
-  const [isotherStatus, setIsOtherStatus] = useState(false);
+  const [isetcStatus, setIsEtcStatus] = useState(false);
   const handleOther = () => {
     setIsLanguageStatus(false);
-    setIsJobStatus(false);
+    setIsCareerStatus(false);
     setHobbyStatus(false);
     setIsPublicStatus(false);
-    setIsOtherStatus(!isotherStatus);
+    setIsEtcStatus(!isetcStatus);
   };
 
   const [hashtags, setHashtags] = useState<string[]>([]);
@@ -155,22 +148,22 @@ const OpenStudy = () => {
             <div
               className="ml-[15.8rem] mt-[5rem] flex h-[8.8rem] w-[8.8rem] flex-[1] cursor-pointer items-center justify-center rounded-[0.8rem] bg-[#F7F6F6] text-primary-400"
               {...register("icon", regOptIcon())}
-              onClick={handleModal}
+              onClick={handleModal} 
             >
-              아이콘 선택
-            </div>
+              {!isIconSelect ? <div>아이콘 선택</div> : <div>{icons.Object.entries(el => el === setIsIconSelect)}</div>} 
+            </div> 
 
             {isiconModal && (
               <div className="boxShadow absolute z-[10] ml-[15.8rem] mt-[1rem] flex h-[24.2rem] w-[25.5rem] flex-col rounded-[1rem] bg-primary-100">
                 <p className="Cap3 mt-[1.8rem] mb-[1.4rem] flex justify-center text-primary-600">
                   대표 아이콘 선택
-                </p>
+                </p> 
                 <div className="m-[0_2rem] flex flex-wrap gap-[1.6rem]">
                   {Object.values(icons).map((icon, i) => (
                     <img
                       key={icon}
-                      onClick={handleModal}
-                      className=" h-[3rem] w-[3rem] cursor-pointer"
+                      onClick={SelectIconHandler(icon)}
+                      className="h-[3rem] w-[3rem] cursor-pointer"
                       src={icon}
                       alt=""
                     />
@@ -236,34 +229,34 @@ const OpenStudy = () => {
                 </label>
               )}
 
-              {!isjobStatus ? (
+              {!iscareerStatus ? (
                 <label
-                  htmlFor="job"
+                  htmlFor="career"
                   className="h-[5.2rem] w-[13.1rem] cursor-pointer flex-row items-center rounded-[4.8rem] border-primary-200 bg-[#FCFBFA] px-[3.6rem] py-[1.4rem]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="job"
-                    value="job"
+                    id="career"
+                    value="career"
                     onChange={changeRadio}
-                    checked={isjobStatus}
+                    checked={iscareerStatus}
                     onClick={handleJob}
                   />
                   취업준비
                 </label>
               ) : (
                 <label
-                  htmlFor="job"
+                  htmlFor="career"
                   className="h-[5.2rem] w-[13.1rem] cursor-pointer flex-row items-center rounded-[4.8rem] bg-[#ffb077] px-[3.6rem] py-[1.4rem] text-[#ffffff]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="job"
-                    value="job"
+                    id="career"
+                    value="career"
                     onChange={changeRadio}
-                    checked={isjobStatus}
+                    checked={iscareerStatus}
                     onClick={handleJob}
                   />
                   취업준비
@@ -340,34 +333,34 @@ const OpenStudy = () => {
                 </label>
               )}
 
-              {!isotherStatus ? (
+              {!isetcStatus ? (
                 <label
-                  htmlFor="other"
+                  htmlFor="etc"
                   className="h-[5.2rem] w-[10.2rem] cursor-pointer flex-row items-center rounded-[4.8rem] border-primary-200 bg-[#FCFBFA] px-[3.6rem] py-[1.4rem]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="other"
-                    value="other"
+                    id="etc"
+                    value="etc"
                     onChange={changeRadio}
-                    checked={isotherStatus}
+                    checked={isetcStatus}
                     onClick={handleOther}
                   />
                   기타
                 </label>
               ) : (
                 <label
-                  htmlFor="other"
+                  htmlFor="etc"
                   className="h-[5.2rem] w-[10.2rem] cursor-pointer flex-row items-center rounded-[4.8rem] bg-[#ffb077] px-[3.6rem] py-[1.4rem] text-[#ffffff]"
                 >
                   <input
                     type="radio"
                     name="category"
-                    id="other"
-                    value="other"
+                    id="etc"
+                    value="etc"
                     onChange={changeRadio}
-                    checked={isotherStatus}
+                    checked={isetcStatus}
                     onClick={handleOther}
                   />
                   기타
