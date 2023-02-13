@@ -1,7 +1,14 @@
 import ArrowSvg from "@assets/svg/ArrowSvg";
+import { isExistToken } from "@utils/isLogin";
+import { useEffect } from "react";
 import { Outlet, useNavigate } from "react-router-dom";
 const Start = () => {
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isExistToken()) navigate("/");
+  }, [navigate]);
+
   return (
     <div className="flex-center h-full bg-[#F6F6F6] sm:max-h-full sm:min-h-screen ">
       <div className=" flex h-screen  w-full flex-col bg-primary-100  sm:max-h-[83rem] sm:min-h-[81rem] sm:max-w-[41.2rem] sm:border sm:border-primary-400 ">

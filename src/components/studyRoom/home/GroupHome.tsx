@@ -1,9 +1,13 @@
+import StudyRoomApi from "@apis/query/studyRoomApi";
+import { useParams } from "react-router-dom";
 import ChatSection from "./Chats/ChatSection";
 import MemberSection from "./Members/MemberSection";
 import StudyListSection from "./MyStudies/StudyListSection";
 import ProgressSection from "./Progress/ProgressSection";
 
 const GroupHome = () => {
+  const { studyId } = useParams();
+  const { data } = StudyRoomApi.ReadStudy(studyId + "");
   return (
     <div className="flex w-full  flex-col space-y-[2.6rem]">
       <StudyListSection />

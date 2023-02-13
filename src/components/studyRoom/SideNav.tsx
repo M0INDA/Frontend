@@ -1,4 +1,4 @@
-import type { TStudyStatus } from "@allTypes/studyRoom";
+import type { IStudyStatus } from "@allTypes/studyRoom";
 import ArrowSvg from "@assets/svg/ArrowSvg";
 import CircleSvg from "@assets/svg/CircleSvg";
 import cls from "@utils/cls";
@@ -9,8 +9,9 @@ const SideNav = () => {
   const homeMatch = useMatch("/mystudy/:studyId");
   const diaryMatch = useMatch("/mystudy/:studyId/diary");
   const [isStatusFocus, setIsStatusFocus] = useState(false);
-  const [studyStatus, setStudyStatus] = useState<TStudyStatus>("모집중");
+  const [studyStatus, setStudyStatus] = useState<IStudyStatus>(STATUS_BTNS[0]);
   const navigate = useNavigate();
+
   return (
     <aside className="col-span-1 col-start-2 flex min-w-[16rem] flex-col space-y-[6.8rem]">
       <nav className="rounded-[1rem] bg-bgColor-100 py-[2.4rem]">
@@ -29,9 +30,14 @@ const SideNav = () => {
           </li>
           <li className="flex items-center space-x-[1rem] py-[1.4rem] pl-[3.6rem] text-[1.8rem] font-medium text-primary-500">
             <span>상태</span>
-            <div className="Cap3 flex items-center space-x-[0.5rem] rounded-full border-2 border-primary-main p-[0.3rem_1.2rem] text-primary-main">
-              <span>{studyStatus}</span>
-              <CircleSvg />
+            <div
+              className={cls(
+                `Cap3 flex items-center space-x-[0.5rem] rounded-full border-2  p-[0.3rem_1.2rem] `,
+                studyStatus?.style
+              )}
+            >
+              <span>{studyStatus?.status}</span>
+              <CircleSvg color={studyStatus?.color} />
             </div>
           </li>
         </ul>
@@ -61,11 +67,13 @@ const SideNav = () => {
               {Children.toArray(
                 STATUS_BTNS.map((value) => (
                   <button
-                    className={styles.statusBtn(studyStatus === value)}
+                    className={styles.statusBtn(
+                      studyStatus?.status === value.status
+                    )}
                     onClick={() => setStudyStatus(value)}
-                    disabled={studyStatus === value}
+                    disabled={studyStatus?.status === value.status}
                   >
-                    {value}
+                    {value.status}
                   </button>
                 ))
               )}
@@ -79,7 +87,23 @@ const SideNav = () => {
 
 export default SideNav;
 
-const STATUS_BTNS: TStudyStatus[] = ["모집중", "진행중", "완료"];
+const STATUS_BTNS: IStudyStatus[] = [
+  {
+    status: "모집중",
+    color: "#ED7868",
+    style: "text-[#ED7868] border-[#ED7868]",
+  },
+  {
+    status: "진행중",
+    color: "#4C86EF",
+    style: "text-[#4C86EF] border-[#4C86EF]",
+  },
+  {
+    status: "완료",
+    color: "#848484",
+    style: "text-[#848484] border-[#848484]",
+  },
+];
 
 const styles = {
   // 상태 설정 안에 있는 버튼들

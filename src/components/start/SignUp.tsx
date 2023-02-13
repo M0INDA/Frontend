@@ -58,10 +58,11 @@ const SignUp = () => {
   const nicknameDup = useCallback(
     async (e: React.MouseEvent<HTMLElement>) => {
       e.preventDefault();
-      const response = await checkNickname({ nickname: getValues("nickname") });
-      console.log(response);
+      const { status } = await checkNickname({
+        nickname: getValues("nickname"),
+      });
       // 존재할 시에 setError "사용 불가능한 닉네임입니다."
-      if (response.status !== 201) {
+      if (status !== 201) {
         return setError(
           "nickname",
           { message: "사용할 수 없는 이메일입니다." },
@@ -84,17 +85,15 @@ const SignUp = () => {
           { shouldFocus: true }
         );
       }
-      const response = await signUp({
+      const { status } = await signUp({
         email,
         password,
         nickname,
       });
-      console.log(response);
-      // 실패했을 때 함수
-      // 성공했을 때 함수
-      // navigate("start/login");
+      if (status !== 201) return alert("회원가입에 실패하였습니다.");
+      navigate("start/login");
     },
-    [setError]
+    [setError, navigate]
   );
 
   return (
