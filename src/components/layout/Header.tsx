@@ -1,7 +1,6 @@
 import BellSvg from "@assets/svg/BellSvg";
 import SearchSvg from "@assets/svg/SearchSvg";
 import cls from "@utils/cls";
-import { decodeUser } from "@utils/decodeUser";
 import { isExistToken } from "@utils/isLogin";
 import { Children, useCallback, useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -9,7 +8,7 @@ const Header = () => {
   const { pathname } = useLocation();
   const [isLogin, setIsLogin] = useState(false);
   const navigate = useNavigate();
-  console.log(decodeUser());
+
   useEffect(() => {
     setIsLogin(isExistToken());
   }, [pathname]);

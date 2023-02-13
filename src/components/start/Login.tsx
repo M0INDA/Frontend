@@ -11,7 +11,6 @@ import FacebookSvg from "@assets/svg/FacebookSvg";
 import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
 import { logIn } from "@apis/query/userApi";
-import axios from "axios";
 import { setAccessToken } from "@apis/cookie";
 
 const styles = {
