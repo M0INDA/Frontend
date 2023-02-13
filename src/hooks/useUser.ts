@@ -4,10 +4,9 @@ import { useEffect, useState } from "react";
 import { isExpired } from "react-jwt";
 import { useNavigate } from "react-router-dom";
 
-/**
- * 토큰이 없거나 만료되었다면 login 페이지로 이동
- * 토큰이 있다면 decoding한 정보를 리턴
- */
+/*
+  
+*/
 const useUser = () => {
   const [user, setUser] = useState();
   const navigate = useNavigate();

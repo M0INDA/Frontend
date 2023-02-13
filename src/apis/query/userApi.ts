@@ -1,7 +1,7 @@
 import { ICheckEmail, ICheckNickname } from "./../../allTypes/user";
 import { ILogin, ISignUp } from "allTypes/user";
 import axios from "axios";
-import { useQuery } from "react-query";
+import { useQuery } from "@tanstack/react-query";
 import instance from "@apis/axios";
 
 /** 회원가입 api */
