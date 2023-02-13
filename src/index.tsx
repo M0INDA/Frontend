@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import App from "./App";
 import "./shared/index.css";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { RecoilRoot } from "recoil";
 import axios from "axios";
 
 //axios.defaults.withCredentials = true;
@@ -15,7 +16,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <>
     <QueryClientProvider client={queryClient}>
+      <RecoilRoot>
       <App />
+      </RecoilRoot>
     </QueryClientProvider>
   </>
 );

@@ -1,4 +1,6 @@
 export interface IIcon {
+  SelectIconHandler : () => void;
+  i : number;
   icon: number;
 }
 
