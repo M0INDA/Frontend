@@ -3,28 +3,15 @@ export interface IIcon {
   icon: string;
 }
 
-export interface IRecruit {
-  recruittitle: string | number;
-}
-
-export interface IGroupName {
-  studygroupname: string | number;
-}
-
-export interface IContact {
-  contact: string | number;
-}
-
-export interface IHashtag {
-  hashtag: string | number;
-}
-
-export interface IStartdate {
-  startdate: number;
-}
-
-export interface IStudyDetail {
-  studydetail: string | number;
+export interface IOpenStudy {
+  icon: string;
+  title: string | number; 
+  studyName: string | number;
+  category: string;
+  tel: string;
+  hashtag: string[];
+  startDate: Date;
+  content: string;
 }
 
 

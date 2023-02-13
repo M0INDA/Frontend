@@ -67,7 +67,7 @@ export const regOptIcon = () => ({
   required: "대표 아이콘이 설정되지 않았습니다.",
 });
 
-export const regOptRecruit = () => ({
+export const regOptTitle = () => ({
   required: "모집글 제목이 입력되지 않았습니다.",
   maxLength: {
     value: 64,
@@ -75,7 +75,7 @@ export const regOptRecruit = () => ({
   },
 });
 
-export const regOptStudyGroupName = () => ({
+export const regOptStudyName = () => ({
   required: "스터디 팀 이름이 입력되지 않았습니다.",
   maxLength: {
     value: 25,
@@ -83,7 +83,7 @@ export const regOptStudyGroupName = () => ({
   },
 });
 
-export const regOptContact = () => ({
+export const regOptTel = () => ({
   required: "연락 수단이 입력되지 않았습니다",
   pattern: {
     value: /^(010|011|016|017|018|019)[0-9\b ]{0,11}$/,
@@ -103,7 +103,7 @@ export const regOptStartdate = () => ({
   required: "시작일이 등록되지 않았습니다",
 });
 
-export const regOptStudyDetail = () => ({
+export const regOptContent = () => ({
   required: "내용이 입력되지 않았습니다.",
   maxLength: {
     value: 3000,
