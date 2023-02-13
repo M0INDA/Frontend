@@ -1,6 +1,6 @@
 import React from "react";
 
-const CircleSvg = () => {
+const CircleSvg = ({ color }: { color: string }) => {
   return (
     <svg
       width="6"
@@ -9,7 +9,7 @@ const CircleSvg = () => {
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <circle cx="3" cy="3" r="3" fill="#ED7868" />
+      <circle cx="3" cy="3" r="3" fill={color || "#ED7868"} />
     </svg>
   );
 };
