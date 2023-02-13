@@ -9,7 +9,9 @@ export const signUp = async (data: ISignUp) => {
 };
 /** 로그인 api */
 export const logIn = async (data: ILogin) => {
-  const response = await axios.post("user/login", data);
+  const response = await axios.post("user/login", data, {
+    withCredentials: true,
+  });
   return response;
 };
 

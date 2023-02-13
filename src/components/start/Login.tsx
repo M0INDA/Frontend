@@ -12,6 +12,7 @@ import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
 import { logIn } from "@apis/query/userApi";
 import axios from "axios";
+import { getRefreshToken } from "@apis/cookie";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",
@@ -36,7 +37,8 @@ const Login = () => {
       status,
     } = await logIn(data);
     if (status !== 201) return alert("로그인 실패");
-
+    console.log(accessToken);
+    console.log(getRefreshToken());
     axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
   }, []);
 
