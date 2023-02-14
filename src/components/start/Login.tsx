@@ -11,7 +11,7 @@ import FacebookSvg from "@assets/svg/FacebookSvg";
 import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
 import { logIn } from "@apis/query/userApi";
-import axios from "axios";
+import { setAccessToken } from "@apis/cookie";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",
@@ -36,8 +36,9 @@ const Login = () => {
       status,
     } = await logIn(data);
     if (status !== 201) return alert("로그인 실패");
-
-    axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    setAccessToken(accessToken);
+    // axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
+    window.location.replace("/");
   }, []);
 
   // 카카오 로그인 버튼
