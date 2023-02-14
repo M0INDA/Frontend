@@ -6,7 +6,8 @@ import NewStudy from "@components/main/NewStudy";
 import Pomodoro from "@components/main/Pomodoro";
 import Studing from "@components/main/Studing";
 import StudyCheck from "@components/main/StudyCheck";
-import axios from "axios";
+import { useState } from "react";
+import StudyApi from "@apis/query/studyApi";
 
 const Home = () => {
   const colors = [
@@ -16,16 +17,14 @@ const Home = () => {
     "#F7D594",
     "#B0F47B",
   ];
-  const testBtn = () => {
-    axios.get(`https://gomgom-ssgg.shop/user/readtest`).then((res) => {
-      console.log(res);
-    });
-  };
+  const [click, setClick] = useState("DEV");
+  const { data } = StudyApi.CateBestStudy(click);
+  console.log(data);
+
   return (
     <Layout>
       <div className="flex">
-        <CategoryBtn />
-        <button onClick={testBtn}>요청</button>
+        <CategoryBtn setClick={setClick} click={click} />
         <div className="ml-[2.6rem]">
           <BestStudy />
           <NewStudy />

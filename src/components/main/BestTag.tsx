@@ -14,7 +14,10 @@ const BestTag = () => {
       <div className="col-span-1 mt-[1.8rem] flex w-[44.6rem] flex-wrap gap-[0.7rem]">
         {tags.map((tag) => {
           return (
-            <div className="Cap2 w-fit rounded-[5rem] border border-solid border-primary-200 py-[0.8rem] px-[1.6rem] text-primary-600">
+            <div
+              key={tag}
+              className="Cap2 w-fit rounded-[5rem] border border-solid border-primary-200 py-[0.8rem] px-[1.6rem] text-primary-600"
+            >
               {tag}
             </div>
           );

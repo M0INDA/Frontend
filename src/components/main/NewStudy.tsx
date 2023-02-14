@@ -1,6 +1,10 @@
+import StudyApi from "@apis/query/studyApi";
 import StudyCard from "@components/StudyBoard/StudyCard";
 
 const NewStudy = () => {
+  const { data } = StudyApi.NewStudyGroup();
+  console.log(data);
+
   return (
     <div className="mt-[7.2rem]">
       <div className="flex justify-between">
