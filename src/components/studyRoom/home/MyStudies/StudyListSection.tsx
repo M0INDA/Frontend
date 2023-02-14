@@ -25,12 +25,12 @@ const StudyListSection = () => {
         onClick={handleToggle}
         isCurrent
         isActive={isSpread}
-        icon={1}
+        icon={"ONE"}
       />
       {isSpread && (
         <div className="absolute top-[8.4rem] z-10 flex w-full select-none flex-col rounded-[1rem] bg-bgColor-100 p-[1.2rem] shadow-[0.2rem_0.8rem_1.8rem_rgba(0,0,0,0.13)]">
           {data
-            .filter((value) => value !== 1)
+            .filter((value) => value !== "ONE")
             .map((item) => (
               <StudyItem
                 key={item}
@@ -48,4 +48,4 @@ const StudyListSection = () => {
 
 export default StudyListSection;
 
-const data: TNumber[] = [1, 2, 3, 4, 5];
+const data: TNumber[] = ["ONE", "TWO", "THREE", "FOUR", "FIVE"];
