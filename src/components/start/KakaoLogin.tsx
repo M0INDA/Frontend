@@ -7,7 +7,7 @@ const KakaoLogin = () => {
     (async () => {
       try {
         const kakaoResult = await axios.post(
-          "http://localhost:3000/auth/kakao",
+          "https://mo-inda.shop/auth/kakao",
           {
             code: kakaoToken,
             domain: window.location.origin,

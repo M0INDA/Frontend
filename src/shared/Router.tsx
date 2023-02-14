@@ -27,7 +27,7 @@ const Router = () => {
         <Route path="detailStudy" element={<DetailStudy />} />
         <Route path="editStudy" element={<EditStudy />} />
         <Route path="Study" element={<Study />} />
-        <Route path="oauth/callback/kakao" element={<KakaoLogin />} />
+        <Route path="auth/kakao" element={<KakaoLogin />} />
         <Route path="myStudy/:studyId" element={<MyStudy />}>
           <Route path="" element={<GroupHome />} />
           <Route path="diary" element={<GroupDiary />} />

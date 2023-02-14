@@ -6,6 +6,7 @@ import NewStudy from "@components/main/NewStudy";
 import Pomodoro from "@components/main/Pomodoro";
 import Studing from "@components/main/Studing";
 import StudyCheck from "@components/main/StudyCheck";
+import axios from "axios";
 
 const Home = () => {
   const colors = [
@@ -15,10 +16,16 @@ const Home = () => {
     "#F7D594",
     "#B0F47B",
   ];
+  const testBtn = () => {
+    axios.get(`https://gomgom-ssgg.shop/user/readtest`).then((res) => {
+      console.log(res);
+    });
+  };
   return (
     <Layout>
       <div className="flex">
         <CategoryBtn />
+        <button onClick={testBtn}>요청</button>
         <div className="ml-[2.6rem]">
           <BestStudy />
           <NewStudy />
