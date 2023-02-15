@@ -1,9 +1,9 @@
 import { Dispatch, SetStateAction } from "react";
 
-export interface NowProps {
+export interface INowProps {
   now?: string;
 }
-export interface BtnProps {
+export interface IBtnProps {
   setClick: Dispatch<SetStateAction<string>>;
   click: string;
 }

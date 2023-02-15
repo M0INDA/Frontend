@@ -3,10 +3,10 @@ import NextSvg from "@assets/svg/NextSvg.svg";
 import CategorySvg from "@assets/svg/CategorySvg.svg";
 import GroupSvg from "@assets/svg/GroupSvg.svg";
 import cls from "@utils/cls";
-import { NowProps } from "allTypes/props";
+import { INowProps } from "allTypes/props";
 import { useNavigate } from "react-router-dom";
 
-const Studing = ({ now }: NowProps) => {
+const Studing = ({ now }: INowProps) => {
   const navigate = useNavigate();
   return (
     <div

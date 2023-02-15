@@ -1,7 +1,7 @@
 import cls from "@utils/cls";
-import { BtnProps } from "@allTypes/props";
+import { IBtnProps } from "@allTypes/props";
 
-const CategoryBtn = ({ setClick, click }: BtnProps) => {
+const CategoryBtn = ({ setClick, click }: IBtnProps) => {
   const categorys = [
     { name: "전체 분야", cateName: "DEV" },
     { name: "어학", cateName: "LANGUAGE" },

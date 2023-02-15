@@ -10,15 +10,9 @@ import { useState } from "react";
 import StudyApi from "@apis/query/studyApi";
 
 const Home = () => {
-  const colors = [
-    ["#FFA07D", "#FFE7D6"],
-    "#94B7F7",
-    "#F5BEBE",
-    "#F7D594",
-    "#B0F47B",
-  ];
   const [click, setClick] = useState("DEV");
   const { data } = StudyApi.CateBestStudy(click);
+
   console.log(data);
 
   return (
