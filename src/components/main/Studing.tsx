@@ -5,9 +5,12 @@ import GroupSvg from "@assets/svg/GroupSvg.svg";
 import cls from "@utils/cls";
 import { INowProps } from "allTypes/props";
 import { useNavigate } from "react-router-dom";
+import StudyApi from "@apis/query/studyApi";
 
 const Studing = ({ now }: INowProps) => {
   const navigate = useNavigate();
+  const { data } = StudyApi.JoinStudyGroup();
+
   return (
     <div
       className={cls(

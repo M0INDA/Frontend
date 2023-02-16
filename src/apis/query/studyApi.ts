@@ -32,9 +32,22 @@ const CateBestStudy = (cateName: string) => {
 };
 
 /** 참여 중인 스터디 그룹 조회 */
+const JoinStudyGroup = () => {
+  return useQuery(
+    ["joinStudy"],
+    async () => {
+      const { data } = await instance.get(`/main/myStudy`);
+      return data;
+    },
+    {
+      refetchOnWindowFocus: false,
+    }
+  );
+};
 
 const StudyApi = {
   NewStudyGroup,
   CateBestStudy,
+  JoinStudyGroup,
 };
 export default StudyApi;

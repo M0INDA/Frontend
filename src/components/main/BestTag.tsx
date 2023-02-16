@@ -1,4 +1,7 @@
-const BestTag = () => {
+import { INowProps } from "@allTypes/props";
+import cls from "@utils/cls";
+
+const BestTag = ({ now }: INowProps) => {
   const tags = [
     "토익스터디",
     "2023 취준스터디",
@@ -9,7 +12,7 @@ const BestTag = () => {
     "9시 출석체크",
   ];
   return (
-    <div className="mt-[7.2rem]">
+    <div className={cls("", now ? "mt-[5.4rem]" : "mt-[7.2rem]")}>
       <h2 className="H2 mb-[1.8rem] text-primary-600">오늘의 인기 키워드</h2>
       <div className="col-span-1 mt-[1.8rem] flex w-[44.6rem] flex-wrap gap-[0.7rem]">
         {tags.map((tag) => {

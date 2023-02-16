@@ -23,15 +23,19 @@ const Home = () => {
           <BestStudy />
           <NewStudy />
         </div>
-        <div className=" ml-[5.2rem]">
-          <div>
-            <h2 className="H2 mb-[1.8rem] mt-[5.4rem] text-primary-600">
-              참여 중인 스터디그룹
-            </h2>
+        <div className="ml-[5.2rem]">
+          {/* 조건부 처리 하기 비로그인/로그인 */}
+          <div className="mb-[7.2rem] mt-[5.4rem]">
+            <div className="flex justify-between">
+              <h2 className="H2 mb-[1.8rem] text-primary-600">
+                새로 생긴 스터디그룹
+              </h2>
+              <button className="Cap1 text-primary-500">더보기</button>
+            </div>
             <Studing />
+            <StudyCheck />
           </div>
-          <StudyCheck />
-          <BestTag />
+          <BestTag now="main" />
           <Pomodoro />
         </div>
       </div>
