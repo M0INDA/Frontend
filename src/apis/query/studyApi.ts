@@ -1,5 +1,5 @@
 import { instance } from "@apis/axios";
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 
 /** 새로 생긴 스터디 그룹 조회 */
 const NewStudyGroup = () => {

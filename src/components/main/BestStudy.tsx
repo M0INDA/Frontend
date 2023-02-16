@@ -1,11 +1,19 @@
+import { useNavigate } from "react-router-dom";
+
 const BestStudy = () => {
+  const navigate = useNavigate();
   return (
     <div className="mt-[5.4rem] ">
       <div className="flex justify-between">
         <h2 className="H2 mb-[1.8rem] text-primary-600">
           카테고리 별 인기스터디
         </h2>
-        <button className="Cap1 text-primary-500">더보기</button>
+        <button
+          onClick={() => navigate("/study")}
+          className="Cap1 text-primary-500"
+        >
+          더보기
+        </button>
       </div>
       <div className="flex h-[8.6rem] w-[65.6rem] justify-between rounded-[1rem] bg-orange-100 px-[3rem]">
         <div className="flex-center">
