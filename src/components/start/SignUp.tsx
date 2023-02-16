@@ -91,7 +91,7 @@ const SignUp = () => {
         nickname,
       });
       if (status !== 201) return alert("회원가입에 실패하였습니다.");
-      navigate("start/login");
+      navigate("/start/login");
     },
     [setError, navigate]
   );
