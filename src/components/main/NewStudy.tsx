@@ -5,7 +5,6 @@ import { useNavigate } from "react-router-dom";
 const NewStudy = () => {
   const navigate = useNavigate();
   const { data } = StudyApi.NewStudyGroup();
-  console.log(data);
 
   return (
     <div className="mt-[7.2rem]">
@@ -21,9 +20,7 @@ const NewStudy = () => {
         </button>
       </div>
       <div className=" grid h-[88.0] w-[68.3] grid-cols-2 gap-[2.6rem] ">
-        <StudyCard />
-        <StudyCard />
-        <StudyCard />
+        <StudyCard data={data} />
       </div>
     </div>
   );
