@@ -30,7 +30,7 @@ const Home = () => {
           <div className="mb-[7.2rem] mt-[5.4rem]">
             <div className="flex justify-between">
               <h2 className="H2 mb-[1.8rem] text-primary-600">
-                새로 생긴 스터디그룹
+                참여 중인 스터디 그룹
               </h2>
               <button
                 onClick={() => navigate("/mypage")}

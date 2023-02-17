@@ -3,11 +3,13 @@ import Icon6 from "@assets/icons/Icon6.svg";
 import getIcon from "@utils/getIcon";
 
 const StudyCard = ({ data }: INewProps) => {
-  console.log(data);
   return (
     <>
       {data?.map((newStudy) => (
-        <div className="h-[27.6rem] w-[32.8rem] rounded-[1.4rem] bg-[#F4F4F4] px-[3rem] pt-[2.8rem]">
+        <div
+          key={newStudy.id}
+          className="h-[27.6rem] w-[32.8rem] rounded-[1.4rem] bg-[#F4F4F4] px-[3rem] pt-[2.8rem]"
+        >
           <p className="Cap4 text-primary-500">
             스터디 시작일 &nbsp; | &nbsp; {newStudy.startDate}
           </p>
@@ -19,7 +21,7 @@ const StudyCard = ({ data }: INewProps) => {
             className="mt-[3.4rem] h-[5.8rem] w-[5.8rem]"
           />
           <div className="Cap4 mt-[2rem] flex justify-between text-primary-main">
-            <span>{newStudy.id}</span>
+            <span>{newStudy.userId}</span>
             <div>
               <span>조회 {newStudy.views}</span>
               <span className="ml-[1.4rem]">댓글</span>
