@@ -29,7 +29,7 @@ export interface IStudyDetail {
 }
 
 /**새로 작성된 스터디 구인글 */
-export interface INewStudy {
+export interface IStudys {
   category: string;
   content: string;
   createdAt: Date;

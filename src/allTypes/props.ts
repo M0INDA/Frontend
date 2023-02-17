@@ -1,5 +1,5 @@
 import { Dispatch, SetStateAction } from "react";
-import { INewStudy } from "./study";
+import { IStudys } from "./study";
 
 /**현재 페이지 상태 */
 export interface INowProps {
@@ -13,6 +13,6 @@ export interface IBtnProps {
 }
 
 /**새로 생긴 스터디 전달 */
-export interface INewProps {
-  data: INewStudy[];
+export interface IStudyProps {
+  data: IStudys[];
 }

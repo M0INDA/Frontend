@@ -15,14 +15,12 @@ const Home = () => {
   const [click, setClick] = useState("DEV");
   const { data } = StudyApi.CateBestStudy(click);
 
-  console.log(data);
-
   return (
     <Layout>
       <div className="flex">
         <CategoryBtn setClick={setClick} click={click} />
         <div className="ml-[2.6rem]">
-          <BestStudy />
+          <BestStudy data={data} />
           <NewStudy />
         </div>
         <div className="ml-[5.2rem]">

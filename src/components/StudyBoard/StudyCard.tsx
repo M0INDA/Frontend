@@ -1,8 +1,8 @@
-import { INewProps } from "@allTypes/props";
+import { IStudyProps } from "@allTypes/props";
 import Icon6 from "@assets/icons/Icon6.svg";
 import getIcon from "@utils/getIcon";
 
-const StudyCard = ({ data }: INewProps) => {
+const StudyCard = ({ data }: IStudyProps) => {
   return (
     <>
       {data?.map((newStudy) => (
