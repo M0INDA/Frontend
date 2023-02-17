@@ -1,5 +1,4 @@
 import { IStudyProps } from "@allTypes/props";
-import Icon6 from "@assets/icons/Icon6.svg";
 import getIcon from "@utils/getIcon";
 
 const StudyCard = ({ data }: IStudyProps) => {
@@ -24,7 +23,6 @@ const StudyCard = ({ data }: IStudyProps) => {
             <span>{newStudy.userId}</span>
             <div>
               <span>조회 {newStudy.views}</span>
-              <span className="ml-[1.4rem]">댓글</span>
             </div>
           </div>
         </div>

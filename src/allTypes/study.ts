@@ -1,3 +1,4 @@
+import { TCate } from "@utils/getCategory";
 import { TNumber } from "@utils/getIcon";
 
 export interface IIcon {
@@ -28,9 +29,9 @@ export interface IStudyDetail {
   studydetail: string | number;
 }
 
-/**새로 작성된 스터디 구인글 */
+/**스터디 조회 */
 export interface IStudys {
-  category: string;
+  category: TCate;
   content: string;
   createdAt: Date;
   hashtag: string;

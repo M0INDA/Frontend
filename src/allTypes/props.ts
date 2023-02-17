@@ -12,7 +12,7 @@ export interface IBtnProps {
   click: string;
 }
 
-/**새로 생긴 스터디 전달 */
+/**스터디 데이터 전달 */
 export interface IStudyProps {
   data: IStudys[];
 }
