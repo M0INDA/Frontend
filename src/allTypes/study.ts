@@ -31,12 +31,14 @@ export interface IStudyDetail {
 
 /**스터디 조회 */
 export interface IStudys {
+  DDay?: number;
   category: TCate;
   content: string;
   createdAt: Date;
   hashtag: string;
   icon: TNumber;
   id: string;
+  memberCnt?: number;
   startDate: string;
   studyName: string;
   studyStatus: string;

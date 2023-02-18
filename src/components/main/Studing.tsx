@@ -54,7 +54,7 @@ const Studing = ({ now }: INowProps) => {
                   alt="cateCon"
                   className="mr-[0.6rem] h-[2rem] w-[2rem] "
                 />
-                <span>{"??"}명 참여중</span>
+                <span>{study.memberCnt}명 참여중</span>
               </div>
               <div className="flex-center ml-9">
                 <img

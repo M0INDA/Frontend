@@ -5,6 +5,7 @@ import cls from "@utils/cls";
 
 const BestStudy = ({ data }: IStudyProps) => {
   const navigate = useNavigate();
+  console.log(data);
   return (
     <div className="mt-[5.4rem] ">
       <div className="flex justify-between">
@@ -40,7 +41,7 @@ const BestStudy = ({ data }: IStudyProps) => {
           </div>
           <div className="Cap3 flex flex-col items-end justify-center">
             <p className="text-primary-500">모집마감</p>
-            <p className="text-primary-main ">D-처리중</p>
+            <p className="text-primary-main ">D-{study.DDay}</p>
           </div>
         </div>
       ))}
