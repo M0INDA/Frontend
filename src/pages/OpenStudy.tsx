@@ -85,7 +85,6 @@ const OpenStudy = () => {
       if (e.key !== "Enter") return;
       const value = e.currentTarget.value;
       if (!value.trim()) return;
-      if (hashtags.length >= 3) return;
       setHashtags([...hashtags, value]);
       e.currentTarget.value = "";
       e.preventDefault();
@@ -414,9 +413,10 @@ const OpenStudy = () => {
                 onKeyDown={handleKeyDown}
                 onCompositionStart={() => setIsComposing(true)}
                 onCompositionEnd={() => setIsComposing(false)}
-                className="Sub2 textColor mr-[3rem] flex w-[21rem] flex-col border-none bg-[#F9F7F6] leading-[1.96rem] placeholder:text-primary-400 focus:ring-0"
+                disabled={hashtags.length >= 3}
+                className="Sub2 textColor mr-[3rem] flex w-[28rem] flex-col border-none bg-[#F9F7F6] leading-[1.96rem] placeholder:text-primary-400 focus:ring-0"
                 {...register("hashtag", regOptHashtag())}
-                placeholder="내용 입력 후 엔터를 누르세요"
+                placeholder={hashtags.length >= 3 ? "최대 3개까지 등록이 가능합니다." : "내용 입력 후 엔터를 누르세요."}
                 maxLength={6}
               />
             </div>
