@@ -1,5 +1,19 @@
+import { IOpenStudy } from "@allTypes/study";
 import { instance } from "@apis/axios";
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
+
+const AddStudy = () => {
+  const queryClient = useQueryClient();
+  return useMutation(
+    async (newStudy: IOpenStudy) => {
+      const response = await instance.post(`/study/produce`, newStudy);
+      return response;
+    },
+    {
+      onSuccess: () => queryClient.invalidateQueries(["studylist"]),
+      onError: () => alert("모집글 작성 실패"),
+    })
+  }
 
 /** 새로 생긴 스터디 그룹 조회 */
 const NewStudyGroup = () => {
@@ -46,8 +60,10 @@ const JoinStudyGroup = () => {
 };
 
 const StudyApi = {
+  AddStudy,
   NewStudyGroup,
   CateBestStudy,
   JoinStudyGroup,
 };
+
 export default StudyApi;
