@@ -16,11 +16,8 @@ import {
   regOptStudyName,
 } from "@utils/valids";
 import { IIcon } from "@allTypes/study";
-import StudyApi from '@apis/query/studyApi';
 
 const OpenStudy = () => {
-  const { data : study } = StudyApi.AddStudy();
-
   const [isiconModal, setIsIconModal] = useState(false);
   const handleModal = () => {
     setIsIconModal(!isiconModal);
