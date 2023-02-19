@@ -99,7 +99,7 @@ export const regOptHashtag = () => ({
   },
 });
 
-export const regOptStartdate = () => ({
+export const regOptStartDate = () => ({
   required: "시작일이 등록되지 않았습니다",
 });
 
