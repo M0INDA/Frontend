@@ -1,5 +1,5 @@
 import axios from "axios";
-import { getAccessToken } from "./cookie";
+import { getAccessToken, getRefreshToken } from "./cookie";
 
 const myToken = getAccessToken();
 
@@ -22,7 +22,6 @@ export const postApi = axios.create({
   },
 });
 
-/*
 // 리프레시 토큰을 발급 중인지 확인하는 boolean 값
 let isTokenRefreshing = false;
 
@@ -83,5 +82,5 @@ instance.interceptors.response.use(
     return Promise.reject(error);
   }
 );
-*/
+
 export default instance;

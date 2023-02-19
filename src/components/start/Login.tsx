@@ -11,7 +11,7 @@ import FacebookSvg from "@assets/svg/FacebookSvg";
 import GoogleSvg from "@assets/svg/GoogleSvg";
 import KakaoSvg from "@assets/svg/KakaoSvg";
 import { logIn } from "@apis/query/userApi";
-import { setAccessToken } from "@apis/cookie";
+import { setAccessToken, setRefreshToken } from "@apis/cookie";
 
 const styles = {
   socialWrapper: "flex flex-col items-center",
@@ -32,11 +32,12 @@ const Login = () => {
   // 로그인 기능
   const onValidSubmit = useCallback(async (data: ILogin) => {
     const {
-      data: { accessToken },
+      data: { accessToken, refreshToken },
       status,
     } = await logIn(data);
     if (status !== 201) return alert("로그인 실패");
-    setAccessToken(accessToken);
+    // setAccessToken(accessToken);
+    // setRefreshToken(refreshToken);
     // axios.defaults.headers.common.Authorization = `Bearer ${accessToken}`;
     window.location.replace("/");
   }, []);
