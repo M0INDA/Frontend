@@ -11,7 +11,7 @@ import {
   regOptTel,
   regOptHashtag,
   regOptTitle,
-  regOptStartdate,
+  regOptStartDate,
   regOptContent,
   regOptStudyName,
 } from "@utils/valids";
@@ -418,7 +418,7 @@ const EditStudy = () => {
             <div>
               <DatePicker
                 className="Sub2 textColor ml-[15.8rem] mr-[50.1rem] mt-[2.4rem] h-[5.2rem] w-[68.2rem] cursor-pointer rounded-[0.8rem] border-none bg-[#F9F7F6] py-[1.4rem] pl-[1.8rem] leading-[2.4rem] underline opacity-[0.55] placeholder:text-primary-400 placeholder:underline focus:ring-0 "
-                {...register("startdate", regOptStartdate())}
+                {...register("startdate", regOptStartDate())}
                 locale={ko}
                 selected={startDate}
                 dateFormat="yyyy / MM / dd"
