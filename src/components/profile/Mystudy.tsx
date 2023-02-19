@@ -8,7 +8,7 @@ import PlusSvg from "@assets/svg/PlusSvg.svg";
 
 const Mystudy = () => {
   return (
-    <div className="h-[100vh] max-h-[61.8rem] w-[100vh] max-w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
+    <div className="h-[100vh] max-h-[61.8rem] w-[56.4rem] rounded-[1rem] bg-white p-[3rem]">
       <h2 className="H2 mb-[1.8rem] text-primary-600">참여 중인 스터디그룹</h2>
       <Swiper
         pagination={{
@@ -17,6 +17,8 @@ const Mystudy = () => {
         modules={[Pagination]}
       >
         <SwiperSlide>
+          <Studing now="mypage" />
+          <Studing now="mypage" />
           <Studing now="mypage" />
         </SwiperSlide>
         <SwiperSlide>

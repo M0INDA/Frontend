@@ -1,7 +1,7 @@
 import cls from "@utils/cls";
-import { NowProps } from "allTypes/props";
+import { INowProps } from "allTypes/props";
 
-const StudyCheck = ({ now }: NowProps) => {
+const StudyCheck = ({ now }: INowProps) => {
   return (
     <div className="mt-[1.8rem]">
       <button

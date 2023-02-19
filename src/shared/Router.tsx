@@ -9,6 +9,7 @@ import Study from "@pages/Study";
 import MyStudy from "@pages/StudyRoom";
 import GroupHome from "@components/studyRoom/home/GroupHome";
 import GroupDiary from "@components/studyRoom/diary/GroupDiary";
+import KakaoLogin from "@components/start/KakaoLogin";
 import DetailStudy from "@pages/DetailStudy";
 import EditStudy from "@pages/EditStudy";
 
@@ -26,6 +27,7 @@ const Router = () => {
         <Route path="detailStudy" element={<DetailStudy />} />
         <Route path="editStudy" element={<EditStudy />} />
         <Route path="Study" element={<Study />} />
+        <Route path="auth/kakao" element={<KakaoLogin />} />
         <Route path="myStudy/:studyId" element={<MyStudy />}>
           <Route path="" element={<GroupHome />} />
           <Route path="diary" element={<GroupDiary />} />
