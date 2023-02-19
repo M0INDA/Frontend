@@ -78,15 +78,18 @@ const OpenStudy = () => {
   };
 
   const [hashtags, setHashtags] = useState<string[]>([]);
+  const [isComposing, setIsComposing] = useState(false);
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key !== "Enter") return;
-    const value = e.currentTarget.value;
-    if (!value.trim()) return;
-    if (hashtags.length >= 3) return;
-    setHashtags([...hashtags, value]);
-    e.currentTarget.value = "";
-    e.preventDefault();
+    if(!isComposing) {
+      if (e.key !== "Enter") return;
+      const value = e.currentTarget.value;
+      if (!value.trim()) return;
+      if (hashtags.length >= 3) return;
+      setHashtags([...hashtags, value]);
+      e.currentTarget.value = "";
+      e.preventDefault();
+    }
   };
   const removeHashtags = (index: number) => {
     setHashtags(hashtags.filter((el, i) => i !== index));
@@ -107,7 +110,7 @@ const OpenStudy = () => {
   } = useForm();
 
   const onValid = (data: any) => {};
-  
+
   useEffect(() => {
     watch("content");
   }, [watch]);
@@ -155,7 +158,9 @@ const OpenStudy = () => {
               onClick={handleModal}
             >
               {!IconSelect ? (
-                <div className='Sub2 w-[4.5rem] h-[4.8rem] leading-[2.4rem] text-center'>아이콘 선택</div>
+                <div className="Sub2 h-[4.8rem] w-[4.5rem] text-center leading-[2.4rem]">
+                  아이콘 선택
+                </div>
               ) : (
                 <img
                   className="h-[6.8rem] w-[6.8rem] leading-[8.2rem]"
@@ -407,6 +412,8 @@ const OpenStudy = () => {
               <input
                 type="text"
                 onKeyDown={handleKeyDown}
+                onCompositionStart={() => setIsComposing(true)}
+                onCompositionEnd={() => setIsComposing(false)}
                 className="Sub2 textColor mr-[3rem] flex w-[21rem] flex-col border-none bg-[#F9F7F6] leading-[1.96rem] placeholder:text-primary-400 focus:ring-0"
                 {...register("hashtag", regOptHashtag())}
                 placeholder="내용 입력 후 엔터를 누르세요"
@@ -444,9 +451,7 @@ const OpenStudy = () => {
                   {watch("content.length")} / 3000
                 </span>
               ) : (
-                <span className="Cap4">
-                  {watch("content.length")} / 3000
-                </span>
+                <span className="Cap4">{watch("content.length")} / 3000</span>
               )}
             </div>
 
